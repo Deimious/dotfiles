@@ -1,0 +1,20 @@
+{
+    "title": "The Weaver",
+    "name": "the-weaver",
+    "description": "The Weaver Theme for Brackets. 'Nature uses only the longest threads to weave her patterns, so that each small piece of her fabric reveals the organization of the entire tapestry.' —Richard Feynman. A Brackets original.",
+    "version": "1.0.0",
+    "author": "larz0 (https://github.com/larz0)",
+    "homepage": "https://github.com/Brackets-Themes/TheWeaver",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Brackets-Themes/TheWeaver.git"
+    },
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.42.0"
+    },
+    "theme": {
+        "file": "theweaver.css",
+        "dark": true
+    }
+}

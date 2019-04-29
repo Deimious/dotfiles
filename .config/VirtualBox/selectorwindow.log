@@ -1,0 +1,16 @@
+00:00:03.788004 VirtualBox GUI VM Selector Window 6.0.4 r128164 linux.amd64 (Mar  5 2019 19:56:31) release log
+00:00:03.788009 Log opened 2019-03-14T19:55:35.230739000Z
+00:00:03.788010 Build Type: release
+00:00:03.788014 OS Product: Linux
+00:00:03.788016 OS Release: 4.14.105-1-MANJARO
+00:00:03.788019 OS Version: #1 SMP PREEMPT Wed Mar 6 22:46:52 UTC 2019
+00:00:03.788048 DMI Product Name: XPS 15 9560
+00:00:03.788061 DMI Product Version: 
+00:00:03.788140 Host RAM: 7831MB (7.6GB) total, 6689MB (6.5GB) available
+00:00:03.788146 Executable: /usr/lib/virtualbox/VirtualBox
+00:00:03.788147 Process ID: 9264
+00:00:03.788148 Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:03.788186 Qt version: 5.12.1
+00:00:03.822684 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:04.379662 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:04.396951 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 0 work area is actually resized to: 937x535 x 75x50

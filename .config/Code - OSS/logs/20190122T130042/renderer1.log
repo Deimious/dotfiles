@@ -1,0 +1,2 @@
+[2019-01-22 13:00:44.827] [renderer1] [info] no standard startup: not the explorer viewlet
+[2019-01-22 13:00:45.936] [renderer1] [error] ENOSPC: no space left on device, write: Error: ENOSPC: no space left on device, write

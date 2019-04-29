@@ -1,0 +1,499 @@
+{
+	"folder_history":
+	[
+		"/home/daymoose/NetBeansProjects/ListViewDemo2/nbproject"
+	],
+	"last_version": 3207,
+	"last_window_id": 10,
+	"log_indexing": false,
+	"settings":
+	{
+		"new_window_height": 0.0,
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"min",
+						"minHeapifyCalls"
+					],
+					[
+						"inti",
+						"initialVertexList"
+					],
+					[
+						"count",
+						"count"
+					]
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"men",
+						"View: Toggle Menu"
+					],
+					[
+						"menu",
+						"View: Toggle Menu"
+					],
+					[
+						"save as",
+						"Project: Save As"
+					],
+					[
+						"install",
+						"Package Control: Install Package"
+					],
+					[
+						"instal",
+						"Package Control: Install Package"
+					],
+					[
+						"Package Control: ",
+						"Package Control: Install Package"
+					],
+					[
+						"insta",
+						"Package Control: Install Package"
+					],
+					[
+						"package",
+						"Install Package Control"
+					]
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/home/daymoose/Documents/3050HW3/Working Uncommented/input.txt",
+				"/home/daymoose/Documents/shirts.txt",
+				"/home/daymoose/Documents/main.c",
+				"/home/daymoose/Documents/Assign4.asm",
+				"/tmp/mozilla_daymoose0/Assign4-1.asm",
+				"/tmp/mozilla_daymoose0/assign3-1.asm",
+				"/tmp/mozilla_daymoose0/Assign4.asm",
+				"/home/daymoose/.i3/config",
+				"/home/daymoose/NetBeansProjects/NewLoginForm/nbproject/project.properties",
+				"/home/daymoose/NetBeansProjects/ListViewDemo2/nbproject/project.properties",
+				"/home/daymoose/NetBeansProjects/ListViewDemo1/nbproject/project.properties",
+				"/home/daymoose/.config/vis/config",
+				"/home/daymoose/.ncmpcpp/config",
+				"/home/daymoose/NetBeansProjects/3050HW2/input.txt",
+				"/home/daymoose/Documents/input.txt",
+				"/home/daymoose/Documents/fuckyou.txt"
+			],
+			"find":
+			{
+				"height": 22.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					"keyArray",
+					"extractMin",
+					"minHeapifyCalls++",
+					"parent",
+					"maxweight"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 22.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 40.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": false,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 0.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"min",
+						"minHeapifyCalls"
+					],
+					[
+						"inti",
+						"initialVertexList"
+					],
+					[
+						"count",
+						"count"
+					]
+				]
+			},
+			"buffers":
+			[
+				{
+					"file": "/tmp/mozilla_daymoose0/assign4.asm",
+					"settings":
+					{
+						"buffer_size": 8898,
+						"line_ending": "Windows"
+					}
+				}
+			],
+			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"men",
+						"View: Toggle Menu"
+					],
+					[
+						"menu",
+						"View: Toggle Menu"
+					],
+					[
+						"save as",
+						"Project: Save As"
+					],
+					[
+						"install",
+						"Package Control: Install Package"
+					],
+					[
+						"instal",
+						"Package Control: Install Package"
+					],
+					[
+						"Package Control: ",
+						"Package Control: Install Package"
+					],
+					[
+						"insta",
+						"Package Control: Install Package"
+					],
+					[
+						"package",
+						"Install Package Control"
+					]
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/home/daymoose/Documents/CS4520/notes.txt",
+				"/home/daymoose/Documents/CS4320/notes.txt",
+				"/tmp/xa-TQ18WZ/Djbzf5Tables.html",
+				"/home/daymoose/.ssh/id_rsa.pub",
+				"/home/daymoose/Documents/CS2830/lectures/class01/firstpage.html",
+				"/home/daymoose/Documents/CS2830/challenges/1/Djbzf5SettingUp.html",
+				"/home/daymoose/Documents/CS2830/notes.txt",
+				"/home/daymoose/Documents/3050HW3/Working Uncommented/main.c",
+				"/home/daymoose/Documents/3050HW3/Working Uncommented/header.h",
+				"/home/daymoose/Documents/3050HW3/Working Uncommented/hw3.c",
+				"/home/daymoose/doc.txt",
+				"/home/daymoose/NetBeansProjects/Djbzf5FinalProject/about.txt",
+				"/home/daymoose/NetBeansProjects/Djbzf5FinalProject/ProjectDocumentation.txt",
+				"/home/daymoose/Documents/3050HW3/Working Uncommented/input.txt",
+				"/home/daymoose/Documents/shirts.txt",
+				"/home/daymoose/Documents/main.c",
+				"/home/daymoose/Documents/Assign4.asm",
+				"/tmp/mozilla_daymoose0/Assign4-1.asm",
+				"/tmp/mozilla_daymoose0/assign3-1.asm",
+				"/tmp/mozilla_daymoose0/Assign4.asm",
+				"/home/daymoose/.i3/config",
+				"/home/daymoose/NetBeansProjects/NewLoginForm/nbproject/project.properties",
+				"/home/daymoose/NetBeansProjects/ListViewDemo2/nbproject/project.properties",
+				"/home/daymoose/NetBeansProjects/ListViewDemo1/nbproject/project.properties",
+				"/home/daymoose/.config/vis/config",
+				"/home/daymoose/.ncmpcpp/config",
+				"/home/daymoose/NetBeansProjects/3050HW2/input.txt",
+				"/home/daymoose/Documents/input.txt",
+				"/home/daymoose/Documents/fuckyou.txt"
+			],
+			"find":
+			{
+				"height": 22.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"groups":
+			[
+				{
+					"selected": 0,
+					"sheets":
+					[
+						{
+							"buffer": 0,
+							"file": "/tmp/mozilla_daymoose0/assign4.asm",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 8898,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										8898,
+										8898
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/Text/Plain text.tmLanguage"
+								},
+								"translation.x": 0.0,
+								"translation.y": 1538.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 0,
+							"type": "text"
+						}
+					]
+				}
+			],
+			"incremental_find":
+			{
+				"height": 22.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			},
+			"menu_visible": false,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"position": "0,0,0,0,0,20,54,1890,1055,1920,1080",
+			"project": "",
+			"replace":
+			{
+				"height": 40.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"men",
+						"~/Documents/CS2830/notes.txt"
+					],
+					[
+						"menu",
+						"~/Documents/3050HW3/Working Uncommented/hw3.c"
+					]
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"selected_group": 0,
+			"settings":
+			{
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": false,
+			"template_settings":
+			{
+			},
+			"window_id": 10,
+			"workspace_name": ""
+		}
+	],
+	"workspaces":
+	{
+		"recent_workspaces":
+		[
+		]
+	}
+}

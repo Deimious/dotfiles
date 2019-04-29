@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="cursor" mtime="1556500603" type="string">
+		<stringvalue>pixelfun3</stringvalue>
+	</entry>
+</gconf>

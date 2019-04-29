@@ -1,0 +1,94 @@
+[2018-10-22 15:37:07.764] [sharedprocess] [info] main {"machineId":"681640ada33914431d2965540a88d961d71a8cfdc989efdf1393c7bc94a6c459"}
+[2018-10-22 15:37:07.788] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:07.807] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:07.836] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:07.844] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:07.864] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:07.908] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:07.912] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:07.914] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:07.915] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:08.737] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:13.050] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:17.797] [sharedprocess] [info] Installing extension: python
+[2018-10-22 15:37:17.798] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:20.266] [sharedprocess] [info] Installing extension: cpptools
+[2018-10-22 15:37:20.268] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:23.182] [sharedprocess] [info] Installing extension: csharp
+[2018-10-22 15:37:23.184] [sharedprocess] [info] Scanned user extensions: 0
+[2018-10-22 15:37:28.148] [sharedprocess] [info] Downloaded extension: cpptools /tmp/95445e0a-6477-4ed4-bcd9-0dec8f263a39
+[2018-10-22 15:37:29.914] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.ms-vscode.cpptools-0.19.0: ms-vscode.cpptools-0.19.0
+[2018-10-22 15:37:29.914] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/ms-vscode.cpptools-0.19.0
+[2018-10-22 15:37:29.914] [sharedprocess] [info] Installation completed. ms-vscode.cpptools-0.19.0
+[2018-10-22 15:37:29.932] [sharedprocess] [info] Extensions installed successfully: ms-vscode.cpptools
+[2018-10-22 15:37:30.062] [sharedprocess] [info] Scanned user extensions: 1
+[2018-10-22 15:37:30.140] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:32.004] [sharedprocess] [info] Installing extension: java
+[2018-10-22 15:37:32.007] [sharedprocess] [info] Scanned user extensions: 1
+[2018-10-22 15:37:32.350] [sharedprocess] [info] Downloaded extension: csharp /tmp/c7373d18-f50f-4be1-800c-7cedcd52f28c
+[2018-10-22 15:37:34.804] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.ms-vscode.csharp-1.16.2: ms-vscode.csharp-1.16.2
+[2018-10-22 15:37:34.804] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/ms-vscode.csharp-1.16.2
+[2018-10-22 15:37:34.804] [sharedprocess] [info] Installation completed. ms-vscode.csharp-1.16.2
+[2018-10-22 15:37:34.829] [sharedprocess] [info] Extensions installed successfully: ms-vscode.csharp
+[2018-10-22 15:37:34.979] [sharedprocess] [info] Scanned user extensions: 2
+[2018-10-22 15:37:35.048] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:41.665] [sharedprocess] [info] Downloaded extension: python /tmp/98260738-9bc7-4b2e-a983-0adc13dbff05
+[2018-10-22 15:37:47.767] [sharedprocess] [info] Starting to clean up unused language packs.
+[2018-10-22 15:37:51.586] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.ms-python.python-2018.9.1: ms-python.python-2018.9.1
+[2018-10-22 15:37:51.586] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/ms-python.python-2018.9.1
+[2018-10-22 15:37:51.586] [sharedprocess] [info] Installation completed. ms-python.python-2018.9.1
+[2018-10-22 15:37:51.607] [sharedprocess] [info] Extensions installed successfully: ms-python.python
+[2018-10-22 15:37:51.780] [sharedprocess] [info] Scanned user extensions: 3
+[2018-10-22 15:37:51.802] [sharedprocess] [info] Scanned user extensions: 3
+[2018-10-22 15:37:51.928] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:51.938] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:37:54.970] [sharedprocess] [info] Installing extension: mssql
+[2018-10-22 15:37:54.996] [sharedprocess] [info] Scanned user extensions: 3
+[2018-10-22 15:38:10.074] [sharedprocess] [info] Downloaded extension: mssql /tmp/27fd6ff2-0639-49c0-ac01-10b0a9db7437
+[2018-10-22 15:38:12.368] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.ms-mssql.mssql-1.4.0: ms-mssql.mssql-1.4.0
+[2018-10-22 15:38:12.368] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/ms-mssql.mssql-1.4.0
+[2018-10-22 15:38:12.368] [sharedprocess] [info] Installation completed. ms-mssql.mssql-1.4.0
+[2018-10-22 15:38:12.440] [sharedprocess] [info] Scanned user extensions: 4
+[2018-10-22 15:38:12.513] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:38:12.513] [sharedprocess] [info] Extensions installed successfully: ms-mssql.mssql
+[2018-10-22 15:38:12.707] [sharedprocess] [info] Scanned user extensions: 4
+[2018-10-22 15:38:12.760] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:38:34.528] [sharedprocess] [info] Downloaded extension: java /tmp/f3134eed-077b-488e-aaf7-65762353f093
+[2018-10-22 15:38:34.984] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.redhat.java-0.32.0: redhat.java-0.32.0
+[2018-10-22 15:38:34.984] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/redhat.java-0.32.0
+[2018-10-22 15:38:34.984] [sharedprocess] [info] Installation completed. redhat.java-0.32.0
+[2018-10-22 15:38:34.995] [sharedprocess] [info] Extensions installed successfully: redhat.java
+[2018-10-22 15:38:35.134] [sharedprocess] [info] Scanned user extensions: 5
+[2018-10-22 15:38:35.191] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:41:16.637] [sharedprocess] [info] Installing extension: vscode-theme-superonedark
+[2018-10-22 15:41:16.670] [sharedprocess] [info] Scanned user extensions: 5
+[2018-10-22 15:41:17.118] [sharedprocess] [info] Downloaded extension: vscode-theme-superonedark /tmp/e9194732-54ee-4fb5-b27a-3182ce186938
+[2018-10-22 15:41:17.172] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.seansassenrath.vscode-theme-superonedark-0.0.15: seansassenrath.vscode-theme-superonedark-0.0.15
+[2018-10-22 15:41:17.172] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/seansassenrath.vscode-theme-superonedark-0.0.15
+[2018-10-22 15:41:17.172] [sharedprocess] [info] Installation completed. seansassenrath.vscode-theme-superonedark-0.0.15
+[2018-10-22 15:41:17.180] [sharedprocess] [info] Extensions installed successfully: seansassenrath.vscode-theme-superonedark
+[2018-10-22 15:41:17.346] [sharedprocess] [info] Scanned user extensions: 6
+[2018-10-22 15:41:17.410] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:42:08.803] [sharedprocess] [info] Scanned user extensions: 6
+[2018-10-22 15:45:06.763] [sharedprocess] [info] Installing extension: vscode-theme-onedark
+[2018-10-22 15:45:06.786] [sharedprocess] [info] Scanned user extensions: 6
+[2018-10-22 15:45:06.954] [sharedprocess] [info] Downloaded extension: vscode-theme-onedark /tmp/b51b8f35-960b-4427-9d88-2aafa0e340fe
+[2018-10-22 15:45:07.000] [sharedprocess] [info] Extracted extension to /home/daymoose/.vscode-oss/extensions/.akamud.vscode-theme-onedark-2.1.0: akamud.vscode-theme-onedark-2.1.0
+[2018-10-22 15:45:07.001] [sharedprocess] [info] Renamed to /home/daymoose/.vscode-oss/extensions/akamud.vscode-theme-onedark-2.1.0
+[2018-10-22 15:45:07.001] [sharedprocess] [info] Installation completed. akamud.vscode-theme-onedark-2.1.0
+[2018-10-22 15:45:07.009] [sharedprocess] [info] Extensions installed successfully: akamud.vscode-theme-onedark
+[2018-10-22 15:45:07.181] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:45:07.236] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:46:00.955] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:46:00.962] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:46:00.969] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:46:00.998] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:46:01.038] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:46:01.042] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:46:01.049] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-22 15:46:01.096] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:46:01.100] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:46:01.103] [sharedprocess] [info] Scanned system extensions: 71
+[2018-10-22 15:46:03.903] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-23 08:13:29.847] [sharedprocess] [info] Scanned user extensions: 7
+[2018-10-23 08:13:29.866] [sharedprocess] [info] Scanned system extensions: 71

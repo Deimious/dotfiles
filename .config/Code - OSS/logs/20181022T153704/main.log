@@ -1,0 +1,6 @@
+[2018-10-22 15:37:04.258] [main] [info] update#ctor - updates are disabled
+[2018-10-22 15:39:03.836] [main] [error] [uncaught exception in main]: TypeError: Cannot read property 'instanceId' of undefined
+[2018-10-22 15:39:03.837] [main] [error] TypeError: Cannot read property 'instanceId' of undefined
+    at WebContents.<anonymous> (/usr/lib/electron/resources/electron.asar/browser/guest-view-manager.js:84:34)
+    at emitOne (events.js:121:20)
+    at WebContents.emit (events.js:211:7)
