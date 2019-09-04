@@ -24,16 +24,20 @@ max-width: 100% !important;
  margin-bottom:-1px !important;
  }
  
- 
+ #tabbrowser-tabs {
+     --tab-min-height: 22px !important;
+    height: 22px !important;
+ } 
  
 #TabsToolbar {
-    background: #000 !important;
+    background: #121212 !important;
     margin-bottom: 0 !important;
+    height: 22px !important;
 }
  
  
 #TabsToolbar .tabbrowser-tabs {
-    min-height: 18px !important;
+    min-height: 17px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     text-align: center !important;
@@ -57,14 +61,15 @@ display: none !important;
     -moz-border-bottom-colors: none !important;
     padding: 0px 0px !important;
     border-radius: 0px !important;
-    background: #000 !important;
+    background: #121212 !important;
     background-clip: padding-box !important;
     transition: all .1s !important;
     margin-left: 0px !important;
     color: rgb(100,100,100) !important;
     font-family: 'xos4 Terminus' !important;
-    font-size: 12px !important;
+    font-size: 11px !IMPORTANT;
     min-height: 14px !important;
+    text-align: center;
 }
  
 #TabsToolbar .tabs-newtab-button {
@@ -74,19 +79,20 @@ display: none !important;
     -moz-border-bottom-colors: none !important;
     border-style: solid !important;
     border-color: transparent !important;
-    border-width: 1px 1px 0 1px !important;
+    border-width: 0px 0px 0 0px !important;
     text-shadow: 0 0 4px rgba(255,255,255,0) !important;
     background: transparent !important;
     background-clip: padding-box !important;
     transition: all .1s !important;
+    display: none;
 }
  
  
  
  
 #TabsToolbar .tabbrowser-tab[selected] {
-    color: #CCCCCC !important;
-    background: #639 !important;
+    color: #121212 !important;
+    background: #486350 !important;
     background-clip: padding-box !important;
 }
  
@@ -117,7 +123,7 @@ display: none !important;
 }
  
 #TabsToolbar .tabs-newtab-button {
-    border-width: 1px 1px 0 1px !important;
+    border-width: 0px 0px 0 0px !important;
     margin: 0 !important;
     width: auto !important;
     padding: 0 5px !important;
@@ -157,20 +163,21 @@ display: none !important;
  
     border: 0px solid #FBFBFB !important;
     text-align: left;
-    background: #000 !important;
+    background: #121212 !important;
     margin-top: 0px !important;
     margin-left: 5px !important;
-    border-radius: 1px;
+    border-radius: 0px;
     margin-bottom: 6px;
     padding: 2px !important;
     color: rgb(130,130,130) !important;
     font-family: 'xos4 Terminus' !important;
     height: 30px !important;
+    font-size: 12px;
 }
  
  
 #nav-bar {
-    background-color: #000000 !important;
+    background-color: #121212 !important;
     border-bottom: none !important;
     border-top: none !important;
     margin-bottom: -2px !important;
@@ -288,23 +295,23 @@ display: none !important;
 }
 
 :root[uidensity=compact] #navigator-toolbox {
-  --nav-bar-height: 33px;
-  --tab-min-height: 29px;
+  --nav-bar-height: 30px;
+  --tab-min-height: 17px;
 }
 
 :root[uidensity=compact][extradragspace]:not([sizemode="normal"]) #navigator-toolbox {
   --nav-bar-height: 33px;
-  --tab-min-height: 21px;
+  --tab-min-height: 17px;
 }
 
 :root:not([uidensity]) #navigator-toolbox {
   --nav-bar-height: 39px;
-  --tab-min-height: 33px;
+  --tab-min-height: 17px;
 }
 
 :root:not([uidensity])[extradragspace]:not([sizemode="normal"]) #navigator-toolbox {
   --nav-bar-height: 39px;
-  --tab-min-height: 25px;
+  --tab-min-height: 17px;
 }
 
 :root[uidensity=touch] #navigator-toolbox {
