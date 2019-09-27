@@ -1,0 +1,4 @@
+#HttpOnly_gatherer.wizards.com	FALSE	/	FALSE	1600357094	CardDatabaseSettings	1=en-US
+.wizards.com	TRUE	/	FALSE	1632307071	__utma	28542179.1682328524.1569235062.1569235062.1569235062.1
+.wizards.com	TRUE	/	FALSE	1585003071	__utmz	28542179.1569235062.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+duckduckgo.com	FALSE	/	FALSE	1736640000	aq	-1

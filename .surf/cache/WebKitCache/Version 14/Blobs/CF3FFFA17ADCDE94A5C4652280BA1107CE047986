@@ -1,0 +1,1244 @@
+﻿var proceed = false;
+var ctrlDown = false;
+
+/// <summary>
+/// These functions handle asynchronous callback for updating search parameters!
+/// </summary>
+function RequireNumericalInput(e, extraCharsAllowed)
+{
+    var evt = e || window.event;
+    var alsoAllowed = new Hash();
+
+    evt.cancelBubble = true;
+    
+    if(extraCharsAllowed != null)
+    {
+        var split = extraCharsAllowed.split(',');
+        
+        for(var i = 0; i < split.length; i++)
+        {
+            alsoAllowed.set(parseInt(split[i]), true);
+        }
+    }
+  
+    if(ctrlDown || (evt.keyCode >= 48 && evt.keyCode <= 57) || // numerals
+        evt.keyCode == 8 || // backspace 
+        evt.keyCode == 9 || // tab
+        evt.keyCode == 46 || // delete
+        evt.keyCode == 17 || // ctrl
+       (evt.keyCode >= 37 && evt.keyCode <= 40) ||
+       (evt.keyCode >= 96 && evt.keyCode <= 105) || // arrows
+       (alsoAllowed.get(evt.keyCode) == true))
+    {
+        if(!ctrlDown && evt.keyCode == 17)
+        {
+            ctrlDown = true;
+        }
+        else
+        {
+            ctrlDown = false;
+        }
+        
+        return true;
+    }
+    else return false;
+}
+
+function AddSearchConditionEnter(event, control, searchOrNumeric, dynamicTextBox, selectBox)
+{
+    var keyCode = event.keyCode ? event.keyCode : event.which;  
+
+    if(keyCode == Event.KEY_RETURN && control.value.length > 0)
+    {
+        customEnterMethod = function DoSearch()
+        {
+            var inputs = $(dynamicTextBox.parentNode.parentNode).select('input');
+            var button = null;
+            
+            for(var i = 0; i < inputs.length; i++)
+            {
+                if(inputs[i].type == 'button')
+                {
+                    button = inputs[i];
+                    break;
+                }
+            }        
+            
+            if(searchOrNumeric == 'search')
+            {
+                AddSearchConditions(event, button, dynamicTextBox, selectBox);
+            }
+            else
+            {
+                AddNumericalConditions(event, button, dynamicTextBox, selectBox);
+            }
+            
+            control.value = '';
+        }
+    }
+
+    if (keyCode == Event.KEY_RETURN)
+    {
+        return false;
+    }
+}
+
+function AddSearchConditionEnterNon(event, control, searchOrNumeric, dynamicTextBox, selectBox)
+{
+    var keyCode = event.keyCode ? event.keyCode : event.which;  
+
+    if(keyCode == Event.KEY_RETURN)
+    {
+        if(control.value.length > 0)
+        {
+            var inputs = $(dynamicTextBox.parentNode.parentNode).select('input');
+            var button = null;
+
+            for(var i = 0; i < inputs.length; i++)
+            {
+                if(inputs[i].type == 'button')
+                {
+                    button = inputs[i];
+                    break;
+                }
+            }        
+
+            if(searchOrNumeric == 'search')
+            {
+                AddSearchConditions(event, button, dynamicTextBox, selectBox);
+            }
+            else
+            {
+                AddNumericalConditions(event, button, dynamicTextBox, selectBox);
+            }
+
+            control.value = '';
+        }
+
+        Event.stop(event);
+
+        return false;
+    }    
+}
+
+function AddNumericalConditions(event, control, dynamicTextBox, selectBox)
+{
+
+    // find the appropriate value to append
+    var srcName = control.id;
+    var inputBox = dynamicTextBox.select('input')[0];
+    
+    var number = inputBox.value;
+    var operator = $(srcName+"Operator").value;
+    var bool = $(srcName+"Boolean").value;
+    
+    inputBox.value = '';
+    
+    if(srcName.indexOf("manaAdd") < 0)
+    {
+        number = parseFloat(number);
+    }
+    
+    PerformAddSearchCondition(operator + '|' + number, srcName, bool, "AND ", operator);
+    UpdateAdvancedSearch();
+}
+
+function AddSearchConditions(event, control, dynamicTextBox, selectBox)
+{
+    // find the appropriate value to append
+    var srcName = control.id;
+    var inputBox = dynamicTextBox.select('input')[0];
+
+    var term = inputBox.value;
+
+    // encode [ and ] to ► and ◄, so that they aren't mistaken for term bounds
+    term = term.replace(/\[/g, "►").replace(/\]/g, "◄");
+
+    if(term.indexOf("&amp;" != -1))
+    {
+        term = term.replace("&amp;", "%26");
+    }
+
+
+    var bool = selectBox.value;
+    
+    inputBox.value = '';        
+    
+    // divide terms into array, since there might be multiple words; PHRASES ARE SINGLE!
+    var i = 0;
+    var terms = new Array();
+    var nextTerm = "";
+    while(i < term.length)
+    {
+        var charAt = term.charAt(i);
+        /* SUPERCEDED BY BOOL DROPDOWN
+        if(TermHasLogicalOperator(term))
+        {
+            nextTerm += GetDelimiterFrom(term);
+            i += nextTerm.length;
+        }*/
+        
+        // TODO: parens?
+        if (term.substr(i).toLowerCase() == 'mythic rare' || term.substr(i).toLowerCase() == '"mythic rare"')
+        {
+            nextTerm += 'Mythic';
+            i = term.length
+        }
+        
+        // set, block and format are all unary terms (treat whole remainder of string as phrase)
+        else if(charAt != '"' && 
+           (control.id.indexOf("set") != -1 || control.id.indexOf("block") != -1 || control.id.indexOf("format") != -1))
+        {
+            nextTerm += '"' + term + '"'; 
+            i = term.length;
+        }
+         // phrase boundaries at quotie marks
+        else if(charAt == '"' && term.indexOf('"', i+1) != -1)
+        { 
+            // grab the phrase
+            var phraseTerminus = term.indexOf('"', i+1)+1;
+            nextTerm += term.substring(i, phraseTerminus);
+            i = phraseTerminus + 1;
+        }
+        else
+        {
+            if(term.indexOf(' ', i) != -1) // word boundary
+            {
+                // next word
+                var wordTerminus = term.indexOf(' ', i);
+                nextTerm += term.substring(i, wordTerminus);
+                i = wordTerminus + 1;
+            }
+            else
+            {
+                // rest of string
+                nextTerm += term.substr(i);
+                i = term.length;
+            }
+        }
+        
+        terms.push(nextTerm);
+        nextTerm = "";
+    }
+    
+    // determine modifiers
+    for(var i = 0; i < terms.length; i++)
+    {
+        var thisTerm = terms[i];
+        var termDelimiterKey = bool;
+            //thisTerm = thisTerm.substr(termDelimiterKey.length);
+        //}
+        var fromKey = control.id;
+        var fromDelimiterKey = "AND ";
+        
+        PerformAddSearchCondition(thisTerm, fromKey, termDelimiterKey, fromDelimiterKey);
+    }
+    
+    UpdateAdvancedSearch();
+}
+
+function AddSpecialConditions(event, control)
+{
+
+    //var srcName = ;
+    var filterName = control.id.substring(control.id.lastIndexOf('_')+1, control.id.lastIndexOf('Add'));
+    var specialKey = control.id.substr(control.id.lastIndexOf('Add')+3);
+    
+    PerformAddSpecialCondition(filterName, specialKey);
+    
+    UpdateAdvancedSearch();
+}
+
+///
+function PerformAddSpecialCondition(fromKeyNormal, specialKey)
+{
+    var newTerm = new Object();
+    newTerm.FromKey = fromKeyNormal;
+    
+    // extract the current options
+    var filter = new Object();
+    // we add the exclusive condition iff none already exists, and 
+    if(AdvancedSearchObject.Filters != null && AdvancedSearchObject.Filters[fromKeyNormal] != null)
+    {
+        filter = AdvancedSearchObject.Filters[fromKeyNormal];
+        newTerm.LogicalOperator = filter.LogicalOperator;
+        newTerm.Value = filter.Terms;
+        
+        // do special query term stuff
+        newTerm.CurrentOption = specialKey;
+    
+        filter.Terms = new Array();
+        filter.Terms.push(newTerm);
+
+        AdvancedSearchObject.Filters[fromKeyNormal] = filter;
+    }
+}
+
+function PerformAddSearchCondition(term, fromKey, termDelimiterKey, fromDelimiterKey)
+{   
+    var filter = new Object();
+    var fromKeyNormal = fromKey.substring(fromKey.lastIndexOf('_')+1, fromKey.lastIndexOf('Add'));
+    // special case: numerical
+    var numericalOperator = null;
+    switch(fromKeyNormal)
+    {
+        case "cmc":
+        case "power":
+        case "tough":
+        case "mana":
+        case "rating":
+        case "handBonus":
+        case "lifeBonus":
+        {    
+            numericalOperator = term.substring(0, term.indexOf('|'));
+            term = term.substr(numericalOperator.length+1);
+            break;
+        }
+    }
+        
+    if(AdvancedSearchObject.Filters == null)
+    {
+        AdvancedSearchObject.Filters = new Object();
+    }
+    if(AdvancedSearchObject.Filters[fromKeyNormal] != null)
+    {
+        filter = AdvancedSearchObject.Filters[fromKeyNormal];
+        filter.From = fromKeyNormal;
+        filter.LogicalOperator = fromDelimiterKey;
+        if(numericalOperator != null)
+        {
+            filter.NumericalOperator = numericalOperator;
+            //filter.LogicalOperator = "AND ";
+        }
+        
+        // do we already have this term in here?
+        var addNew = true;
+        for(var i = 0; i < filter.Terms.length; i++)
+        {
+            var value = filter.Terms[i].Value;
+            if(typeof(filter.Terms[i].Value) == 'object')
+            {
+                value = filter.Terms[i].Value[0].Value;
+            }
+            if(value == term) 
+            { 
+                addNew = false;
+                filter.Terms[i].LogicalOperator = termDelimiterKey;
+                if(numericalOperator != null)
+                {
+                  filter.Terms[i].NumericalOperator = numericalOperator;
+                  //filter.Terms[i].LogicalOperator = "AND ";
+                }
+            }
+            
+            // TODO: add logic that detects the "special term" case
+            
+        }
+        if(addNew)
+        {
+            var newTerm = new Object();
+            term = term.replace(/\[/, "\[").replace(/\]/, "\]");
+            newTerm.Value = "[" + term + "]"; // TODO: handle groups
+            newTerm.LogicalOperator = termDelimiterKey;
+            if(numericalOperator != null)
+            {
+              newTerm.NumericalOperator = numericalOperator;
+              //newTerm.LogicalOperator = "AND ";
+            }
+            
+            // where to put it... is there a specialized term here?
+            if (filter.Terms[0].CurrentOption != null) {
+                filter.Terms[0].Value.push(newTerm);
+            }
+            else {
+                filter.Terms.push(newTerm);   
+            }
+        }
+    }
+    else
+    {
+        filter.LogicalOperator = fromDelimiterKey;
+        if(numericalOperator != null)
+        {
+            filter.NumericalOperator = numericalOperator;
+            //filter.LogicalOperator = "AND ";
+        }
+        filter.From = fromKeyNormal;
+        filter.Terms = new Array();
+        var newTerm = new Object();
+        term = term.replace(/\[/, "\[").replace(/\]/, "\]");
+        newTerm.Value = "[" + term + "]"; // TODO: handle groups
+        newTerm.LogicalOperator = termDelimiterKey;
+        if(numericalOperator != null)
+        {
+          newTerm.NumericalOperator = numericalOperator;
+        }
+        filter.Terms.push(newTerm);   
+    }
+    AdvancedSearchObject.Filters[fromKeyNormal] = filter;
+    //alert(AdvancedSearchObject.Filters[fromKeyNormal]);
+}
+
+function TermHasLogicalOperator(term)
+{
+    var hasLogicalOperator = false;
+    if(term.indexOf("+") == 0) hasLogicalOperator = true;
+    if(term.indexOf("!") == 0) hasLogicalOperator = true;
+    if(term.indexOf("AND ") == 0) hasLogicalOperator = true;
+    if(term.indexOf("OR ") == 0) hasLogicalOperator = true;
+    if(term.indexOf("NOT ") == 0) hasLogicalOperator = true;
+    return hasLogicalOperator;
+}
+function GetDelimiterFrom(term)
+{
+    var result = "";
+    if(term.indexOf("+") == 0) { result = "+"; }
+    if(term.indexOf("!") == 0) { result = "!"; }
+    if(term.indexOf("AND ") == 0) { result = "AND "; }
+    if(term.indexOf("OR ") == 0) { result = "OR "; }
+    if(term.indexOf("NOT ") == 0) { result = "NOT "; }
+    return result;
+}
+function RetrieveCurrentSearchConditions()
+{
+    new Ajax.Request(addSearchConditionHandler, {
+        method: 'get',
+        parameters: { cacheBust: new Date().getTime(), encodedSerializedPrevious: $(ClientIDs.encodedSerializedParameters).value },
+        onCreate: ShowIndicator,
+        onComplete: HideIndicator,
+        onSuccess: AdvSearchConditionCallback
+    });
+}
+function UpdateAdvancedSearch()
+{
+    new Ajax.Request(addSearchConditionHandler, {
+        method: 'get',
+        onCreate: ShowIndicator,
+        onComplete: HideIndicator,
+        parameters: { 
+            state: SerializeAdvancedSearchState(),
+            cacheBust: new Date().getTime()
+        },
+        onSuccess: AdvSearchConditionCallback
+    });
+}
+
+function ShowIndicator()
+{
+    $('ajaxIndicator').style.display = 'block';
+    var submit = $(ClientIDs.filterSubmit);
+    if (submit != null) { submit.disabled = true; }
+}
+function HideIndicator()
+{
+    setTimeout(HideIndicatorSleep, 500);
+}
+function HideIndicatorSleep()
+{
+    $('ajaxIndicator').style.display = 'none';
+    var submit = $(ClientIDs.filterSubmit);
+    if (submit != null) { submit.disabled = false; }
+}
+
+function SerializeAdvancedSearchState()
+{
+    var state = "";
+    var filters = AdvancedSearchObject.Filters;
+    for(var key in filters)
+    {
+        var filter = filters[key];
+    
+        state += DelimiterSerialize(filter.LogicalOperator, true);
+        state += filter.From;
+        /*
+        if(filter.NumericalOperator != null)
+        {
+            state += DelimiterSerialize(filter.NumericalOperator, true);
+        }
+        */
+        state += "=";
+        
+        var terms = filter.Terms;
+        if(IsNested(key))
+        {
+            for(var i = 0; i < terms.length; i++)
+            {
+                var nextTerm = terms[i];
+                var termDelimiter = DelimiterSerialize(nextTerm.LogicalOperator, false);
+                if(nextTerm.NumericalOperator != null)
+                {
+                  // use the numerical operator as the term delimiter in addition
+                  termDelimiter += DelimiterSerialize(nextTerm.NumericalOperator, false);
+                }
+                while(nextTerm.Value != null && typeof(nextTerm.Value) == 'object')
+                {
+                    nextTerm = nextTerm.Value[0];
+                }
+                var value = TranslateTermToSerialized(nextTerm.Value, filter.From);
+                //if(value == "[\"Time Spiral \"Timeshifted\"\"]")
+                //{
+                //    value = "[\"Time Spiral %22Timeshifted%22\"]";
+                //}
+                
+                state += termDelimiter;
+                state += value;
+            }  
+        }
+        else
+        {
+            if(filter.From == 'type')
+            {
+                for(var i = 0; i < terms.length; i++)
+                {
+
+                    if (typeof(terms[i].Value) != 'string') {
+                        state += RecursiveSerializeTerms(terms, filter.From);
+                    }
+                    else 
+                    {
+                        var termDelimiter = DelimiterSerialize(terms[i].LogicalOperator, false);
+                        if (terms[i].NumericalOperator != null) {
+                            // use the numerical operator as the term delimiter instead
+                            termDelimiter += DelimiterSerialize(terms[i].NumericalOperator, false);
+                        }
+                        state += termDelimiter;
+                        state += terms[i].Value; 
+                    }
+                }
+            }
+            else
+            {
+                state += RecursiveSerializeTerms(terms, filter.From);
+            }
+        }
+    }
+    return state;
+}
+function RecursiveSerializeTerms(terms, filterName)
+{
+    var state = "";
+    if(terms != null)
+    {
+        for(var i = 0; i < terms.length; i++)
+        {
+            var termDelimiter = DelimiterSerialize(terms[i].LogicalOperator, false);
+            if(terms[i].NumericalOperator != null)
+            {
+              // use the numerical operator as the term delimiter instead
+              termDelimiter += DelimiterSerialize(terms[i].NumericalOperator, false);
+            }
+        
+            state += termDelimiter;
+            //alert(typeof(terms[i].Value));
+            if(typeof(terms[i].Value) == 'object')
+            {
+                if(terms[i].CurrentOption != null)
+                {
+                    state += OptionSerialize(terms[i].CurrentOption);
+                }
+            
+                state += "(";
+                state += RecursiveSerializeTerms(terms[i].Value, filterName);
+                state += ")";
+            }
+            else
+            {
+                state += TranslateTermToSerialized(terms[i].Value, filterName);
+            }
+        }
+    }
+    return state;
+}
+
+function TranslateTermToSerialized(value, filterName)
+{
+    if(filterName == "color")
+    {
+        switch(value.toLowerCase())
+        {
+            case "[white]": value = "[W]"; break;
+            case "[blue]":  value = "[U]"; break;
+            case "[black]": value = "[B]"; break;
+            case "[red]":   value = "[R]"; break;
+            case "[green]": value = "[G]"; break;
+            case "[colorless]": value = "[C]"; break;
+            case '["white"]': value = "[W]"; break;
+            case '["blue"]': value = "[U]"; break;
+            case '["black"]': value = "[B]"; break;
+            case '["red"]': value = "[R]"; break;
+            case '["green"]': value = "[G]"; break;
+            case '["colorless"]': value = "[C]"; break;
+        }
+    }
+    else if(filterName == "rarity")
+    {
+        switch(value.toLowerCase()) {
+            case "[bonus]": value = "[B]"; break;
+            case "[mythic]": value = "[M]"; break;
+            case "[rare]": value = "[R]"; break;
+            case "[uncommon]": value = "[U]"; break;
+            case "[common]": value = "[C]"; break;
+            case "[land]": value = "[L]"; break;
+            case "[special]": value = "[S]"; break;
+            case "[promo]": value = "[P]"; break;
+            case '["bonus"]': value = "[B]"; break;
+            case '["mythic"]': value = "[M]"; break;
+            case '["rare"]': value = "[R]"; break;
+            case '["uncommon"]': value = "[U]"; break;
+            case '["common"]': value = "[C]"; break;
+            case '["land"]': value = "[L]"; break;
+            case '["special"]': value = "[S]"; break;
+            case '["promo"]': value = "[P]"; break;
+        }
+    }
+    return value;
+}
+
+function TranslateTermFromSerialized(fromKey, value, includeBrackets) {
+    value = value.replace(/\[/, "").replace(/\]/, ""); // remove enclosers for display
+
+    if (includeBrackets) {
+        value = value.replace(/►/g, "[").replace(/◄/g, "]"); // remove inner brackets put in by users
+    }    
+
+    switch(fromKey)
+    {
+        case "color":
+            {
+                switch(value)
+                {
+                    case "W": value = "White"; break;
+                    case "U": value = "Blue"; break;
+                    case "B": value = "Black"; break;
+                    case "R": value = "Red"; break;
+                    case "G": value = "Green"; break;
+                    case "C": value = "Colorless"; break;
+                }
+                break;
+            }
+        case "rarity":
+            {
+                switch (value) {
+                    case "B": value = "Bonus"; break;
+                    case "M": value = "Mythic Rare"; break;
+                    case "R": value = "Rare"; break;
+                    case "U": value = "Uncommon"; break;
+                    case "C": value = "Common"; break;
+                    case "L": value = "Land"; break;
+                    case "S": value = "Special"; break;
+                    case "P": value = "Promo"; break;
+                }
+                break;
+            }
+    }
+    return value;
+}
+
+function OptionSerialize(key)
+{
+    var result = key;
+    
+    switch(key)
+    {
+        case "Play": result = "$"; break;
+        case "Exclude": result = "@"; break;
+        case "Multi": result = "^"; break;
+    }
+    
+    return result;
+}
+function DelimiterSerialize(key, isFilterLevel)
+{
+    var result = key;
+    
+    if(isFilterLevel)
+    {
+        switch(key)
+        {
+            case "And": case "AND ": case "Intersect": result = "&"; break;
+            case "Or": case "OR ": case "Union":  result = "||"; break;
+            case "Not": case "NOT ": case "Except": result = "&!"; break;
+        }
+    }
+    else
+    {
+        switch(key)
+        {
+            case "And": case "AND ": case "Intersect": result = "+"; break;
+            case "Or": case "OR ": case "Union":  result = "|"; break;
+            case "Not": case "NOT ": case "Except": result = "+!"; break;
+        }
+    }
+    
+    switch(key)
+        {
+            case "GreaterThan": result = ">"; break;
+            case "LessThan": result = "<"; break;
+            case "GreaterThanOrEqual": result = ">="; break;
+            case "LessThanOrEqual": result = "<="; break;
+            case "Exact": result = "="; break;
+            case "Like": result = "~"; break;
+        }
+    
+    return result;
+}
+
+function RemoveAllSearchConditions()
+{
+    AdvancedSearchObject = new Object();
+    UpdateAdvancedSearch();
+
+    $(ClientIDs.encodedSerializedParameters).value = '';
+}
+function RemoveSearchCondition(id)
+{
+    var newObject = new Object();
+    var filters = AdvancedSearchObject.Filters;
+    var newFilters = new Object();
+    for(var fromKey in filters)
+    {        
+        var filter = filters[fromKey];
+        var filterId = filter.Identifier;
+        if(filterId != id) 
+        {            
+            var terms = filter.Terms;
+            
+            var newTerms = new Array();
+            newTerms = RecursiveCollectNewTerms(newTerms, terms, id);
+            
+            if(newTerms.length > 0)
+            {
+                newFilters[fromKey] = filter;
+                newFilters[fromKey].Terms = newTerms;
+            }
+        }
+    }
+    newObject.Filters = newFilters;
+    AdvancedSearchObject = newObject;
+    UpdateAdvancedSearch();
+}
+function RecursiveCollectNewTerms(newTerms, terms, id)
+{
+    for(var i = 0; i < terms.length; i++)
+    {
+        if(terms[i].Identifier != id)
+        {
+            if(typeof(terms[i].Value) == 'object')
+            {
+                var newerTerms = new Array();
+                newerTerms = RecursiveCollectNewTerms(newerTerms, terms[i].Value, id);
+                if(newerTerms.length > 0)
+                {
+                    terms[i].Value = newerTerms;
+                    newTerms.push(terms[i]);
+                }
+            }
+            else
+            {
+                var newTerm = new Object();
+                newTerm.Value = terms[i].Value; // TODO: handle groups
+                newTerm.LogicalOperator = terms[i].LogicalOperator;
+                if(typeof(terms[i].NumericalOperator) != undefined)
+                {
+                    newTerm.NumericalOperator = terms[i].NumericalOperator;
+                }
+            
+                newTerms.push(newTerm);
+            }
+        }
+    }
+    // flatten
+    //newTerms = newTerms.flatten();
+    return newTerms;
+}
+
+function FilterTranslate(key)
+{
+    var result = key;
+    
+    switch(key)
+    {
+        case "name": result = "Name"; break;
+        case "text": result = "Text"; break;
+        case "subtype": result = "Subtype"; break;
+        case "type": result = "Type"; break;
+        case "color": result = "Color"; break;
+        case "flavor": result = "Flavor Text"; break;
+        case "artist": result = "Artist"; break;
+        case "discussion": result = "Comment"; break;
+        case "mana": result = "Mana Cost"; break;
+        case "cmc": result = "Converted Mana Cost"; break;
+        case "power": result = "Power"; break;
+        case "tough": result = "Toughness"; break;
+        case "set": result = "Set"; break;
+        case "block": result = "Block"; break;
+        case "format": result = "Format"; break;
+        case "rarity": result = "Rarity"; break;
+        case "rating": result = "Community Rating"; break;
+        case "user": result = "User Name"; break;
+        case "handBonus": result = "Hand Modifier"; break;
+        case "lifeBonus": result = "Life Modifier"; break;
+        case "mark": result = "Mark"; break;
+    }
+    
+    return result;
+}
+function ComparisonOperatorTranslate(fromKey, key)
+{
+    var result = " is ";
+    
+    switch(key)
+    {
+        case "GreaterThan": result += ">"; break;
+        case "LessThan": result += "<"; break;
+        case "GreaterThanOrEqual": result += ">="; break;
+        case "LessThanOrEqual": result += "<="; break;
+        case "Exact": result += "="; break;
+        case "Like": result = " contains "; break;
+    }
+    
+    return result;
+}
+function TermDelimiterTranslate(fromKey, key)
+{
+    var result = key;
+    
+    switch(fromKey)
+    {
+        case "rarity":
+        case "power":
+        case "tough":
+        case "cmc":
+        case "rating":
+        case "handBonus":
+        case "lifeBonus":
+        {
+            switch(key)
+            {
+                case "And": result = "AND is"; break;
+                case "Or":  result = "OR is"; break;
+                case "Not": result = "is NOT"; break;
+                case "GreaterThan": result = ">"; break;
+                case "LessThan": result = "<"; break;
+                case "GreaterThanOrEqual": result = ">="; break;
+                case "LessThanOrEqual": result = "<="; break;
+                case "Exact": result = "="; break;
+                default:    result = "is"; break;
+            }
+            break;
+        }
+        default:
+        {
+            switch(key)
+            {
+                case "And": case "Intersect": result = "DOES contain"; break;
+                case "Or":  case "Union": result = "OR contains"; break;
+                case "Not": case "Except": result = "does NOT contain"; break;
+                case "Like": result = ""; break;
+                default:    result = "DOES contain"; break;
+            }
+            break;
+        }
+    }
+    
+    
+    return result;
+}
+function OptionTranslate(fromKey, key)
+{
+    var result = key;
+    
+    switch(key)
+    {
+        case "Play": result = "playable with these colors"; break;
+        case "Exclude": result = "and NO other "+fromKey; break;
+        case "Multi": result = "multicolored only"; break;
+    }
+    
+    return result;
+}
+function IsNested(fromKey)
+{
+    return (fromKey == 'set' || fromKey == 'block' || fromKey == 'format' || fromKey == 'rarity');
+}
+
+var AdvancedSearchObject = new Object();
+AdvancedSearchObject
+
+function AdvSearchConditionCallback(transport)
+{
+    // display code goes here!
+    //alert(transport.responseText);
+    var results = eval("(" + transport.responseText + ")");
+    
+    // Set the serialized encoded version so that we can use it in the event the parameters are not being stored in session.
+    $(ClientIDs.encodedSerializedParameters).value = results.EncodedSerializedQuery;
+    
+    AdvancedSearchObject = results;
+
+    UpdateFiltersDisplay(results);
+    
+}
+function RecursiveTermDisplay(terms, fromKey, fromDelimiter, isNumerical)
+{
+    var result = "";
+    if(typeof(terms) == 'object')
+    {
+        for(var i = 0; i < terms.length; i++)
+        {
+            if(typeof(terms[i].Value) == 'object')
+            {
+                result += "<li>(";            
+                result += "</li>";
+                result += "<ul>";
+                result += RecursiveTermDisplay(terms[i].Value, fromKey, fromDelimiter, isNumerical);
+                result += "</ul><li>) ";
+                if(terms[i].CurrentOption != null)
+                {
+                    result += FormulateGroupingEntry(terms[i].Identifier, terms[i].CurrentOption, fromKey);
+                }
+                result += "</li>";
+            }
+            else
+            {
+                var term = terms[i];
+                var value = TranslateTermFromSerialized(fromKey, term.Value, false);
+                var termDelimiter = term.LogicalOperator;
+                var termId = term.Identifier;
+                
+                //if(i==0)
+                //{
+                //    termDelimiter = "";
+                //}
+                
+                result += FormulateTermEntry(termId, value, fromKey, termDelimiter, term.NumericalOperator);
+            }
+        }
+    }
+    return result;
+}
+function UpdateFiltersDisplay(results) {
+    var displayString = "";
+
+    if (results.IncludeSpecial) {
+        displayString += "<i>(including special cards,<br />e.g. planes, schemes)</i><br />";
+    }
+    
+    var filters = results.Filters;
+    for(var fromKey in filters)
+    {
+        var filter = filters[fromKey];
+        var filterId = filter.Identifier;
+        var fromDelimiter = filter.LogicalOperator;
+        var terms = filter.Terms;
+        displayString += FormulateFilterEntry(filter, fromKey);
+        displayString += "<ul>";
+        if(IsNested(fromKey))
+        {
+            for(var i = 0; i < terms.length; i++)
+            {
+                var nextTerm = terms[i];
+                var termId = nextTerm.Identifier;
+                var termDelimiter = nextTerm.LogicalOperator;
+                //if(i == 0) { termDelimiter = ""; }
+                while(nextTerm.Value != null && typeof(nextTerm.Value) == 'object'){
+                    var termValue = nextTerm.Value[0];
+                    nextTerm = nextTerm.Value[0];
+                }
+                var value = TranslateTermFromSerialized(fromKey, nextTerm.Value, true);
+                displayString += FormulateTermEntry(termId, value, fromKey, termDelimiter, nextTerm.NumericalOperator);
+            }
+        }
+        else
+        {
+            displayString += RecursiveTermDisplay(terms, fromKey, fromDelimiter, (filter.NumericalOperator != null));
+        }
+        displayString += "</ul>";
+    }
+    
+    if(displayString == "") { $("displayFilters").innerHTML = "None yet."; }
+    else {
+        $("ajaxIndicator").style.display = 'none';
+        $("displayFilters").innerHTML = "<ul>"+displayString+"</ul>";
+    }
+}
+function FormulateFilterEntry(filter, fromKey)
+{
+    
+
+   var result = "";
+   result += "<li><a class='remove' title='remove \""+fromKey+"\"' ";
+   result += "href=\"javascript:void(0)\" ";
+   result += "onclick=\"return RemoveSearchCondition('" + filter.Identifier + "')\" ></a> ";
+   //result += PrefixDelimiterTranslate(filter.LogicalOperator);
+   result += "<b>"+FilterTranslate(fromKey)+"</b>";
+   /*if(filter.NumericalOperator != null)
+   {
+     result += " is "; //ComparisonOperatorTranslate(fromKey, filter.NumericalOperator);
+   }*/
+   result += ":</li>";
+   return result;
+}
+function FormulateTermEntry(id, value, fromKey, termDelimiter, numericalDelimiter)
+{
+    var result = "";
+    result += "<li><a class='remove' title='remove \""+value+"\"' ";
+    result += "href=\"javascript:void(0)\" ";
+    result += "onclick=\"return RemoveSearchCondition('" + id + "')\" style=\"margin-left:-14px; margin-top:5px;\"></a> ";
+    //result += PrefixDelimiterTranslate(termDelimiter);
+    result += TermDelimiterTranslate(fromKey, termDelimiter);
+    if(numericalDelimiter != null)
+    {
+        result += " " + TermDelimiterTranslate(fromKey, numericalDelimiter);
+    }
+    result += " <i>"+TranslateTermFromSerialized(fromKey, value, true)+"</i>";
+    result += "</li>";
+    return result;
+}
+function FormulateGroupingEntry(id, value, fromKey)
+{
+    var result = "";
+    result += OptionTranslate(fromKey, value);
+    result += " <a class='remove' title='remove \""+value+"\"' ";
+    result += "href=\"javascript:void(0)\" ";
+    result += "onclick=\"return RemoveSearchCondition('" + id + "')\" style=\"margin-left:3px; margin-top:5px;\"></a> ";
+    return result;
+}
+
+// DG: Taylor's code for forcing a Thread.wait in JS
+function pausecomp(milliseconds) {
+    var date = new Date();
+    var currentDate = null;
+
+    do { curDate = new Date(); }
+    while (curDate - date < milliseconds);
+}
+
+function ProcessUnsubmitted() {
+
+    ShowIndicator();
+
+    // Name
+    var nameAdd = $(ClientIDs.nameAddText).select('input')[0]
+    if (nameAdd.value != undefined && nameAdd.value != '')
+    {
+        AddSearchConditions(null, $(ClientIDs.nameAdd), $(ClientIDs.nameAddText), $(ClientIDs.nameAddBoolean));
+    }
+
+    // Text
+    var textAdd = $(ClientIDs.textAddText).select('input')[0]
+    if (textAdd.value != undefined && textAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.textAdd), $(ClientIDs.textAddText), $(ClientIDs.textAddBoolean)); 
+    }
+
+    // Flavor
+    var flavorAdd = $(ClientIDs.flavorAddText).select('input')[0]
+    if (flavorAdd.value != undefined && flavorAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.flavorAdd), $(ClientIDs.flavorAddText), $(ClientIDs.flavorAddBoolean));
+    }
+
+    // Mark
+    var markAdd = $(ClientIDs.markAddText).select('input')[0];
+    if (markAdd.value != undefined && markAdd.value != '') {
+        AddSearchConditions(null, $(ClientIDs.markAdd), $(ClientIDs.markAddText), $(ClientIDs.markAddBoolean));
+    }
+
+    // Artist
+    var artistAdd = $(ClientIDs.artistAddText).select('input')[0]
+    if (artistAdd.value != undefined && artistAdd.value != '')
+     {
+        AddSearchConditions(null, $(ClientIDs.artistAdd), $(ClientIDs.artistAddText), $(ClientIDs.artistAddBoolean));
+    }
+
+    // Discussion
+    var discussionAdd = $(ClientIDs.discussionAddText).select('input')[0]
+    if (discussionAdd.value != undefined && discussionAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.discussionAdd), $(ClientIDs.discussionAddText), $(ClientIDs.discussionAddBoolean)); 
+        }
+
+    // Comment by user
+    var commentByUserAdd = $(ClientIDs.commentByUserAddText).select('input')[0]
+    if (commentByUserAdd.value != undefined && commentByUserAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.userAdd), $(ClientIDs.commentByUserAddText), $(ClientIDs.commentByUserAddBoolean));
+    }
+
+    // Rating
+    var ratingAdd = $(ClientIDs.ratingAddValue).select('input')[0]
+    if (ratingAdd.value != undefined && ratingAdd.value != '') 
+    {
+        AddNumericalConditions(null, $(ClientIDs.ratingAdd), $(ClientIDs.ratingAddValue), $(ClientIDs.ratingAddBoolean));
+    }
+
+    // Mana
+    var manaAdd = $(ClientIDs.manaAddValue).select('input')[0]
+    if (manaAdd.value != undefined && manaAdd.value != '') 
+    {
+        AddNumericalConditions(null, $(ClientIDs.manaAdd), $(ClientIDs.manaAddValue), $(ClientIDs.manaAddBoolean));
+    }
+
+    // Cmc
+    var cmcAdd = $(ClientIDs.cmcAddValue).select('input')[0]
+    if (cmcAdd.value != undefined && cmcAdd.value != '') 
+    {
+        AddNumericalConditions(null, $(ClientIDs.cmcAdd), $(ClientIDs.cmcAddValue), $(ClientIDs.cmcAddBoolean));
+    }
+
+    // Power
+    var powerAdd = $(ClientIDs.powerAddValue).select('input')[0]
+    if (powerAdd.value != undefined && powerAdd.value != '') 
+    {
+        AddNumericalConditions(null, $(ClientIDs.powerAdd), $(ClientIDs.powerAddValue), $(ClientIDs.powerAddBoolean));
+    }
+
+    // Tough
+    var toughAdd = $(ClientIDs.toughAddValue).select('input')[0]
+    if (toughAdd.value != undefined && toughAdd.value != '') 
+    {
+        AddNumericalConditions(null, $(ClientIDs.toughAdd), $(ClientIDs.toughAddValue), $(ClientIDs.toughAddBoolean));
+    }
+
+    // Type
+    var typeAdd = $(ClientIDs.typeAddText).select('input')[0]
+    if (typeAdd.value != undefined && typeAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.typeAdd), $(ClientIDs.typeAddText), $(ClientIDs.typeAddBoolean));
+    }
+
+    // Sub Type
+    var subtypeAdd = $(ClientIDs.subtypeAddText).select('input')[0]
+    if (subtypeAdd.value != undefined && subtypeAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.subtypeAdd), $(ClientIDs.subtypeAddText), $(ClientIDs.subtypeAddBoolean));
+    }
+
+    // Color
+    var colorAdd = $(ClientIDs.colorAddText).select('input')[0]
+    if (colorAdd.value != undefined && colorAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.colorAdd), $(ClientIDs.colorAddText), $(ClientIDs.colorAddBoolean));
+    }
+
+    // Set
+    var setAdd = $(ClientIDs.setAddText).select('input')[0]
+    if (setAdd.value != undefined && setAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.setAdd), $(ClientIDs.setAddText), $(ClientIDs.setAddBoolean));
+    }
+
+    // Block
+    var blockAdd = $(ClientIDs.blockAddText).select('input')[0]
+    if (blockAdd.value != undefined && blockAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.blockAdd), $(ClientIDs.blockAddText), $(ClientIDs.blockAddBoolean));
+    }
+
+    // Format
+    var formatAdd = $(ClientIDs.formatAddText).select('input')[0]
+    if (formatAdd.value != undefined && formatAdd.value != '') {
+        AddSearchConditions(null, $(ClientIDs.formatAdd), $(ClientIDs.formatAddText), $(ClientIDs.formatAddBoolean));
+    }
+
+    // Rarity
+    var rarityAdd = $(ClientIDs.rarityAddText).select('input')[0]
+    if (rarityAdd.value != undefined && rarityAdd.value != '') 
+    {
+        AddSearchConditions(null, $(ClientIDs.rarityAdd), $(ClientIDs.rarityAddText), $(ClientIDs.rarityAddBoolean));
+    }
+
+    // HandBonus
+    var handBonusAdd = $(ClientIDs.handBonusAddValue).select('input')[0]
+    if (handBonusAdd.value != undefined && handBonusAdd.value != '') {
+        AddNumericalConditions(null, $(ClientIDs.handBonusAdd), $(ClientIDs.handBonusAddValue), $(ClientIDs.handBonusAddBoolean));
+    }
+
+    // LifeBonus
+    var lifeBonusAdd = $(ClientIDs.lifeBonusAddValue).select('input')[0]
+    if (lifeBonusAdd.value != undefined && lifeBonusAdd.value != '') {
+        AddNumericalConditions(null, $(ClientIDs.lifeBonusAdd), $(ClientIDs.lifeBonusAddValue), $(ClientIDs.lifeBonusAddBoolean));
+    }
+
+    var rider = '';
+    
+    // special
+    if (window.location.href.indexOf('?SearchFlag=1') == -1) {
+        rider = (window.location.href.indexOf('?') == -1)?'?':'&';
+        rider = rider + 'SearchFlag=1';
+    }
+    var special = $(ClientIDs.SearchSpecialItems).checked;
+    if (special && window.location.href.indexOf("special=", 0) <= 0) {
+        rider = rider + "&special=true";
+    }
+
+    // sort
+    var sortOrderAdd = $(ClientIDs.sortOrder);
+    if (sortOrderAdd.value != undefined && sortOrderAdd.value != '')
+    {
+        rider = rider + "&sort=" + sortOrderAdd.value;
+    }
+
+    var windowLocation = window.location.href;
+
+    // output
+    // if there is already an output in the query string, replace it
+    // otherwise add it to the rider
+    var outputAdd = $(ClientIDs.resultsView);
+    if (outputAdd.value != undefined && outputAdd.value != '') {
+        if (windowLocation.indexOf("&output=", 0) > 0) {
+            windowLocation = windowLocation.replace(/&output=[^&]*/, "&output=" + outputAdd.value);
+        } else {
+            rider = rider + "&output=" + outputAdd.value;
+        }
+    }
+
+    pausecomp(asyncTimerWait); // web.config setting to allow async calls to finish
+
+    var address = unescape(windowLocation + rider);
+    window.location.href = address;
+
+    HideIndicator();
+    return false;
+}
+
+function ToggleFilterOptions(event, control) {
+    var filterControls = $('filterControls');
+
+    if (filterControls == null) {
+        filterControls = $(ClientIDs.filterControls);
+    }
+
+    if (filterControls != null) {
+        if (filterControls.style.display == 'block' || filterControls.style.display == '') {
+            filterControls.style.display = 'none';
+            control.className = Constants.StyleSheetClasses.CollapsedNode;
+        }
+        else {
+            filterControls.style.display = 'block';
+            control.className = Constants.StyleSheetClasses.ExpandedNode;
+        }
+    }
+    else {
+        var list = $(control).parentNode.getElementsByTagName('ul');
+
+        if (list[0].style.display == 'block' || list[0].style.display == '') {
+            list[0].style.display = 'none';
+            control.className = Constants.StyleSheetClasses.CollapsedNode;
+        }
+        else {
+            list[0].style.display = 'block';
+            control.className = Constants.StyleSheetClasses.ExpandedNode;
+        }
+    }
+}
+
+// DG: Taylor's code for forcing a Thread.wait in JS
+function pausecomp(milliseconds) {
+    var date = new Date();
+    var currentDate = null;
+
+    do { curDate = new Date(); }
+    while (curDate - date < milliseconds);
+}

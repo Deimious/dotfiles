@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" /><title>
+	Gatherer - Magic: The Gathering
+</title><link rel="shortcut icon" href="/Images/favicon.ico" /><meta name="description" content="Gatherer is the Magic Card Database. Search for the perfect addition to your deck. Browse through cards from Magic's entire history. See cards from the most recent sets and discover what players just like you are saying about them." /><meta name="keywords" content="monitor, gatherer, magic cards, magic the gathering, black lotus, magic: the gathering, wizards of the coast, wizards, trading card game, trading cards, collectible card game, tcg, ccg, magic sets, game, multiplayer, hobby" /><meta name="theme-color" content="#191919" /><meta name="msapplication-TileColor" content="#191919" /><link id="ctl00_ctl00_mobileStylesheetsMobile" rel="stylesheet" href="/Styles/Styles_Mobile.css?time=1538932668" media="(max-width:749px)" /><link id="ctl00_ctl00_mobileStylesheetsDesktop" rel="stylesheet" href="/Styles/Styles_Desktop.css?time=1538932668" media="(min-width:750px)" /><meta id="ctl00_ctl00_mobileMeta" name="viewport" content="width=device-width, initial-scale=1" /><link rel="stylesheet" href="../Styles/fonts/opensans_regular_macroman/regular.css" type="text/css" charset="utf-8" /><link rel="stylesheet" href="../Styles/fonts/opensans_semibold_macroman/semibold.css" type="text/css" charset="utf-8" /><link rel="stylesheet" href="../Styles/fonts/opensans_bold_macroman/bold.css" type="text/css" charset="utf-8" /><link rel="stylesheet" href="../Styles/fonts/Beleren/Beleren-Bold.css" type="text/css" />
+    <!-- google analytics -->
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-15020098-7");
+            pageTracker._setDomainName(".wizards.com");
+            pageTracker._trackPageview();
+        } catch (err) { }
+    </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//media.wizards.com/2018/images/magic/gatherer/popularsearch.js"></script>
+    <script language="javascript" type="text/javascript" src="/Scripts/Login.js"></script>
+    
+    <script type="text/javascript">
+        window.zESettings = {
+            webWidget: {
+                contactForm: {
+                    ticketForms: [
+                        { id: 360000421811 }
+                    ],
+                    fields: [
+                        { id: 'description', prefill: { '*': '-'} },
+                        { id: 'subject', prefill: { '*': '-'} }
+                    ],
+                    title: {
+                        '*': 'Feedback'
+                    }
+                }
+            }
+        };
+    </script>  
+  
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=dd1d7f74-9dcd-454b-b641-96746f8134db">
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        jQuery.noConflict();
+        jQuery(document).ready(function() {
+            if (typeof wotcAccountWidget !== "undefined") {
+                wotcAccountWidget.init(false, "screenname", null, OnLoggedIn, OnLoginCanceled, OnLoggedOut, null, true, true, true, true);
+            }
+        });
+    </script>
+<script type="text/javascript">
+    zE('webWidget:on', 'open', function () {
+    var observer = new MutationObserver(function (mutationList, observer) {
+    var tsf = jQuery("#webWidget").contents();
+    tsf.find("input[label='Subject']").parent("div").hide();
+                tsf.find("textarea[label='Description']").parent("div").hide();
+                tsf.find(`p:contains("We'll get back to you soon.")`).hide();
+});
+
+observer.observe(jQuery("#webWidget").contents().find("#Embed")[0], { attributes: true, childList: true, subtree: true });
+});
+</script>
+    <form method="post" action="Default.aspx" id="aspnetForm" onclick="">
+<div>
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE1OTI0Nzg1OTFkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYMBUFjdGwwMCRjdGwwMCRNYWluQ29udGVudCRDb250ZW50JFNlYXJjaENvbnRyb2xzJFNlYXJjaFNwZWNpYWxJdGVtcwU9Y3RsMDAkY3RsMDAkTWFpbkNvbnRlbnQkQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hDYXJkTmFtZQU+Y3RsMDAkY3RsMDAkTWFpbkNvbnRlbnQkQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hDYXJkVHlwZXMFPWN0bDAwJGN0bDAwJE1haW5Db250ZW50JENvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoQ2FyZFRleHQFOmN0bDAwJGN0bDAwJE1haW5Db250ZW50JENvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoV2hpdGUFOWN0bDAwJGN0bDAwJE1haW5Db250ZW50JENvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoQmx1ZQU6Y3RsMDAkY3RsMDAkTWFpbkNvbnRlbnQkQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hCbGFjawU4Y3RsMDAkY3RsMDAkTWFpbkNvbnRlbnQkQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hSZWQFOmN0bDAwJGN0bDAwJE1haW5Db250ZW50JENvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoR3JlZW4FP2N0bDAwJGN0bDAwJE1haW5Db250ZW50JENvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoQ29sb3JFeGFjdAVBY3RsMDAkY3RsMDAkTWFpbkNvbnRlbnQkQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hDb2xvckV4Y2x1ZGUFP2N0bDAwJGN0bDAwJE1haW5Db250ZW50JENvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoQ29sb3JNdWx0abydb/rUuaZHVHeRyXDq9ESXdN2X" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=0pN9zG2E2AfP6GvjnZa0AilHYhYJFthuTCfFLE-_wX3h8YY80buTRyH-ZVuoDc6QmN3kXIxYDZjrLQ37MECWKoTKFcs1&amp;t=636284381271971599" type="text/javascript"></script>
+
+
+<script src="../Scripts/Prototype.js" type="text/javascript"></script>
+<script src="../Scripts/Utilities.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var CardDatabaseSettings = 'CardDatabaseSettings';
+var SelectingCardAction = 'NavigatesToCard';
+var inlineCardSearchHandler = '/Handlers/InlineCardSearch.ashx';
+var autoCompleteGroupBy = 'None';
+var imageHandler = '/Handlers/Image.ashx';
+var cardSearchPage = '/Pages/Search/Default.aspx';
+var cardDetailsPage = '/Pages/Card/Details.aspx';
+var UtilitiesHandler = '/Handlers/RPCUtilities.ashx';
+
+var enableCardSearchAutoComplete = true;
+var enableHintText = true;
+var enableCardSearchAutoCompleteIfNameUnchecked = false;
+
+
+
+function ClientIDs() {}
+ClientIDs.mobileStylesheetsMobile = 'ctl00_ctl00_mobileStylesheetsMobile';
+ClientIDs.mobileStylesheetsDesktop = 'ctl00_ctl00_mobileStylesheetsDesktop';
+ClientIDs.mobileMeta = 'ctl00_ctl00_mobileMeta';
+ClientIDs.nonmobileStylesheetsDesktop = 'ctl00_ctl00_nonmobileStylesheetsDesktop';
+ClientIDs.MainForm = 'aspnetForm';
+ClientIDs.bannerHeader = 'ctl00_ctl00_bannerHeader';
+ClientIDs.altHead = 'ctl00_ctl00_altHead';
+ClientIDs.gobacktohome = 'ctl00_ctl00_gobacktohome';
+ClientIDs.SearchControls = 'ctl00_ctl00_SearchControls';
+ClientIDs.SearchBoxContainer = 'ctl00_ctl00_SearchControls_SearchBoxContainer';
+ClientIDs.CardSearchBoxParent = 'ctl00_ctl00_SearchControls_CardSearchBoxParent';
+ClientIDs.HeaderCardSearchBox = 'ctl00_ctl00_SearchControls_CardSearchBoxParent_HeaderCardSearchBox';
+ClientIDs.headerSearchSubmitButton = 'ctl00_ctl00_SearchControls_headerSearchSubmitButton';
+ClientIDs.HeaderSearchBoxResults = 'ctl00_ctl00_SearchControls_HeaderSearchBoxResults';
+ClientIDs.HeaderSearchBoxResultsContent = 'ctl00_ctl00_SearchControls_HeaderSearchBoxResultsContent';
+ClientIDs.HeaderAllResultsLink = 'ctl00_ctl00_SearchControls_HeaderAllResultsLink';
+ClientIDs.Simple = 'ctl00_ctl00_Simple';
+ClientIDs.Advanced = 'ctl00_ctl00_Advanced';
+ClientIDs.Random = 'ctl00_ctl00_Random';
+ClientIDs.MainContainer = 'ctl00_ctl00_MainContainer';
+ClientIDs.gathererIntroText = 'ctl00_ctl00_gathererIntroText';
+ClientIDs.MainContent = 'ctl00_ctl00_MainContent';
+ClientIDs.NavigationAnchors = 'ctl00_ctl00_MainContent_NavigationAnchors';
+ClientIDs.NavigationAnchorsContainer = 'ctl00_ctl00_MainContent_NavigationAnchors_NavigationAnchorsContainer';
+ClientIDs.Settings = 'ctl00_ctl00_MainContent_NavigationAnchors_Settings';
+ClientIDs.Language = 'ctl00_ctl00_MainContent_NavigationAnchors_Language';
+ClientIDs.Help = 'ctl00_ctl00_MainContent_NavigationAnchors_Help';
+ClientIDs.Configuration = 'ctl00_ctl00_MainContent_NavigationAnchors_Configuration';
+ClientIDs.Content = 'ctl00_ctl00_MainContent_Content';
+ClientIDs.CardSearchBox = 'ctl00_ctl00_MainContent_Content_SearchControls_CardSearchBoxParent_CardSearchBox';
+ClientIDs.searchSubmitButton = 'ctl00_ctl00_MainContent_Content_SearchControls_searchSubmitButton';
+ClientIDs.SearchSpecialItems = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchSpecialItems';
+ClientIDs.SearchBoxResults = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxResults';
+ClientIDs.SearchBoxResultsTitle = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxResultsTitle';
+ClientIDs.SearchBoxResultsContent = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxResultsContent';
+ClientIDs.AllResultsLink = 'ctl00_ctl00_MainContent_Content_SearchControls_AllResultsLink';
+ClientIDs.SearchSettings = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchSettings';
+ClientIDs.IntermediateOptionsLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_IntermediateOptionsLabel';
+ClientIDs.intermediateSearchControlsContainer = 'ctl00_ctl00_MainContent_Content_SearchControls_intermediateSearchControlsContainer';
+ClientIDs.intermediatesearchSection = 'ctl00_ctl00_MainContent_Content_SearchControls_intermediatesearchSection';
+ClientIDs.searchCardtop = 'ctl00_ctl00_MainContent_Content_SearchControls_searchCardtop';
+ClientIDs.TextHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_TextHeader';
+ClientIDs.SearchCardName = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchCardName';
+ClientIDs.NameLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_NameLabel';
+ClientIDs.SearchCardTypes = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchCardTypes';
+ClientIDs.TypesLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_TypesLabel';
+ClientIDs.SearchCardText = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchCardText';
+ClientIDs.TextLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_TextLabel';
+ClientIDs.ColorHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_ColorHeader';
+ClientIDs.SearchWhite = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchWhite';
+ClientIDs.SearchBlue = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchBlue';
+ClientIDs.SearchBlack = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchBlack';
+ClientIDs.SearchRed = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchRed';
+ClientIDs.SearchGreen = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchGreen';
+ClientIDs.SearchColorExact = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExact';
+ClientIDs.MatchColorsExactlyLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_MatchColorsExactlyLabel';
+ClientIDs.SearchColorExclude = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExclude';
+ClientIDs.ExcludeUnselectedColorsLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_ExcludeUnselectedColorsLabel';
+ClientIDs.SearchColorMulti = 'ctl00_ctl00_MainContent_Content_SearchControls_SearchColorMulti';
+ClientIDs.MultiColorsLabel = 'ctl00_ctl00_MainContent_Content_SearchControls_MultiColorsLabel';
+ClientIDs.FilterHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_FilterHeader';
+ClientIDs.FormatHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_FormatHeader';
+ClientIDs.formatAddText = 'ctl00_ctl00_MainContent_Content_SearchControls_formatAddText';
+ClientIDs.SetHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_SetHeader';
+ClientIDs.setAddText = 'ctl00_ctl00_MainContent_Content_SearchControls_setAddText';
+ClientIDs.TypeHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_TypeHeader';
+ClientIDs.typeAddText = 'ctl00_ctl00_MainContent_Content_SearchControls_typeAddText';
+ClientIDs.SortHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_SortHeader';
+ClientIDs.sortOrder = 'ctl00_ctl00_MainContent_Content_SearchControls_sortOrder';
+ClientIDs.OutputFormatHeader = 'ctl00_ctl00_MainContent_Content_SearchControls_OutputFormatHeader';
+ClientIDs.resultsView = 'ctl00_ctl00_MainContent_Content_SearchControls_resultsView';
+ClientIDs.RightBannerAdvertisement = 'ctl00_ctl00_RightBannerAdvertisement';
+ClientIDs.backgroundBottom = 'ctl00_ctl00_backgroundBottom';
+ClientIDs.frontPageMessages = 'ctl00_ctl00_frontPageMessages';
+ClientIDs.footer = 'ctl00_ctl00_footer';
+ClientIDs.A5 = 'ctl00_ctl00_A5';
+ClientIDs.A6 = 'ctl00_ctl00_A6';
+ClientIDs.A7 = 'ctl00_ctl00_A7';
+ClientIDs.A1 = 'ctl00_ctl00_A1';
+ClientIDs.Label1 = 'ctl00_ctl00_Label1';
+ClientIDs.A2 = 'ctl00_ctl00_A2';
+ClientIDs.Label2 = 'ctl00_ctl00_Label2';
+ClientIDs.A4 = 'ctl00_ctl00_A4';
+ClientIDs.Label4 = 'ctl00_ctl00_Label4';
+ClientIDs.A3 = 'ctl00_ctl00_A3';
+ClientIDs.Label3 = 'ctl00_ctl00_Label3';
+ClientIDs.loginSeparator = 'ctl00_ctl00_loginSeparator';
+ClientIDs.loginLinkPlaceholder = 'ctl00_ctl00_loginLinkPlaceholder';
+ClientIDs.CopyrightYear = 'ctl00_ctl00_CopyrightYear';
+var textBoxHash = new Hash( { ctl00_ctl00_SearchControls_CardSearchBoxParent_HeaderCardSearchBox: 'Search Terms...',ctl00_ctl00_MainContent_Content_SearchControls_CardSearchBoxParent_CardSearchBox: 'Search Terms...' } );//]]>
+</script>
+
+<script src="../Scripts/Constants.js" type="text/javascript"></script>
+<script src="../Scripts/CardDatabase.js" type="text/javascript"></script>
+<script src="../Scripts/SearchControls.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+Event.observe(window, 'load', SubscribeToIntermediateSearchFieldPrefsEvents);
+//]]>
+</script>
+
+<script src="/WebResource.axd?d=dvIBXUpcJFgWihJiquKUTKBo6v2RN1IuGxgb6gi81V0vTC2VFdZU4PaN4DlN6Bkg6nZYmgYMgtOfclRGDRygofnlW001&amp;t=636284381271971599" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="315CBD8D" />
+	<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+	<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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" />
+</div>
+    <div style="width: 100%; height: 1px;">
+    </div>
+    <div id="ctl00_ctl00_bannerHeader">
+        <div class="head">
+            <div class="backgroundTop">
+                <img class="HeaderImage" src="//media.wizards.com/2018/images/magic/gatherer/topbanner.png" />
+            </div>
+            <a href="https://magic.wizards.com/"><br />
+                <img class="MagicLogo" src="//media.wizards.com/2018/images/magic/gatherer/magic_logo.png" />
+            </a>
+        </div>
+    </div>
+    
+    <div id="ctl00_ctl00_MainContainer" class="mainContainer">
+        <div id="Main" >
+            <div class="gathererContent">
+                <div id="ctl00_ctl00_gathererIntroText" class="introtogatherer">
+                    <span class="introheader">GATHERER</span>
+                    <p> Gatherer is the Magic Card Database. Search for the perfect addition to your deck. Browse through 
+                        cards from Magic's entire history. See cards from the most recent sets and discover what players 
+                        just like you are saying about them.</p>                
+                </div>
+                
+    <br class="clear" />
+    <br />
+    <div id="ctl00_ctl00_MainContent_NavigationAnchors_NavigationAnchorsContainer" class="searchcontrollinks">
+    <a href="Default.aspx" id="ctl00_ctl00_MainContent_NavigationAnchors_Simple" class="current">SIMPLE</a>
+    <a href="Advanced.aspx" id="ctl00_ctl00_MainContent_NavigationAnchors_Advanced">ADVANCED</a>
+    <a href="Card/Details.aspx?action=random" id="ctl00_ctl00_MainContent_NavigationAnchors_Random">Random Card</a>
+    <a href="Settings.aspx" id="ctl00_ctl00_MainContent_NavigationAnchors_Settings">Settings</a>
+    <a href="Language.aspx" id="ctl00_ctl00_MainContent_NavigationAnchors_Language">Language</a>
+    <a href="Help.aspx" id="ctl00_ctl00_MainContent_NavigationAnchors_Help">Help</a>
+    
+</div>
+
+    
+    <div class="simpleadvancedsearchbar">
+        <img class="frontPageTab" src="/images/Redesign/FrontPage_tab.png" />
+        <a href="Default.aspx"  class="Simplesearchtext">
+            SIMPLE
+        </a>
+        <a href="Advanced.aspx" class="advancedsearchtext">
+            ADVANCED
+        </a>
+    </div>
+    <div class="intermediateSearchControls">
+        
+<div class="searchcontrols">
+    <div id="ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxContainer" class="searchboxcontainer">
+        
+
+<div class="textbox" id="ctl00_ctl00_MainContent_Content_SearchControls_CardSearchBoxParent" style=""><input name="ctl00$ctl00$MainContent$Content$SearchControls$CardSearchBoxParent$CardSearchBox" type="text" id="ctl00_ctl00_MainContent_Content_SearchControls_CardSearchBoxParent_CardSearchBox" class="textboxinput" onblur="SetCurrentControlBlur(event)" onfocus="SetCurrentControlFocus(event, this);" autocomplete="off" maxlength="50" /></div>
+        <div class="searchsubmit">
+            <input type="submit" name="ctl00$ctl00$MainContent$Content$SearchControls$searchSubmitButton" value="SEARCH" id="ctl00_ctl00_MainContent_Content_SearchControls_searchSubmitButton" class="searchbutton" />
+            <!--   <span class="searchsettings">
+              <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchSpecialItems" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchSpecialItems" /> 
+              Include Special Items
+              <br />
+              (e.g. Planes, Schemes)          
+            </span> -->
+        </div>
+    </div>
+    <!-- Autocomplete Results -->
+    <div id="ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxResults" class="searchresultscontainer">
+        <div class="smallGreyBorder">
+            <b class="ct"><b></b></b>
+            <div class="simpleRoundedBoxTitleGrey" style="margin-top: -13px;">
+                <span id="ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxResultsTitle" class="boldtitle"></span>
+            </div>
+            <div id="ctl00_ctl00_MainContent_Content_SearchControls_SearchBoxResultsContent" style="background-color: rgb(35, 35, 35);">
+            </div>
+            <div class="simpleRoundedBoxFooterGrey">
+                <span><a href="javascript:void(0);" id="ctl00_ctl00_MainContent_Content_SearchControls_AllResultsLink" class="autoCompleteAllResults">
+                </a></span>
+            </div>
+            <b class="cc"><b></b></b>
+        </div>
+    </div>
+    <!-- /Autocomplete Results -->
+    <!-- Search Settings -->
+    <div id="ctl00_ctl00_MainContent_Content_SearchControls_SearchSettings" class="intermediatesearchsettingsdisplay">
+        <div class="searchsettings">
+            <!-- <a href="javascript:void(0);" style="color: #000;" onclick="SaveVisibleArea(event, this, ClientIDs.intermediateSearchControlsContainer, 'intermediateSearchControlsContainer', false); return ToggleSearchSettings(event, this);"
+                class="expandedNode empty">Start typing above, and/or use the additional options below:</a> -->
+            <div id="ctl00_ctl00_MainContent_Content_SearchControls_intermediateSearchControlsContainer" class="intermediateSearchControlsContainer">
+                <div id="ctl00_ctl00_MainContent_Content_SearchControls_intermediatesearchSection" class="intermediatesearchsection">
+                    <div id="ctl00_ctl00_MainContent_Content_SearchControls_searchCardtop" class="searchCardtop">
+                        <b style="display:block;">Search Card:</b>
+                        <p style="padding-left: 0px;">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchCardName" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardName" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" checked="checked" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardName">
+                            </label>
+                            Name
+                        </p>
+                        <p>
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchCardTypes" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardTypes" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardTypes">
+                            </label>
+                            Types
+                        </p>
+                        <p>
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchCardText" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardText" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardText">
+                            </label>
+                            Text
+                        </p>
+                    </div>
+                    <b>
+                        Search by Color:</b>
+                    <div class="intermediateSearchManaSymbols">
+                        <span class="SearchManaContainer">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchWhite" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchWhite" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchWhite">
+                            </label>
+                            <img title="W" src="/images/Redesign/White_Mana.png" alt="W" />
+                        </span><span class="SearchManaContainer">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchBlue" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchBlue" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchBlue">
+                            </label>
+                            <img title="U" src="/images/Redesign/Blue_Mana.png" alt="U" />
+                        </span><span class="SearchManaContainer">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchBlack" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchBlack" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchBlack">
+                            </label>
+                            <img title="B" src="/images/Redesign/Black_Mana.png" alt="B" />
+                        </span><span class="SearchManaContainer">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchRed" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchRed" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchRed">
+                            </label>
+                            <img title="R" src="/images/Redesign/Red_Mana.png" alt="R" />
+                        </span><span class="SearchManaContainer">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchGreen" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchGreen" onclick="UpdateSimpleSearchFields" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchGreen">
+                            </label>
+                            <img title="G" src="/images/Redesign/Green_Mana.png" alt="G" />
+                        </span>
+                        <br />
+                        <p style="padding-top: 20px">
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchColorExact" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExact" onclick="UpdateSimpleSearchRestrictions(this)" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExact">
+                            </label>
+                            Match Colors <b>Exactly</b> (<i>use 'and' instead of 'or'</i>)
+                        </p>
+                        <br />
+                        <p>
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchColorExclude" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExclude" onclick="UpdateSimpleSearchRestrictions(this)" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExclude">
+                            </label>
+                            <b>Exclude</b> Unselected Colors (<i>limit by selection</i>)</p>
+                        <br />
+                        <p>
+                            <input name="ctl00$ctl00$MainContent$Content$SearchControls$SearchColorMulti" type="checkbox" id="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorMulti" onclick="UpdateSimpleSearchRestrictions(this)" class="regular-checkbox big-checkbox" />
+                            <label for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorMulti">
+                            </label>
+                            Match <b>Multicolored</b> Cards Only (<i>2+ colors</i>)</p>
+                    </div>
+                </div>
+            </div>
+            <img class="verticalSeparator" src="/images/Redesign/separator_Vertical.png" />
+            <div class="intermediatesearchsection wide right">
+                <b>
+                    Filter by: </b>
+                <p>
+                     Card Format:
+                </p>
+                <div class="style-select">
+                    <select name="ctl00$ctl00$MainContent$Content$SearchControls$formatAddText" id="ctl00_ctl00_MainContent_Content_SearchControls_formatAddText">
+	<option value=""></option>
+	<option value="Brawl">Brawl</option>
+	<option value="Commander">Commander</option>
+	<option value="Legacy">Legacy</option>
+	<option value="Modern">Modern</option>
+	<option value="Pauper">Pauper</option>
+	<option value="Standard">Standard</option>
+	<option value="Vintage">Vintage</option>
+
+</select>
+                </div>
+                <p>
+                    Card Set:
+                </p>
+                <div class="style-select">
+                    <select name="ctl00$ctl00$MainContent$Content$SearchControls$setAddText" id="ctl00_ctl00_MainContent_Content_SearchControls_setAddText">
+	<option value=""></option>
+	<option value="Aether Revolt">Aether Revolt</option>
+	<option value="Alara Reborn">Alara Reborn</option>
+	<option value="Alliances">Alliances</option>
+	<option value="Amonkhet">Amonkhet</option>
+	<option value="Antiquities">Antiquities</option>
+	<option value="Apocalypse">Apocalypse</option>
+	<option value="Arabian Nights">Arabian Nights</option>
+	<option value="Archenemy">Archenemy</option>
+	<option value="Archenemy: Nicol Bolas">Archenemy: Nicol Bolas</option>
+	<option value="Avacyn Restored">Avacyn Restored</option>
+	<option value="Battle for Zendikar">Battle for Zendikar</option>
+	<option value="Battle Royale Box Set">Battle Royale Box Set</option>
+	<option value="Battlebond">Battlebond</option>
+	<option value="Beatdown Box Set">Beatdown Box Set</option>
+	<option value="Betrayers of Kamigawa">Betrayers of Kamigawa</option>
+	<option value="Born of the Gods">Born of the Gods</option>
+	<option value="Champions of Kamigawa">Champions of Kamigawa</option>
+	<option value="Chronicles">Chronicles</option>
+	<option value="Classic Sixth Edition">Classic Sixth Edition</option>
+	<option value="Coldsnap">Coldsnap</option>
+	<option value="Commander 2013 Edition">Commander 2013 Edition</option>
+	<option value="Commander 2014">Commander 2014</option>
+	<option value="Commander 2015">Commander 2015</option>
+	<option value="Commander 2016">Commander 2016</option>
+	<option value="Commander 2017">Commander 2017</option>
+	<option value="Commander 2018">Commander 2018</option>
+	<option value="Commander 2019">Commander 2019</option>
+	<option value="Commander Anthology">Commander Anthology</option>
+	<option value="Commander Anthology 2018">Commander Anthology 2018</option>
+	<option value="Commander's Arsenal">Commander's Arsenal</option>
+	<option value="Conflux">Conflux</option>
+	<option value="Conspiracy: Take the Crown">Conspiracy: Take the Crown</option>
+	<option value="Core Set 2019">Core Set 2019</option>
+	<option value="Core Set 2020">Core Set 2020</option>
+	<option value="Dark Ascension">Dark Ascension</option>
+	<option value="Darksteel">Darksteel</option>
+	<option value="Dissension">Dissension</option>
+	<option value="Dominaria">Dominaria</option>
+	<option value="Dragon's Maze">Dragon's Maze</option>
+	<option value="Dragons of Tarkir">Dragons of Tarkir</option>
+	<option value="Duel Decks Anthology, Divine vs. Demonic">Duel Decks Anthology, Divine vs. Demonic</option>
+	<option value="Duel Decks Anthology, Elves vs. Goblins">Duel Decks Anthology, Elves vs. Goblins</option>
+	<option value="Duel Decks Anthology, Garruk vs. Liliana">Duel Decks Anthology, Garruk vs. Liliana</option>
+	<option value="Duel Decks Anthology, Jace vs. Chandra">Duel Decks Anthology, Jace vs. Chandra</option>
+	<option value="Duel Decks: Ajani vs. Nicol Bolas">Duel Decks: Ajani vs. Nicol Bolas</option>
+	<option value="Duel Decks: Blessed vs. Cursed">Duel Decks: Blessed vs. Cursed</option>
+	<option value="Duel Decks: Divine vs. Demonic">Duel Decks: Divine vs. Demonic</option>
+	<option value="Duel Decks: Elspeth vs. Kiora">Duel Decks: Elspeth vs. Kiora</option>
+	<option value="Duel Decks: Elspeth vs. Tezzeret">Duel Decks: Elspeth vs. Tezzeret</option>
+	<option value="Duel Decks: Elves vs. Goblins">Duel Decks: Elves vs. Goblins</option>
+	<option value="Duel Decks: Elves vs. Inventors">Duel Decks: Elves vs. Inventors</option>
+	<option value="Duel Decks: Garruk vs. Liliana">Duel Decks: Garruk vs. Liliana</option>
+	<option value="Duel Decks: Heroes vs. Monsters">Duel Decks: Heroes vs. Monsters</option>
+	<option value="Duel Decks: Izzet vs. Golgari">Duel Decks: Izzet vs. Golgari</option>
+	<option value="Duel Decks: Jace vs. Chandra">Duel Decks: Jace vs. Chandra</option>
+	<option value="Duel Decks: Jace vs. Vraska">Duel Decks: Jace vs. Vraska</option>
+	<option value="Duel Decks: Knights vs. Dragons">Duel Decks: Knights vs. Dragons</option>
+	<option value="Duel Decks: Merfolk vs. Goblins">Duel Decks: Merfolk vs. Goblins</option>
+	<option value="Duel Decks: Mind vs. Might">Duel Decks: Mind vs. Might</option>
+	<option value="Duel Decks: Nissa vs. Ob Nixilis">Duel Decks: Nissa vs. Ob Nixilis</option>
+	<option value="Duel Decks: Phyrexia vs. the Coalition">Duel Decks: Phyrexia vs. the Coalition</option>
+	<option value="Duel Decks: Sorin vs. Tibalt">Duel Decks: Sorin vs. Tibalt</option>
+	<option value="Duel Decks: Speed vs. Cunning">Duel Decks: Speed vs. Cunning</option>
+	<option value="Duel Decks: Venser vs. Koth">Duel Decks: Venser vs. Koth</option>
+	<option value="Duel Decks: Zendikar vs. Eldrazi">Duel Decks: Zendikar vs. Eldrazi</option>
+	<option value="Eighth Edition">Eighth Edition</option>
+	<option value="Eldritch Moon">Eldritch Moon</option>
+	<option value="Eternal Masters">Eternal Masters</option>
+	<option value="Eventide">Eventide</option>
+	<option value="Exodus">Exodus</option>
+	<option value="Explorers of Ixalan">Explorers of Ixalan</option>
+	<option value="Fallen Empires">Fallen Empires</option>
+	<option value="Fate Reforged">Fate Reforged</option>
+	<option value="Fifth Dawn">Fifth Dawn</option>
+	<option value="Fifth Edition">Fifth Edition</option>
+	<option value="Fourth Edition">Fourth Edition</option>
+	<option value="From the Vault: Angels">From the Vault: Angels</option>
+	<option value="From the Vault: Annihilation (2014)">From the Vault: Annihilation (2014)</option>
+	<option value="From the Vault: Dragons">From the Vault: Dragons</option>
+	<option value="From the Vault: Exiled">From the Vault: Exiled</option>
+	<option value="From the Vault: Legends">From the Vault: Legends</option>
+	<option value="From the Vault: Lore">From the Vault: Lore</option>
+	<option value="From the Vault: Realms">From the Vault: Realms</option>
+	<option value="From the Vault: Relics">From the Vault: Relics</option>
+	<option value="From the Vault: Transform">From the Vault: Transform</option>
+	<option value="From the Vault: Twenty">From the Vault: Twenty</option>
+	<option value="Future Sight">Future Sight</option>
+	<option value="Game Night">Game Night</option>
+	<option value="Gatecrash">Gatecrash</option>
+	<option value="Gift Pack">Gift Pack</option>
+	<option value="Global Series: Jiang Yanggu and Mu Yanling">Global Series: Jiang Yanggu and Mu Yanling</option>
+	<option value="Guild Kit: Azorius">Guild Kit: Azorius</option>
+	<option value="Guild Kit: Boros">Guild Kit: Boros</option>
+	<option value="Guild Kit: Dimir">Guild Kit: Dimir</option>
+	<option value="Guild Kit: Golgari">Guild Kit: Golgari</option>
+	<option value="Guild Kit: Gruul">Guild Kit: Gruul</option>
+	<option value="Guild Kit: Izzet">Guild Kit: Izzet</option>
+	<option value="Guild Kit: Orzhov">Guild Kit: Orzhov</option>
+	<option value="Guild Kit: Rakdos">Guild Kit: Rakdos</option>
+	<option value="Guild Kit: Selesnya">Guild Kit: Selesnya</option>
+	<option value="Guild Kit: Simic">Guild Kit: Simic</option>
+	<option value="Guildpact">Guildpact</option>
+	<option value="Guilds of Ravnica">Guilds of Ravnica</option>
+	<option value="Guilds of Ravnica Mythic Edition">Guilds of Ravnica Mythic Edition</option>
+	<option value="Homelands">Homelands</option>
+	<option value="Hour of Devastation">Hour of Devastation</option>
+	<option value="Ice Age">Ice Age</option>
+	<option value="Iconic Masters">Iconic Masters</option>
+	<option value="Innistrad">Innistrad</option>
+	<option value="Invasion">Invasion</option>
+	<option value="Ixalan">Ixalan</option>
+	<option value="Journey into Nyx">Journey into Nyx</option>
+	<option value="Judgment">Judgment</option>
+	<option value="Kaladesh">Kaladesh</option>
+	<option value="Khans of Tarkir">Khans of Tarkir</option>
+	<option value="Legends">Legends</option>
+	<option value="Legions">Legions</option>
+	<option value="Limited Edition Alpha">Limited Edition Alpha</option>
+	<option value="Limited Edition Beta">Limited Edition Beta</option>
+	<option value="Lorwyn">Lorwyn</option>
+	<option value="Magic 2010">Magic 2010</option>
+	<option value="Magic 2011">Magic 2011</option>
+	<option value="Magic 2012">Magic 2012</option>
+	<option value="Magic 2013">Magic 2013</option>
+	<option value="Magic 2014 Core Set">Magic 2014 Core Set</option>
+	<option value="Magic 2015 Core Set">Magic 2015 Core Set</option>
+	<option value="Magic Origins">Magic Origins</option>
+	<option value="Magic: The Gathering-Commander">Magic: The Gathering-Commander</option>
+	<option value="Magic: The Gathering—Conspiracy">Magic: The Gathering—Conspiracy</option>
+	<option value="Masterpiece Series: Amonkhet Invocations">Masterpiece Series: Amonkhet Invocations</option>
+	<option value="Masterpiece Series: Kaladesh Inventions">Masterpiece Series: Kaladesh Inventions</option>
+	<option value="Masters 25">Masters 25</option>
+	<option value="Masters Edition">Masters Edition</option>
+	<option value="Masters Edition II">Masters Edition II</option>
+	<option value="Masters Edition III">Masters Edition III</option>
+	<option value="Masters Edition IV">Masters Edition IV</option>
+	<option value="Mercadian Masques">Mercadian Masques</option>
+	<option value="Mirage">Mirage</option>
+	<option value="Mirrodin">Mirrodin</option>
+	<option value="Mirrodin Besieged">Mirrodin Besieged</option>
+	<option value="Modern Event Deck 2014">Modern Event Deck 2014</option>
+	<option value="Modern Horizons">Modern Horizons</option>
+	<option value="Modern Masters">Modern Masters</option>
+	<option value="Modern Masters 2015 Edition">Modern Masters 2015 Edition</option>
+	<option value="Modern Masters 2017 Edition">Modern Masters 2017 Edition</option>
+	<option value="Morningtide">Morningtide</option>
+	<option value="Nemesis">Nemesis</option>
+	<option value="New Phyrexia">New Phyrexia</option>
+	<option value="Ninth Edition">Ninth Edition</option>
+	<option value="Oath of the Gatewatch">Oath of the Gatewatch</option>
+	<option value="Odyssey">Odyssey</option>
+	<option value="Onslaught">Onslaught</option>
+	<option value="Planar Chaos">Planar Chaos</option>
+	<option value="Planechase">Planechase</option>
+	<option value="Planechase 2012 Edition">Planechase 2012 Edition</option>
+	<option value="Planechase Anthology">Planechase Anthology</option>
+	<option value="Planeshift">Planeshift</option>
+	<option value="Portal">Portal</option>
+	<option value="Portal Second Age">Portal Second Age</option>
+	<option value="Portal Three Kingdoms">Portal Three Kingdoms</option>
+	<option value="Premium Deck Series: Fire and Lightning">Premium Deck Series: Fire and Lightning</option>
+	<option value="Premium Deck Series: Graveborn">Premium Deck Series: Graveborn</option>
+	<option value="Premium Deck Series: Slivers">Premium Deck Series: Slivers</option>
+	<option value="Promo set for Gatherer">Promo set for Gatherer</option>
+	<option value="Prophecy">Prophecy</option>
+	<option value="Ravnica Allegiance">Ravnica Allegiance</option>
+	<option value="Ravnica Allegiance Mythic Edition">Ravnica Allegiance Mythic Edition</option>
+	<option value="Ravnica: City of Guilds">Ravnica: City of Guilds</option>
+	<option value="Return to Ravnica">Return to Ravnica</option>
+	<option value="Revised Edition">Revised Edition</option>
+	<option value="Rise of the Eldrazi">Rise of the Eldrazi</option>
+	<option value="Rivals of Ixalan">Rivals of Ixalan</option>
+	<option value="Saviors of Kamigawa">Saviors of Kamigawa</option>
+	<option value="Scars of Mirrodin">Scars of Mirrodin</option>
+	<option value="Scourge">Scourge</option>
+	<option value="Seventh Edition">Seventh Edition</option>
+	<option value="Shadowmoor">Shadowmoor</option>
+	<option value="Shadows over Innistrad">Shadows over Innistrad</option>
+	<option value="Shards of Alara">Shards of Alara</option>
+	<option value="Signature Spellbook: Gideon">Signature Spellbook: Gideon</option>
+	<option value="Signature Spellbook: Jace">Signature Spellbook: Jace</option>
+	<option value="Starter 1999">Starter 1999</option>
+	<option value="Starter 2000">Starter 2000</option>
+	<option value="Stronghold">Stronghold</option>
+	<option value="Tempest">Tempest</option>
+	<option value="Tempest Remastered">Tempest Remastered</option>
+	<option value="Tenth Edition">Tenth Edition</option>
+	<option value="The Dark">The Dark</option>
+	<option value="Theros">Theros</option>
+	<option value="Time Spiral">Time Spiral</option>
+	<option value="Time Spiral &quot;Timeshifted&quot;">Time Spiral &quot;Timeshifted&quot;</option>
+	<option value="Torment">Torment</option>
+	<option value="Ugin's Fate promos">Ugin's Fate promos</option>
+	<option value="Ultimate Box Toppers">Ultimate Box Toppers</option>
+	<option value="Ultimate Masters">Ultimate Masters</option>
+	<option value="Unglued">Unglued</option>
+	<option value="Unhinged">Unhinged</option>
+	<option value="Unlimited Edition">Unlimited Edition</option>
+	<option value="Unstable">Unstable</option>
+	<option value="Urza's Destiny">Urza's Destiny</option>
+	<option value="Urza's Legacy">Urza's Legacy</option>
+	<option value="Urza's Saga">Urza's Saga</option>
+	<option value="Vanguard">Vanguard</option>
+	<option value="Vintage Masters">Vintage Masters</option>
+	<option value="Visions">Visions</option>
+	<option value="War of the Spark">War of the Spark</option>
+	<option value="War of the Spark Mythic Edition">War of the Spark Mythic Edition</option>
+	<option value="Weatherlight">Weatherlight</option>
+	<option value="Welcome Deck 2016">Welcome Deck 2016</option>
+	<option value="Welcome Deck 2017">Welcome Deck 2017</option>
+	<option value="Worldwake">Worldwake</option>
+	<option value="Zendikar">Zendikar</option>
+	<option value="Zendikar Expeditions">Zendikar Expeditions</option>
+
+</select>
+                </div>
+                <p>
+                    Card Type:</p>
+                <div class="style-select">
+                    <select name="ctl00$ctl00$MainContent$Content$SearchControls$typeAddText" id="ctl00_ctl00_MainContent_Content_SearchControls_typeAddText">
+	<option value=""></option>
+	<option value="Artifact">Artifact</option>
+	<option value="Basic">Basic</option>
+	<option value="Conspiracy">Conspiracy</option>
+	<option value="Creature">Creature</option>
+	<option value="Eaturecray">Eaturecray</option>
+	<option value="Enchantment">Enchantment</option>
+	<option value="Ever">Ever</option>
+	<option value="Host">Host</option>
+	<option value="Instant">Instant</option>
+	<option value="Land">Land</option>
+	<option value="Legendary">Legendary</option>
+	<option value="Ongoing">Ongoing</option>
+	<option value="Phenomenon">Phenomenon</option>
+	<option value="Plane">Plane</option>
+	<option value="Planeswalker">Planeswalker</option>
+	<option value="Scariest">Scariest</option>
+	<option value="Scheme">Scheme</option>
+	<option value="See">See</option>
+	<option value="Snow">Snow</option>
+	<option value="Sorcery">Sorcery</option>
+	<option value="Summon">Summon</option>
+	<option value="Tribal">Tribal</option>
+	<option value="Vanguard">Vanguard</option>
+	<option value="World">World</option>
+	<option value="You'll">You'll</option>
+
+</select>
+                </div>
+                <p>
+                    Select Sort Order:</p>
+                <div class="style-select">
+                    <select name="ctl00$ctl00$MainContent$Content$SearchControls$sortOrder" id="ctl00_ctl00_MainContent_Content_SearchControls_sortOrder">
+	<option value=""></option>
+	<option value="cn">Collector's Number</option>
+	<option value="color">Color</option>
+	<option value="mana">Color Weight</option>
+	<option value="rating">Community Rating</option>
+	<option value="cmc">Converted Mana Cost</option>
+	<option value="abc">Name</option>
+	<option value="p">Power</option>
+	<option value="rarity">Rarity</option>
+	<option value="t">Toughness</option>
+</select>
+                </div>
+                <p>
+                    Select Output Format:</p>
+                <div class="style-select">
+                    <select name="ctl00$ctl00$MainContent$Content$SearchControls$resultsView" id="ctl00_ctl00_MainContent_Content_SearchControls_resultsView">
+	<option value=""></option>
+	<option value="standard">Standard</option>
+	<option value="compact">Compact</option>
+	<option value="checklist">Checklist</option>
+	<option value="visualspoiler">Visual Spoiler</option>
+
+</select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Search Settings -->
+    </div>
+
+
+            </div>
+            <div class="rightContainer">
+                
+            </div>
+        </div>
+    </div>
+    <div id="ctl00_ctl00_backgroundBottom" class="frontBackgroundBottom">
+        <img class="shadowImg" src="/images/Redesign/Shadow.png" />
+        <div id="ctl00_ctl00_frontPageMessages" class="frontpagemessages">
+            <div class="preconfiguredsearches" id="popularSearches">
+            </div>
+            <div class="randomcardContent">
+                <div class="randomcard">
+                    <b style="font-style: open sans; color: #ffffff; font-size: 22pt; padding-bottom:20px; position:absolute; 
+                              top: -80px;">RANDOM CARD</b>
+                    <p style="top: -40px; color: #898989; position: absolute;">Find the inspiration for your next combo deck, 
+                        discover cards you didn't even know existed, be reminded of forgotten gems, or just browse through the 
+                        thousands of cards from Magic's history with Gatherer's Random Card feature. </p>
+                </div>
+                <div class="randombutton">
+                    <div class="randombuttonArrow">
+                        <img src="/images/Redesign/Arrow_sm.png" style="padding-left: 5px;
+                            padding-top: 5px;" /></div>
+                    <div class="randomtext">
+                        <a href="Card/Details.aspx?action=random">
+                            <p>
+                                VIEW CARD
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ctl00_ctl00_footer" class="frontFooter">
+            <div class="topBanner" id="TopBannerAdvertisement">
+                <style> #separator3 { top: 40px; } </style>
+                <a href="https://magic.wizards.com/" target="_blank" id="footerUrl">
+                    <img src="//media.wizards.com/2018/images/magic/gatherer/footerbanner.jpg">
+                </a>            
+            </div>
+            <div class="footerLinks">
+            <a href="TermsOfUse.aspx" id="ctl00_ctl00_A5">Terms of Use</a>&nbsp;&nbsp;
+            <a href="PrivacyPolicy.aspx" id="ctl00_ctl00_A6">Privacy Policy</a>&nbsp;&nbsp;
+            <a href="CodeOfConduct.aspx" id="ctl00_ctl00_A7">Code of Conduct</a>
+            <br>
+            <a href="http://www.magicthegathering.com" style="color: #ffffff;">Magicthegathering.com</a>&nbsp;&nbsp;
+            <a href="https://magic.wizards.com/en/content/magic-online-products-game-info" style="color: #ffffff;">
+                Magic: The Gathering Online</a>&nbsp;&nbsp; <a href="Settings.aspx" id="ctl00_ctl00_A1" style="color: #ffffff;">
+                    <span id="ctl00_ctl00_Label1">Settings</span></a>&nbsp;&nbsp;
+            <a href="Language.aspx" id="ctl00_ctl00_A2" style="color: #ffffff;">
+                <span id="ctl00_ctl00_Label2">Language</span></a>&nbsp;&nbsp;
+            <a href="https://company.wizards.com/policies/web/cookie" id="ctl00_ctl00_A4" style="color: #ffffff;">
+                <span id="ctl00_ctl00_Label4">Cookies</span></a>
+                &nbsp;&nbsp;
+            <a href="Help.aspx" id="ctl00_ctl00_A3" style="color: #ffffff;">
+                <span id="ctl00_ctl00_Label3">Help</span></a>
+            
+            </div>
+            <div class="wizardsFooterSection">
+                &copy; 1995 -
+                2019
+                <a href="https://company.wizards.com" style="color: #898989;">Wizards of the Coast</a>
+                LLC, a subsidiary of Hasbro, Inc. All Rights Reserved.
+            </div>
+            <div class="brandingContainer">
+                <img class="hasbrologo" src="/images/Redesign/hasbro_logo.png" />
+                <img class="wizardsfrontLogo" src="/images/Redesign/wizards_logo.png" />
+            </div>
+        </div>
+        <span class="smalldate"></span>
+    </div>
+    
+<script language="javascript" type="text/javascript">
+    var wotcAccountWidget = { init: function() { return false; } }; 
+    HandleReportPost = function(a, b) { 
+        window.location = "http://wizards.custhelp.com/cgi-bin/wizards.cfg/php/enduser/ask.php?p_prods=522,706,739&amp;p_cats=";
+            }</script>
+<script type="text/javascript">
+//<![CDATA[
+WebForm_AutoFocus('ctl00_ctl00_MainContent_Content_SearchControls_CardSearchBoxParent_CardSearchBox');//]]>
+</script>
+</form>
+</body>
+</html>

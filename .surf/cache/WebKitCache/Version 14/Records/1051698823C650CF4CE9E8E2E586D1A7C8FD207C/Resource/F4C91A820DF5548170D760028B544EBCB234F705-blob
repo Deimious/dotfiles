@@ -1,0 +1,766 @@
+﻿Event.observe(window, 'load', SetupCardDatabase);
+
+var cardDatabase = null;
+var currentFocusedControl = null;
+
+function SetupCardDatabase()
+{
+    cardDatabase = new CardDatabase();
+    cardDatabase.SubscribeToEvents();
+    cardDatabase.Initialize();
+    
+    SetupAdvertisements();
+    FixExpandedLists();
+}
+
+function SetupAdvertisements()
+{
+    var topAdvertisementContainer = $(ClientIDs.TopBannerAdvertisement);
+    var rightAdvertisementContainer = $(ClientIDs.RightBannerAdvertisement);
+    
+    if(topAdvertisementContainer != null)
+    {
+        var topAdvertisement = new Element('iframe', { src: '/Pages/Advertisements/HorizontalAdvertisement.html?date=' + new Date().getTime(), frameborder: '0' });
+        
+        topAdvertisementContainer.update(topAdvertisement);
+    }
+    
+    if(rightAdvertisementContainer != null)
+    {
+        var rightAdvertisement = new Element('iframe', { src: '/Pages/Advertisements/VerticalAdvertisement.html?date=' + new Date().getTime(), frameborder: '0' });
+        
+        rightAdvertisementContainer.update(rightAdvertisement);
+       }
+
+       DoAdRotations();
+}
+
+function DoAdRotations() {
+	// Randomly display one ad within every ad rotator on the page.
+	// <show> tags within <adrotator> tags are rendered by XSL as hidden <div> tags. 
+	// This function randomly un-hides one div from each ad rotator.  
+
+	var allDivs = document.getElementsByTagName("div");
+	for (var iDiv = 0; iDiv < allDivs.length; iDiv++) {
+		// find the ad rotators
+		var div = allDivs[iDiv];
+		if (div.attributes.getNamedItem("adrotator")) {
+			// find the ads within the rotator
+			var nodes = div.getElementsByTagName("div");
+			var ads = new Array();
+			for (iNode = 0; iNode < nodes.length; iNode++) {
+				if (nodes[iNode].attributes["ad"]) {
+					ads.push(nodes[iNode]);
+				}
+			}
+			// unhide a random ad
+			var r = Math.floor(Math.random() * (ads.length));
+			if (r < ads.length) {
+				ads[r].style.display = "block";
+			}
+		}
+	}
+}
+
+function SetCurrentControlFocus(event, control)
+{
+    currentFocusedControl = control;
+    
+    if(event.type == 'focus' && currentFocusedControl.type == 'text')
+	{
+	    var inputBox = control; 
+	    
+	    inputBox.selected = true;
+	    
+	    if(inputBox.className == Constants.StyleSheetClasses.TextAreaInput)
+	    {
+	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextAreaFocus;
+	    }
+	    else if(inputBox.className == Constants.StyleSheetClasses.TextAreaInputLarge)
+	    {
+	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextAreaFocusLarge;
+	    }
+	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInput)
+	    {
+	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocus;
+	    } 
+	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInputNew)
+	    {
+	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocus;
+	    }
+	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInputSmall)
+	    {
+	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocusSmall;
+	    }
+	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInputTiny)
+	    {
+	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocusTiny;
+	    }
+	}
+}
+
+function SetCurrentControlBlur(event)
+{
+    currentFocusedControl = null;
+}
+
+function ToggleSearchOptions(event, control)
+{
+    var searchControls = $('searchControls');
+    
+    if(searchControls == null)
+    {
+        searchControls = $(ClientIDs.searchControls);
+    }
+    
+    if(searchControls != null)
+    {
+        if(searchControls.style.display == 'block' || searchControls.style.display == '')
+        {
+            searchControls.style.display = 'none';
+            control.className = Constants.StyleSheetClasses.CollapsedNode;
+        }
+        else
+        {
+            searchControls.style.display = 'block';
+            control.className = Constants.StyleSheetClasses.ExpandedNode;      
+        }
+    }
+    else
+    {
+        var list = $(control).parentNode.getElementsByTagName('ul');
+        
+        if(list[0].style.display == 'block' || list[0].style.display == '')
+        {
+            list[0].style.display = 'none';
+            control.className = Constants.StyleSheetClasses.CollapsedNode;
+        }
+        else
+        {
+            list[0].style.display = 'block';
+            control.className = Constants.StyleSheetClasses.ExpandedNode;      
+        }
+    }
+}
+
+function FixExpandedLists()
+{
+    var expandedLinks = $$('.expandedNode', '.collapsedNode');
+    
+    for(var i = 0; i < expandedLinks.length; i++)
+    {
+        var expandedLink = expandedLinks[i];
+        var par = expandedLink.parentNode;
+        var list = par.getElementsByTagName('div');
+        
+        if(list[0] != null && (list[0].style.display == 'block' || list[0].style.display == ''))
+        {
+            expandedLink.className = expandedLink.className.replace(Constants.StyleSheetClasses.CollapsedNode, Constants.StyleSheetClasses.ExpandedNode);      
+        }
+        else
+        {
+            expandedLink.className = expandedLink.className.replace(Constants.StyleSheetClasses.ExpandedNode, Constants.StyleSheetClasses.CollapsedNode);
+        }
+    }
+}
+
+function ToggleSearchSettings(event, control)
+{
+    var par = $(control).parentNode;
+    var list = par.getElementsByTagName('div');
+    
+    if(list[0].style.display == 'block' || list[0].style.display == '')
+    {
+        list[0].style.display = 'none';
+        control.className = control.className.replace(Constants.StyleSheetClasses.ExpandedNode, Constants.StyleSheetClasses.CollapsedNode);
+    }
+    else
+    {
+        list[0].style.display = 'block';
+        control.className = control.className.replace(Constants.StyleSheetClasses.CollapsedNode, Constants.StyleSheetClasses.ExpandedNode);      
+    }
+}
+
+function CardLinkAction(event, control, action)
+{
+    var result = true;
+    var newWindow = null;
+    
+    params = 'width=767, height=670, toolbar=1, location=1, scrollbars=1, resizable=1';    
+
+    if(action == 'NewWindow')
+    {
+        newWindow = window.open(control.href, '_blank', params);
+        newWindow.focus();
+        
+        result = false;
+    }
+    else if(action == 'RecycledNewWindow')
+    {
+        newWindow = window.open(control.href, 'CardDetailsWindow', params);
+        newWindow.focus();
+        
+        result = false;
+    }        
+    
+    return result;
+}
+
+function CardDatabase()
+{
+    /// <summary>
+    /// Private Variables
+    /// </summary> 
+    var inlineSearchPosition = -1;
+    var inlineSearchElements = new Hash();
+    var enableAutoType = false;
+    var textBoxes = null;
+    
+    /// <summary>
+    /// Protected Methods
+    /// </summary> 
+    this.SubscribeToEvents = SubscribeToEvents;
+    this.Initialize = Initialize;
+    this.SetTextBoxValue = SetTextBoxValue;
+    
+    function Initialize()
+    {
+        /// <summary>
+        /// This method initializes the JavaScript features of the 
+        /// Card Database application.
+        /// </summary> 
+        AssignTextBoxValues();
+        CacheImages();
+    }
+    
+    function CacheImages()
+    {
+        var image1 = new Image(100, 100);
+        var image2 = new Image(100, 100);
+        var image3 = new Image(100, 100);
+        var image4 = new Image(100, 100);
+        
+        image1.src = '../../Images/Input/input_box.gif';
+        image2.src = '../../Images/Input/input_box_small.gif';
+        image3.src = '../../Images/Input/text_area.gif';
+        image4.src = '../../Images/Input/text_area_small.gif';
+    }
+    
+    function SubscribeToEvents()
+    {
+        /// <summary>
+        /// This method subscribes to the events that
+        /// are needed to provide the JavaScript features
+        /// the Card Database application requires.
+        /// </summary>
+        SubscribeToCardSearchBoxEvents();
+        SubscribeToTextBoxEvents();
+        SubscribeToSearchFieldPrefsEvents();
+        SubscribeToAnalytics();
+        Event.observe(window, 'click', WindowAutoCompleteClick);
+    }
+
+    function UpdateAnalytics(type) {
+        //gaTrackEvent('Gatherer', type + ' Search', type + ' Search');
+    }
+    
+    function SubscribeToAnalytics() {
+        //Event.observe($(ClientIDs.searchSubmitButton), 'click', UpdateAnalytics('Simple'));
+        //Event.observe($(ClientIDs.filterSubmit), 'click', UpdateAnalytics('Advanced'));
+    }
+    
+    function AssignTextBoxValues()
+    {
+        textBoxHash.each(function (pair) {
+            var textBox = $(pair.key);
+
+            if (textBox === null) {
+                return;
+            }
+
+            if (textBox.value == '' && textBox != currentFocusedControl) {
+                textBox.value = pair.value;
+                textBox.style.fontStyle = 'italic';
+            }
+        });
+    }
+
+    function SubscribeToSearchFieldPrefsEvents() {
+        var searchCardName = $(ClientIDs.SearchCardName);
+        var searchCardTypes = $(ClientIDs.SearchCardTypes);
+        var searchCardText = $(ClientIDs.SearchCardText);
+        
+        if (searchCardName) {
+            Event.observe(searchCardName, 'change', UpdateSimpleSearchFields);    
+        }
+        if (searchCardTypes) {
+            Event.observe(searchCardTypes, 'change', UpdateSimpleSearchFields);
+        }
+        if (searchCardText) {
+            Event.observe(searchCardText, 'change', UpdateSimpleSearchFields);
+        }
+    }
+
+    function SubscribeToTextBoxEvents()
+    {
+        /// <summary>
+        /// This method registers for the focus and blur events on all text boxes
+        /// that have a classname of 'textboxinput'.
+        /// </summary>
+        textBoxes = $$('.' + Constants.StyleSheetClasses.TextBoxInput, '.' + Constants.StyleSheetClasses.TextBoxInputNew, '.' + Constants.StyleSheetClasses.TextAreaInput, '.' + Constants.StyleSheetClasses.TextAreaInputLarge, '.' + Constants.StyleSheetClasses.TextBoxInputSmall, '.' + Constants.StyleSheetClasses.TextBoxInputTiny);
+        
+        for(var i = 0; i < textBoxes.length; i++)
+        {
+            Event.observe(textBoxes[i], 'focus', ResetTextBox);
+            Event.observe(textBoxes[i], 'blur', ResetTextBox);
+            
+            textBoxes[i].selected = false;
+        }
+    }
+    
+    function SubscribeToCardSearchBoxEvents()
+    {
+        /// <summary>
+        /// This method sets up the search control's text box values and registers
+        /// for the focus and blur events so that the text can be modified.
+        /// </summary>
+        var localCardSearchBox = $(ClientIDs.CardSearchBox) || $(ClientIDs.HeaderCardSearchBox);
+
+        if (localCardSearchBox !== null && enableCardSearchAutoComplete)
+        {
+            Event.observe(localCardSearchBox, 'keyup', PerformInlineCardSearch);
+            Event.observe(localCardSearchBox, 'keydown', UpdateInlineCardSearch);
+        }
+    }    
+    
+    function SetTextBoxValue(eventType, inputBox)
+    {
+        var unfocusedValue = textBoxHash.get(inputBox.id);
+    	    
+	    if(unfocusedValue != null)
+	    {
+	        if(eventType == 'focus' && inputBox.value == unfocusedValue)
+	        {
+	            inputBox.value = '';
+	            inputBox.style.fontStyle = 'normal';
+	        }
+	        else if(inputBox.value == '')
+	        {
+	            inputBox.value = unfocusedValue;
+	            inputBox.style.fontStyle = 'italic';
+	        }
+	    }
+    }
+
+    function WindowAutoCompleteClick(event)
+    {
+        ToggleSearchControl('none');
+    }
+
+    function ToggleSearchControl(displayStyle)
+    {
+        var $cntrl = $(ClientIDs.SearchBoxResults) || $(ClientIDs.HeaderSearchBoxResults);
+
+        if ($cntrl !== null) {
+            $cntrl.style.display = displayStyle;
+        }
+    }
+    
+    function SelectCardFromInlineSearch(event)
+    {
+        var control = Event.element(event);
+        
+        $(ClientIDs.CardSearchBox).value = control.cardName;
+        $(ClientIDs.CardSearchBox).focus();
+        
+        ToggleSearchControl('none');
+    }
+    
+    function HighlightInlineCardSearchElement(previousPos, newPos)
+    {
+        var prevCard = inlineSearchElements.get(previousPos);
+        var newCard = inlineSearchElements.get(newPos);
+        
+        if(prevCard != null)
+        {
+            prevCard.className = Constants.StyleSheetClasses.CardLink;
+        }
+        
+        if(newCard != null)
+        {
+            newCard.className = Constants.StyleSheetClasses.CardLinkHover;
+        }
+    }
+    
+    function UpdateInlineCardSearch(event)
+    {
+        var control = Event.element(event);
+        var keyCode = event.keyCode ? event.keyCode : event.which;  
+            
+        if(keyCode == Event.KEY_DOWN)
+        {
+            if(inlineSearchPosition < inlineSearchElements.keys().length - 1)
+            {
+                inlineSearchPosition++;
+                
+                HighlightInlineCardSearchElement(inlineSearchPosition - 1, inlineSearchPosition);
+            }            
+        }
+        else if(keyCode == Event.KEY_UP)
+        {
+            if(inlineSearchPosition > 0)
+            {
+                inlineSearchPosition--;
+            
+                HighlightInlineCardSearchElement(inlineSearchPosition + 1, inlineSearchPosition);
+            }
+            
+            Event.stop(event);
+        }
+        else if(keyCode == Event.KEY_RETURN)
+        {
+            var submitForm = false;
+
+            if (($(ClientIDs.SearchBoxResults) || $(ClientIDs.HeaderSearchBoxResults)).style.display == 'block')
+            {
+                var card = inlineSearchElements.get(inlineSearchPosition);
+                
+                if(card != null)
+                {
+                    if(SelectingCardAction == 'NavigatesToCard')
+                    {
+                        window.location = cardDetailsPage + '?multiverseid=' + card.id.replace(/CardLinkID/, '');
+                        
+                        Event.stop(event);
+                    }
+                    else
+                    {
+                        control.value = card.cardName;
+                        
+                        ToggleSearchControl('none');
+                        
+                        Event.stop(event);
+                    }
+                }
+                else
+                {
+                    submitForm = true;
+                }
+            }
+            else
+            {
+                submitForm = true;
+            }
+            
+            if(submitForm)
+            {
+                ($(ClientIDs.searchSubmitButton) || $(ClientIDs.headerSearchSubmitButton)).click();
+                
+                Event.stop(event);
+            }
+        }
+        else if(keyCode == Event.KEY_ESC)
+        {
+            ToggleSearchControl('none');
+        }
+    }
+    
+    function PerformInlineCardSearch(event)
+    {
+        var control = Event.element(event);
+        var keyCode = event.keyCode ? event.keyCode : event.which;  
+        var letter = keyCode != Event.KEY_DOWN && keyCode != Event.KEY_UP && keyCode != Event.KEY_RETURN && keyCode != Event.KEY_ESC;
+        var nameChecked = (!$(ClientIDs.SearchCardName)) ? true : $(ClientIDs.SearchCardName).checked;
+        
+        if(nameChecked || (!nameChecked && enableCardSearchAutoCompleteIfNameUnchecked))
+        {
+            if(letter && control.value.length > 0)
+            {
+                new Ajax.Request(inlineCardSearchHandler, {
+                    method: 'get',
+                    parameters: { nameFragment: control.value, cacheBust: new Date().getTime() },
+                    onSuccess:  function(transport) {
+                        var results = eval("(" + transport.responseText + ")");
+                        
+                        if(results.SearchCharacters == control.value)
+                        {
+                            inlineSearchElements = new Hash();
+                            inlineSearchPosition = -1;
+                            var searchBoxResults = $(ClientIDs.SearchBoxResultsContent) || $(ClientIDs.HeaderSearchBoxResultsContent);
+                            searchBoxResults.update();
+                            
+                            if(results.Results.length > 0)
+                            {
+                                ToggleSearchControl('block');
+                            }
+                            else
+                            {
+                                ToggleSearchControl('none');
+                            }
+                            
+                            var currentGroup = null;
+                            
+                            for(var i = 0; i < results.Results.length; i++)
+                            {
+                                var info = results.Results[i];
+                                
+                                if(info.Group != currentGroup)
+                                {
+                                    if(autoCompleteGroupBy == 'Color')
+                                    {
+                                        if(info.Group == '' || info.Group == 'C')
+                                        {
+                                            var image = new Element('img', { src: imageHandler + '?size=small&type=symbol&name=x', alt: '', style: 'width:11px; height:11px; padding-top:1px;' });
+                                            
+                                            if(i == 0)
+                                            {                                            
+                                                $(ClientIDs.SearchBoxResultsTitle).update(image);
+                                            }
+                                            else
+                                            {
+                                                var title = new Element('div', { 'class': Constants.StyleSheetClasses.AutoCompleteTitle }).addClassName(Constants.StyleSheetClasses.AutoCompleteTitle).update(image);
+                                                                        
+                                                searchBoxResults.insert(title);
+                                            }
+                                        }
+                                        else
+                                        {                                        
+                                            var title = null;
+                                        
+                                            for(var j = 0; j < info.Group.length; j++)
+                                            {
+                                                var image = new Element('img', { src: imageHandler + '?size=small&type=symbol&name=' + info.Group.charAt(j), alt: '', style: 'width:11px; height:11px; padding-top:1px;' });
+                                                
+                                                if(i == 0)
+                                                {
+                                                    if(j == 0)
+                                                    {
+                                                        $(ClientIDs.SearchBoxResultsTitle).update();
+                                                    }
+                                                    
+                                                    $(ClientIDs.SearchBoxResultsTitle).insert(image);
+                                                }
+                                                else
+                                                {
+                                                    if(title == null)
+                                                    {
+                                                        title = new Element('div', { 'class': Constants.StyleSheetClasses.AutoCompleteTitle }).addClassName(Constants.StyleSheetClasses.AutoCompleteTitle);
+                                                    }
+                                                    
+                                                    title.insert(image);
+                                                }
+                                            }
+                                            
+                                            if(title != null)
+                                            {
+                                                searchBoxResults.insert(title);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if(i == 0)
+                                        {
+                                            $(ClientIDs.SearchBoxResultsTitle).update(info.Group);
+                                        }
+                                        else
+                                        {
+                                            var title = new Element('div', { 'class': Constants.StyleSheetClasses.AutoCompleteTitle }).addClassName(Constants.StyleSheetClasses.AutoCompleteTitle).update(info.Group);
+                                                                    
+                                            searchBoxResults.insert(title);
+                                        }
+                                    }
+                                    
+                                    currentGroup = info.Group;  
+                                }
+                                
+                                var card = new Element('div', { 'class': Constants.StyleSheetClasses.CardResults }).addClassName(Constants.StyleSheetClasses.CardResults);
+                                var cardLink = new Element('a', { 'class': Constants.StyleSheetClasses.CardLink, 'href': 'javascript:void(0);' }).addClassName(Constants.StyleSheetClasses.CardLink).update('&nbsp;' + info.Name);
+                                var cardBreak = new Element('br');
+                                var cardDescript = new Element('span', { 'class': Constants.StyleSheetClasses.CardDescript }).addClassName(Constants.StyleSheetClasses.CardDescript).update('&nbsp;' + info.Snippet);
+                                
+                                if(SelectingCardAction == 'NavigatesToCard')
+                                {
+                                    cardLink.href = cardDetailsPage + '?multiverseid=' + info.ID;
+                                }
+                                
+                                Event.observe(cardLink, 'click', SelectCardFromInlineSearch);
+                                
+                                cardLink.cardName = info.Name;
+                                cardLink.id = 'CardLinkID' + info.ID;
+                                cardDescript.cardName = info.Name;
+                                cardDescript.id = 'CardSpanID' + info.ID;
+                                
+                                if(enableHintText)
+                                {
+                                    cardLink.insert(cardBreak);
+                                    cardLink.insert(cardDescript);
+                                }
+                                
+                                card.insert(cardLink);
+                                
+                                inlineSearchElements.set(i, cardLink);
+                                
+                                searchBoxResults.insert(card);
+                            }
+                            
+                            if(results.Results.length > 0)
+                            {
+                                ToggleSearchControl('block');
+                                if ($(ClientIDs.AllResultsLink) != null)
+                                {
+                                    $(ClientIDs.AllResultsLink).href = cardSearchPage + "?name=+[" + control.value + "]";
+                                }
+                                if ($(ClientIDs.HeaderAllResultsLink) != null)
+                                {
+                                    $(ClientIDs.HeaderAllResultsLink).href = cardSearchPage + "?name=+[" + control.value + "]";
+                                }
+                            }                        
+                        }                            
+                    }        
+                });
+            }
+            else if(control.value.length == 0)
+            {
+                ToggleSearchControl('none');
+            }
+        }
+    }
+    
+    function ResetTextBox(event)
+    {
+	    /// <summary>
+	    /// This method resets the class of the input text box when it is selected.
+	    /// </summary>    	
+    	var inputBox = Event.element(event);
+    	
+    	ClearTextBoxClasses();
+
+    	if(event.type == 'focus')
+    	{
+    	    inputBox.selected = true;
+    	    
+    	    if(inputBox.className == Constants.StyleSheetClasses.TextAreaInput)
+    	    {
+    	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextAreaFocus;
+    	    }
+    	    else if(inputBox.className == Constants.StyleSheetClasses.TextAreaInputLarge)
+    	    {
+    	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextAreaFocusLarge;
+    	    }
+    	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInput)
+    	    {
+    	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocus;
+    	    }
+    	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInputSmall)
+    	    {
+    	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocusSmall;
+    	    }
+    	    else if(inputBox.className == Constants.StyleSheetClasses.TextBoxInputTiny)
+    	    {
+    	        inputBox.parentNode.className = Constants.StyleSheetClasses.TextBoxFocusTiny;
+    	    }
+    	    
+    	    SetTextBoxValue(event.type, inputBox);
+    	}
+    }
+    
+    function ClearTextBoxClasses()
+    {
+        /// <summary>
+        /// This method exists so that all of the dynamic text box classes are cleared
+        /// when the focus event is fired. Basically, it fixes a problem in IE where on refresh
+        /// a text box may already be selected and two text boxes can end up being highlighted.
+        /// </summary>        
+        for(var i = 0; i < textBoxes.length; i++)
+        {
+            var textBox = textBoxes[i];
+            
+            textBox.selected = false;
+            
+            if(textBox.className == Constants.StyleSheetClasses.TextAreaInput)
+    	    {
+                textBox.parentNode.className = Constants.StyleSheetClasses.TextArea;
+            }
+            else if(textBox.className == Constants.StyleSheetClasses.TextAreaInputLarge)
+    	    {
+                textBox.parentNode.className = Constants.StyleSheetClasses.TextAreaLarge;
+            }
+            else if(textBox.className == Constants.StyleSheetClasses.TextBoxInput)
+            {
+                textBox.parentNode.className = Constants.StyleSheetClasses.TextBox;
+            }
+            else if(textBox.className == Constants.StyleSheetClasses.TextBoxInputNew)
+            {
+                textBox.parentNode.className = Constants.StyleSheetClasses.TextBoxNew;
+            }
+            else if(textBox.className == Constants.StyleSheetClasses.TextBoxInputSmall)
+            {
+                textBox.parentNode.className = Constants.StyleSheetClasses.TextBoxSmall;
+            }
+            else if(textBox.className == Constants.StyleSheetClasses.TextBoxInputTiny)
+            {
+                textBox.parentNode.className = Constants.StyleSheetClasses.TextBoxTiny;
+            }
+            
+            SetTextBoxValue('blur', textBoxes[i]);
+        }
+    }
+}
+
+function ToggleVisible(div)
+{
+    var element = $(div);
+    
+    if(element.style.display == "none") { element.style.display = "block"; }
+    else                                { element.style.display = "none"; }
+}
+
+function OpenTip(event, multiverseID)
+{
+    var control = Event.element(event);
+    var imageSrc = imageHandler + '?type=card&multiverseid=' + multiverseID;
+   
+    var t = new Image();
+    t.src = imageSrc;
+
+    t.onload = function ()
+    {
+        var largeImageWidthPC2 = 410;
+        var largeImageWidthPC = 455;
+
+
+        var w = 185;
+        var className = "cardImageHover";
+
+        //check to see if the image is a large plane image like akoum
+        if (t.width >= 400)
+        {
+            w = largeImageWidthPC2;
+            className = "cardImageHoverPC2";
+
+            if (t.width == 445)
+            {
+                w = largeImageWidthPC;
+                className = "cardImageHoverPC";
+            }
+        }
+
+        var tip = new Tip(control, '<img id="' + multiverseID + '" class="' + className + '" src="' + imageSrc + '" alt="' + multiverseID + '" />', {
+            style: 'darkgrey',
+            delay: .25,
+            stem: 'topLeft',
+            hook: { tip: 'topLeft', mouse: true },
+            offset: { x: 10, y: 10 },
+            border: 2,
+            radius: 2,
+            width: w
+        });
+    }
+
+
+
+
+
+
+}
