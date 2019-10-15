@@ -92,7 +92,7 @@ index 0362114..881afe6 100644
 +			mfacts -= c->cfact;
  		} else {
 -			h = (m->wh - ty) / (n - i);
-+			h = (m->wh - ty) / (c->cfact / sfacts);
++			h = (m->wh - ty) * (c->cfact / sfacts);
  			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
  			ty += HEIGHT(c);
 +			sfacts -= c->cfact;
