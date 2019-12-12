@@ -31,12 +31,12 @@ class Default(ColorScheme):
 				fg = 4
 			if context.directory:
 				attr |= normal
-				fg = 2
+				fg = 5
 			elif context.executable and not \
 					any((context.media, context.container,
 						context.fifo, context.socket)):
 				attr |= normal
-				fg = 1
+				fg = 2
 			if context.socket:
 				fg = 5
 			if context.fifo or context.device:
@@ -62,7 +62,7 @@ class Default(ColorScheme):
 					fg = yellow
 			if context.badinfo:
 				if attr & reverse:
-					bg = 5
+					bg = 1
 				else:
 					fg = green
 
@@ -75,17 +75,17 @@ class Default(ColorScheme):
 				fg = 5
 			elif context.tab:
 				if context.good:
-				        bg = 2
-				        fg = 233
+				        bg = 5
+				        fg = 0
 			elif context.link:
 				4
 
 		elif context.in_statusbar:
 			if context.permissions:
 				if context.good:
-					fg = 238
+					fg = 2
 				elif context.bad:
-					fg = 5
+					fg = 1
 			if context.marked:
 				#attr |= bold | reverse
 				fg = yellow

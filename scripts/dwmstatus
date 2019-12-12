@@ -1,0 +1,78 @@
+#!/bin/sh
+
+FONT='xos4 Terminus'
+STAT_BEFORE=`cat /proc/stat | head -n 5`
+
+getUpdates(){
+    UPDATES=$(pacman -Qu | wc -l)
+
+    echo "Updates: $UPDATES"
+}
+getCpuload() {
+    read cpu a b c PREVIDLE rest < /proc/stat
+    PREVTOTAL=$((a+b+c+PREVIDLE))
+    sleep 0.5
+    read cpu a b c IDLE rest < /proc/stat
+    TOTAL=$((a+b+c+IDLE))
+    CPU=$((100*( (TOTAL-PREVTOTAL) - (IDLE-PREVIDLE) ) / (TOTAL-PREVTOTAL) ))
+
+    echo -e "CPU: $CPU%"
+}
+getMem() {
+    MEMPERCENT=$(free | awk '/Mem/ {printf "%d%%", ($3 / 1024.0) / ($2 / 1024.0) * 100 }')
+    MEMUSED=$(free | awk '/Mem/ {printf "%dMB/%dMB", $3 / 1024.0, $2 / 1024.0 }')
+
+    echo "RAM: $MEMPERCENT"
+}
+getVolume() {
+    VOLUME=$(pamixer --get-volume-human)
+
+    echo "Volume: $VOLUME"
+}
+getMpd() {
+    if [ "`mpc | grep playing | awk '{ print $2 }' | wc -l`" != 1 ]; then
+	   echo -ne "Music Paused"
+    else if [ `mpc | grep playing | awk '{ print $4 }' | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)../\1/'` = 100 ]; then
+	   echo -ne "`mpc | head -n 1 |cut -c 1-200`"
+	   mpc_time="`mpc | grep playing | awk '{ print $3 }'`"
+	   echo -ne " [$mpc_time]"	
+    else
+	   echo -ne "`mpc | head -n 1 |cut -c 1-200`"
+	   mpc_time="`mpc | grep playing | awk '{ print $3 }'`"
+	   echo -ne " [$mpc_time]"	
+    fi
+    fi
+}
+getMail() {
+    mail_count=`curl -s https://username:password@mail.google.com/mail/feed/atom | sed -n '/^<fullcount>\([0-9]*\)<\/fullcount>$/s//\1/p'`
+
+    echo -ne "\x07 \x01 $mail_count Unread " 
+}
+getDate() { 
+    date_format="%H:%M %A %d %B"
+    date_command=$(date +"$date_format")
+    time=$(date | awk '{ print $4 }' | sed 's/......\(.*\)/\1/')
+
+    if [ $time = "00" ]; then
+	   echo -ne "$date_command"
+    else
+	   echo -ne "$date_command "
+    fi
+}
+getBattery() {
+    STATUS=$(acpi -b | sed 's/.*: \([a-zA-Z]*\),.*/\1/gi')
+    BATT=$(acpi -b | sed 's/.*[charging|unknown], \([0-9]*%\).*/\1/gi')
+    if [ "$STATUS" == "Full" ]; then
+	   BATT=$(acpi -b | sed 's/.*: .*, //gi')
+    fi
+
+    echo "Battery: $BATT"
+}
+getNet(){
+     SSID=$(iw wlp2s0 info | grep ssid | sed 's/.*ssid //g')
+
+     echo "$SSID"
+}
+while true; do
+     xsetroot -name "[ $(getMpd) ]--[ $(getUpdates) ]--[ $(getCpuload) ]--[ $(getMem) ]--[ $(getVolume) ]--[ $(getDate)]"
+done
