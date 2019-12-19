@@ -42,14 +42,14 @@ static unsigned int tripleclicktimeout = 600;
 int allowaltscreen = 1;
 
 /* frames per second st should at maximum draw to the screen */
-static unsigned int xfps = 120;
+static unsigned int xfps = 60;
 static unsigned int actionfps = 30;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
-static unsigned int blinktimeout = 800;
+static unsigned int blinktimeout = 1000;
 
 /*
  * thickness of underline and bar cursors
@@ -85,30 +85,30 @@ unsigned int tabspaces = 5;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#333333",  //black
-	"#63484e",  //red
-	"#486350",  //green
-	"#6f6b56",  //yellow
-	"#56676f",  //blue
-	"#63485b",  //magenta
-	"#637272",  //cyan
-	"#6c6c6c",  //gray
+	"#222",  //black
+	"#733",  //red
+	"#474",  //green
+	"#993",  //yellow
+	"#447",  //blue
+	"#547",  //magenta
+	"#488",  //cyan
+	"#555",  //gray
 
 	/* 8 bright colors */
-	"#333333",  //gray
-	"#63484e",  //red
-	"#486350",  //green
-	"#6f6b56",  //yellow
-	"#56676f",  //blue
-	"#63485b",  //magenta
-	"#637272",  //cyan
-	"#c6c6c6",  //white
+	"#777",  //gray
+	"#a77",  //red
+	"#8a8",  //green
+	"#ee8",  //yellow
+	"#88a",  //blue
+	"#98a",  //magenta
+	"#8bb",  //cyan
+	"#aaa",  //white
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#a6a6a6",  //foreground ?
-	"#121212",  //background ?
+	"#ccc",  //foreground ?
+	"#111",  //background ?
 };
 
 
@@ -118,7 +118,7 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 7;
 unsigned int defaultbg = 233;
-static unsigned int defaultcs = 7;
+static unsigned int defaultcs = 5;
 static unsigned int defaultrcs = 233;
 
 /*
@@ -142,7 +142,7 @@ static unsigned int rows = 24;
  */
 static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
-static unsigned int mousebg = 0;
+static unsigned int mousebg = 5;
 
 /*
  * Color used to display font attributes when fontconfig selected a font which
@@ -156,8 +156,14 @@ static unsigned int defaultattr = 11;
  */
 static MouseShortcut mshortcuts[] = {
 	/* button               mask            string */
-	{ Button4,              XK_ANY_MOD,     "\031" },
-	{ Button5,              XK_ANY_MOD,     "\005" },
+	{ Button4,              XK_NO_MOD,      "\031" },
+	{ Button5,              XK_NO_MOD,      "\005" },
+};
+
+MouseKey mkeys[] = {
+	/* button               mask            function        argument */
+	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
+	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -178,6 +184,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
