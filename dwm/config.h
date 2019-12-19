@@ -1,54 +1,98 @@
-//					                                   ____   
-//					      ,---,                      ,'  , `. 
-//					    ,---.'|         .---.     ,-+-,.' _ | 
-//					    |   | :        /. ./|  ,-+-. ;   , || 
-//					    |   | |     .-'-. ' | ,--.'|'   |  || 
-//					  ,--.__| |    /___/ \: ||   |  ,', |  |, 
-//					 /   ,'   | .-'.. '   ' .|   | /  | |--'  
-//					.   '  /  |/___/ \:     '|   : |  | ,     
-//					'   ; |:  |.   \  ' .\   |   : |  |/      
-//					|   | '/  ' \   \   ' \ ||   | |`-'       
-//					|   :    :|  \   \  |--" |   ;/           
-//					 \   \  /     \   \ |    '---'            
-//					  `----'       '---"                      
-
-
+//
+//
+//                                      
+//				 @@@@@@@   @@@  @@@  @@@  @@@@@@@@@@   
+//				 @@@@@@@@  @@@  @@@  @@@  @@@@@@@@@@@  
+//				 @@!  @@@  @@!  @@!  @@!  @@! @@! @@!  
+//				 !@!  @!@  !@!  !@!  !@!  !@! !@! !@!  
+//				 @!@  !@!  @!!  !!@  @!@  @!! !!@ @!@  
+//				 !@!  !!!  !@!  !!!  !@!  !@!   ! !@!  
+//				 !!:  !!!  !!:  !!:  !!:  !!:     !!:  
+//				 :!:  !:!  :!:  :!:  :!:  :!:     :!:  
+//				 :::: ::   :::: :: :::    :::     ::   
+//				 :: :  :     :: :  : :     :      :    
+//
+//
+//
+//
+//
+//           @@@@@@  @@@@@@@  @@@@@@@ @@@  @@@@@@  @@@  @@@  @@@@@@ 
+//           @@!  @@@ @@!  @@@   @!!   @@! @@!  @@@ @@!@!@@@ !@@     
+//           @!@  !@! @!@@!@!    @!!   !!@ @!@  !@! @!@@!!@!  !@@!!  
+//           !!:  !!! !!:        !!:   !!: !!:  !!! !!:  !!!     !:! 
+//            : :. :   :          :    :    : :. :  ::    :  ::.: :  
+//
+//
 #include "movestack.c"
+static const unsigned int borderpx		= 5;		/* border pixel of windows	*/
+static const unsigned int gappx		= 10;	/* gaps between windows		*/
+static const unsigned int snap		= 32;	/* snap pixel				*/
+static const int showbar				= 1;		/* 0 means no bar			*/
+static const int topbar				= 1;		/* 0 means bottom bar */
 
-//appearance
-static const unsigned int borderpx		= 5;      /* border pixel of windows */
-static const unsigned int gappx		= 10;     /* gaps between windows */
-static const unsigned int snap		= 32;     /* snap pixel */
-static const int showbar				= 1;	  /* 0 means no bar */
-static const int topbar				= 1;	  /* 0 means bottom bar */
-
-//fonts
+//
+//
+//               @@@@@@@@  @@@@@@  @@@  @@@ @@@@@@@  @@@@@@ 
+//               @@!      @@!  @@@ @@!@!@@@   @!!   !@@     
+//               @!!!:!   @!@  !@! @!@@!!@!   @!!    !@@!!  
+//               !!:      !!:  !!! !!:  !!!   !!:       !:! 
+//                :        : :. :  ::    :     :    ::.: :  
+//
+//
 static const char *fonts[]			= { "xos4 Terminus:size=8" };
 static const char dmenufont[]			= "xos4 Terminus:size=8";
-
-//colors
+//
+//
+//              @@@@@@@  @@@@@@  @@@       @@@@@@  @@@@@@@   @@@@@@ 
+//              !@@      @@!  @@@ @@!      @@!  @@@ @@!  @@@ !@@     
+//              !@!      @!@  !@! @!!      @!@  !@! @!@!!@!   !@@!!  
+//              :!!      !!:  !!! !!:      !!:  !!! !!: :!!      !:! 
+//               :: :: :  : :. :  : ::.: :  : :. :   :   : : ::.: :  
+//
+//
 static const char bg[]				= "#121212";
 static const char fg[]				= "#6c6c6c";
-static const char green[]			= "#486348";
-static const char black[]			= "#000000";
-static const char white[]			= "#c6c6c6";
-static const char blue[]				= "#56676f";
-static const char red[]				= "#634848";
-static const char border[]			= "#486348";
+static const char black[]			= "#222";
+static const char red[]				= "#733";
+static const char green[]			= "#474";
+static const char yellow[]			= "#993";
+static const char blue[]				= "#447";
+static const char magenta[]			= "#547";
+static const char cyan[]				= "#488";
+static const char gray[]				= "#555";
+static const char white[]			= "#aaa";
+static const char border[]			= "#547";
 //colorschemes
 static const char *colors[][3]		= {
      //					    fg		bg	       border 
      [SchemeNorm]			= { fg,		bg,	       bg	 },
-     [SchemeSel]			= { bg,		green,	       green	 },
-     [SchemeWarn]			= { green,	bg,	       white	 },
+     [SchemeSel]			= { bg,		magenta,	       magenta	 },
+     [SchemeWarn]			= { magenta,	bg,	       white	 },
      [SchemeUrgent]			= { white,	red,	       red	 },
 };
-
-//tags
+//
+//
+//                     @@@@@@@  @@@@@@   @@@@@@@   @@@@@@ 
+//                       @!!   @@!  @@@ !@@       !@@     
+//                       @!!   @!@!@!@! !@! @!@!@  !@@!!  
+//                       !!:   !!:  !!! :!!   !!:     !:! 
+//                        :     :   : :  :: :: :  ::.: :  
+//
+//                                  
 static const char *tags[] 			= { 
      "一", "二", "三", "四", "五", "六", "七", "八", "九"
 };
-//window rules
+//
+//
+// 
+//           @@@  @@@  @@@ @@@ @@@  @@@ @@@@@@@   @@@@@@  @@@  @@@  @@@  @@@@@@ 
+//           @@!  @@!  @@! @@! @@!@!@@@ @@!  @@@ @@!  @@@ @@!  @@!  @@! !@@     
+//           @!!  !!@  @!@ !!@ @!@@!!@! @!@  !@! @!@  !@! @!!  !!@  @!@  !@@!!  
+//            !:  !!:  !!  !!: !!:  !!! !!:  !!! !!:  !!!  !:  !!:  !!      !:! 
+//             ::.:  :::   :   ::    :  :: :  :   : :. :    ::.:  :::   ::.: :  
+//
+//
+//
 static const Rule rules[]			= {
      // class	    instance	title	     tags mask	    isfloating     isterminal	    noswallow	   monitor
      { "Gimp",	    NULL,		NULL,	     0,		    1,		   0,		    0,		   -1 },
@@ -56,12 +100,11 @@ static const Rule rules[]			= {
      { "st",	    NULL,		NULL,	     0,		    0,		   1,		    1,		   -1 },
      { "mpv",	    NULL,		NULL,	     0,		    1,		   0,		    0,		   -1 },
 };
-
 //window settings
 static const float mfact				= 0.50; // factor of master area size [0.05..0.95]
 static const int nmaster				= 1;    // number of clients in master area
 static const int resizehints			= 1;    // 1 means respect size hints in tiled resizals
-
+static const Bool viewontag			= True;     /* Switch view on tag switch */
 //tiling layouts
 static const Layout layouts[]			= {
      // symbol	    arrange function 
@@ -69,28 +112,48 @@ static const Layout layouts[]			= {
      { "[ヌル]",    NULL },	   //NULL layout is floating
      { "[極度]",    monocle },   //Fullscreen layout
      { "[ 盤 ]",    magicgrid }, //Great auto-balancing grid
-	{ "[D]",	    	deck },	   //Stack becomes monocle while master remains normal
+	{ "[甲板]",	deck },	   //Stack becomes monocle while master remains normal
 };
+//
+//
+// 
+//         @@@@@@@  @@@@@@  @@@@@@@@@@  @@@@@@@@@@   @@@@@@  @@@  @@@ @@@@@@@   @@@@@@ 
+//        !@@      @@!  @@@ @@! @@! @@! @@! @@! @@! @@!  @@@ @@!@!@@@ @@!  @@@ !@@     
+//        !@!      @!@  !@! @!! !!@ @!@ @!! !!@ @!@ @!@!@!@! @!@@!!@! @!@  !@!  !@@!!  
+//        :!!      !!:  !!! !!:     !!: !!:     !!: !!:  !!! !!:  !!! !!:  !!!     !:! 
+//         :: :: :  : :. :   :      :    :      :    :   : : ::    :  :: :  :  ::.: :  
+//
+//
+//
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+/* commands */
+static char dmenumon[2] 				= "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] 		= { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-n", "-p", ">", "-c", "-l", "15", "-nb", bg, "-nf", fg, "-sb", magenta, "-sf", bg, NULL };
+static const char *termcmd[]  		= { "st", NULL };
+static const char scratchpadname[] 	= "scratch";
+static const char *scratchpadcmd[] 	= { "st", "-t", scratchpadname, "-g", "120x34", NULL  };
 
-/* key definitions */
+
+//
+//
+//                                                                 
+//           @@@  @@@ @@@@@@@@ @@@ @@@ @@@@@@@  @@@ @@@  @@@ @@@@@@@   @@@@@@ 
+//           @@!  !@@ @@!      @@! !@@ @@!  @@@ @@! @@!@!@@@ @@!  @@@ !@@     
+//           @!@@!@!  @!!!:!    !@!@!  @!@!@!@  !!@ @!@@!!@! @!@  !@!  !@@!!  
+//           !!: :!!  !!:        !!:   !!:  !!! !!: !!:  !!! !!:  !!!     !:! 
+//            :   ::: : :: ::    .:    :: : ::  :   ::    :  :: :  :  ::.: :  
+//                                                                
+//
+//
+//key definitions
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
-/* commands */
-static char dmenumon[2] 				= "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] 		= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", bg, "-nf", fg, "-sb", green, "-sf", bg, NULL };
-static const char *termcmd[]  		= { "st", NULL };
-static const char scratchpadname[] 	= "scratch";
-static const char *scratchpadcmd[] 	= { "st", "-t", scratchpadname, "-g", "120x34", NULL  };
-
-
+//keybinds
 static Key keys[] = {
 	/*modifier					key			function		   	argument */
 	{ MODKEY,						XK_d,	  	spawn,	      	{.v = dmenucmd} },
@@ -105,10 +168,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,           	XK_j,	  	movestack,	     {.i = +1 } },
 	{ MODKEY|ShiftMask,           	XK_k,	  	movestack,	     {.i = -1 } },
 	{ MODKEY,                     	XK_Tab,	  	zoom,		     { 0 } },
-	{ MODKEY,                     	XK_Tab,	  	view,		     { 0 } },
+	/* { MODKEY,                     	XK_Tab,	  	view,		     { 0 } }, */
 	{ MODKEY,						XK_q,	  	killclient,	     { 0 } },
 	{ MODKEY,                     	XK_t,	  	setlayout,	     {.v = &layouts[0]} },
-	{ MODKEY,                     	XK_f,	  	setlayout,	     {.v = &layouts[1]} },
+	/* { MODKEY,                     	XK_f,	  	setlayout,	     {.v = &layouts[1]} }, */
 	{ MODKEY,                     	XK_f,	  	setlayout,	     {.v = &layouts[2]} },
 	{ MODKEY,                     	XK_g,	  	setlayout,	     {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,           	XK_t,	  	setlayout,	     {.v = &layouts[4]} },
@@ -121,6 +184,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,           	XK_comma,		tagmon,	      	{.i = -1 } },
 	{ MODKEY|ShiftMask,           	XK_period,	tagmon,	      	{.i = +1 } },
 	{ MODKEY,                     	XK_semicolon,  togglescratch,      {.v = scratchpadcmd } },
+	{ MODKEY,						XK_Left,		viewtoleft,		{0} },
+	{ MODKEY,						XK_Right,		viewtoright,		{0} },
+	{ MODKEY|ShiftMask,				XK_Left,		tagtoleft,		{0} },
+	{ MODKEY|ShiftMask,				XK_Right,		tagtoright,		{0} },
 	{ MODKEY|ShiftMask,           	XK_q,	  	quit,		     { 0 }},
 	{ MODKEY|ShiftMask,           	XK_h,	  	setcfact,	      	{.f = +0.25} },
 	{ MODKEY|ShiftMask,           	XK_l,	  	setcfact,	      	{.f = -0.25} },
