@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/org-re-reveal/LICENSES/CC0-1.0.txt

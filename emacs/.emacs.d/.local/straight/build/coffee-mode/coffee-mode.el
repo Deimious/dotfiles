@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/coffee-mode/coffee-mode.el

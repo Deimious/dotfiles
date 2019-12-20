@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/emacs-doom-themes/themes/doom-solarized-dark-theme.el

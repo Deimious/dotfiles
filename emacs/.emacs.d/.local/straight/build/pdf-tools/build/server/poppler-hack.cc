@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/pdf-tools/server/poppler-hack.cc

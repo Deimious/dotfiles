@@ -1,395 +1,101 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
- 
- 
-/*tab-width*/
- 
-.tabbrowser-tabs:not([drag=detach]) > .tabbrowser-tab:not([pinned])[fadein] {
-min-width: 10px !important;
-max-width: 100% !important;
-}
-/*comment above to have normal tab width*/
- 
- 
-/*remove shitty fog*/
-#TabsToolbar:not(:-moz-lwtheme)::after {display: none;}
-/* Remove the following line if you want the text color of unselected tabs to be black (Firefox default) */
-#TabsToolbar .tabbrowser-tab:not([selected]) {color: rgba(255,255,255,0.9);}
- 
-/*remove internal border*/
-#main-window:not([chromehidden*="toolbar"])[sizemode="normal"]
+
+:root:not([customizing]) #nav-bar toolbarbutton
 {
- margin-top:-1px!important;
- margin-left:-1px!important;
- margin-right:-1px!important;
- margin-bottom:-1px !important;
- }
- 
- #tabbrowser-tabs {
-     --tab-min-height: 22px !important;
-    height: 22px !important;
- } 
- 
-#TabsToolbar {
-    background: #121212 !important;
-    margin-bottom: 0 !important;
-    height: 22px !important;
+	    margin-left: -28px !important;
+	        opacity: 0 !important;
+		       transform: scale(.85, .85) !important;
+			      pointer-events: none !important;
+				     transition: all 100ms var(--animation-easing-function) !important;
+					
 }
- 
- 
-#TabsToolbar .tabbrowser-tabs {
-    min-height: 17px !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    text-align: center !important;
-    margin-left: -15px !important;
-    margin-right: -15px !important;
+
+:root:not([customizing]) :hover > #nav-bar toolbarbutton,
+:root:not([customizing]) #navigator-toolbox:focus-within #nav-bar toolbarbutton,
+:root:not([customizing]) :hover > #titlebar toolbarbutton {
+	    transform: scale(1, 1) !important;
+	    opacity:1 !important;
+	    margin-left:0 !important;
+	    pointer-events: auto !important;
+	    
 }
- 
-#tabbrowser-tabs tab .tab-close-button {
-    display: none !important;
-}
- 
-.tabbrowser-tab:not([pinned]) .tab-icon-image {
-display: none !important;
-}
- 
- 
-#TabsToolbar .tabbrowser-tab {
-    -moz-border-top-colors: none !important;
-    -moz-border-left-colors: none !important;
-    -moz-border-right-colors: none !important;
-    -moz-border-bottom-colors: none !important;
-    padding: 0px 0px !important;
-    border-radius: 0px !important;
-    background: #121212 !important;
-    background-clip: padding-box !important;
-    transition: all .1s !important;
-    margin-left: 0px !important;
-    color: rgb(100,100,100) !important;
-    font-family: 'xos4 Terminus' !important;
-    font-size: 11px !IMPORTANT;
-    min-height: 14px !important;
-    text-align: center;
-}
- 
-#TabsToolbar .tabs-newtab-button {
-    -moz-border-top-colors: none !important;
-    -moz-border-left-colors: none !important;
-    -moz-border-right-colors: none !important;
-    -moz-border-bottom-colors: none !important;
-    border-style: solid !important;
-    border-color: transparent !important;
-    border-width: 0px 0px 0 0px !important;
-    text-shadow: 0 0 4px rgba(255,255,255,0) !important;
-    background: transparent !important;
-    background-clip: padding-box !important;
-    transition: all .1s !important;
-    display: none;
-}
- 
- 
- 
- 
-#TabsToolbar .tabbrowser-tab[selected] {
-    color: #121212 !important;
-    background: #486350 !important;
-    background-clip: padding-box !important;
-}
- 
-#TabsToolbar .tabs-newtab-button:hover,
-#TabsToolbar .tabbrowser-tab:hover:not([selected]) {
-    background-color: rgba(80,101,140,.4) !important;
-    color: rgb(251,251,251) !important;
-}
- 
-#TabsToolbar .tab-background {
-    margin: 0 !important;
-    background: transparent !important;
-}
- 
-#TabsToolbar .tab-background-start,
-#TabsToolbar .tab-background-end {
-    display: none !important;
-}
- 
-#TabsToolbar .tab-background-middle {
-    margin: -4px -2px !important;
-    background: transparent !important;
-}
- 
-#TabsToolbar .tabbrowser-tab:after,
-#TabsToolbar .tabbrowser-tab:before {
-    display: none !important;
-}
- 
-#TabsToolbar .tabs-newtab-button {
-    border-width: 0px 0px 0 0px !important;
-    margin: 0 !important;
-    width: auto !important;
-    padding: 0 5px !important;
-}
- 
-#addon-bar,
-#PersonalToolbar,
+
 #nav-bar {
-    background: #EAF2FA !important;
-    box-shadow: none !important;
-    background-clip: padding-box !important;
-    border-color: rgba(0,0,0,.25) !important;
-    border-radius: 0 !important;
-}
- 
-.subviewbutton.panel-subview-footer {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
-}
- 
- 
-/* URL BAR */
- 
-/* remove back/fwd */
- 
-#nav-bar  #back-button > .toolbarbutton-icon {
- display: none !important;
-}
- #forward-button {
- display: none !important;
-}
- 
-/*styling*/
-#searchbar > .searchbar-textbox,
- 
-#urlbar {
- 
-    border: 0px solid #FBFBFB !important;
-    text-align: left;
-    background: #121212 !important;
-    margin-top: 0px !important;
-    margin-left: 5px !important;
-    border-radius: 0px;
-    margin-bottom: 6px;
-    padding: 2px !important;
-    color: rgb(130,130,130) !important;
-    font-family: 'xos4 Terminus' !important;
-    height: 30px !important;
-    font-size: 12px;
-}
- 
- 
-#nav-bar {
-    background-color: #121212 !important;
-    border-bottom: none !important;
-    border-top: none !important;
-    margin-bottom: -2px !important;
-    margin-top: 0px !important;
-    padding-top: 0px !important;
-    height: 30px !important;
-}
-   
- 
- 
-#PanelUI-button {
- 
-    background-position: 100% 0, calc(100% - 1px) 0, calc(100% - 2px) 0;
-    background: url('http://i.imgur.com/TkuW5hs.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    box-shadow: none !important;
-    margin-top: 1px !important;
-    width: 10px !important;
-    /*display: none !important; /*COMMENT THIS LINE FOR A MENU BUTTON*/
-  }
-#PanelUI-button:hover {
- 
-    background-position: 100% 0, calc(100% - 1px) 0, calc(100% - 2px) 0;
-    background: url('http://i.imgur.com/h8J7fda.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    box-shadow: none !important;
-    width: 10px !important;
-  }
- 
-#PanelUI-button .button-icon,
-#PanelUI-button .button-text {
-    display: none !important;
-}
-#PanelUI-menu-button {
-    opacity: 0 !important;
-    width: 10px !important;
-    /*margin-right: -15px !important;*/
-}
- 
-#identity-box, #dropmarker-icon, #historydropmarker, #autocomplete-history-dropmarker, #urlbar-history-dropmarker, #dropmarker {
-    display: none !important;
-}
- 
-#autocomplete-history-dropmarker, #urlbar-history-dropmarker, #urlbar-reload-button {
-    display: none !important;
-}
- 
-.autocomplete-history-dropmarker.urlbar-history-dropmarker {
-    display: none !important;
-}
- 
-#plugins-notification-icon, #notification-anchor-icon, #notification-popup-box {
-    display: none !important;
-   
-}
- 
-/*download button*/
-#downloads-button {
-    background: url('http://i.imgur.com/QA0QFij.png') !important;
-    background-repeat: no-repeat  !important;
-    background-position: center !important;
-    opacity: 1 !important;
-    margin-left: 10px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
-    box-shadow: none !important;
-    width: 10px !important;
-}
- 
-#toolbarbutton-icon .Downloads,
-#downloads-indicator-icon,
-#downloads-indicator-progress-area,
-#downloads-button .button-text {
-    display: none !important;
-}
- 
-#downloads-indicator-anchor {opacity: 0 !important;}
- 
-#downloads-button:hover {
-    opacity: 1 !important;
-    box-shadow: none !important;
-    background: url('http://i.imgur.com/sTi4rOA.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-}
- 
-/* remove tab scrolling */
- 
-.scrollbutton-up, .scrollbutton-down, #alltabs-button {
-    display: none !important;
+	    height: 0px;
+	        opacity: 0;
+		       overflow: hidden;
+			  
 }
 
-#navigator-toolbox {
-    position: relative;
-    z-index: 1;
-    height: 58px;
-    margin-bottom: 0px;
-    overflow: hidden;
-    transition-property: height;
-    transition-delay: 1s;
-    transition-duration: 2s;
+/* #nav-bar:hover, */
+#nav-bar:focus-within {
+	    height: auto;
+	        opacity: 1;
+		       overflow: visible;
+			  
 }
 
-.tab-line[selected="true"]{
-    border-top-color: #303030;
-    display: none;
-}
-:-moz-any(#content,#appcontent) browser{
- margin-right:-14px!important;
- overflow-y:scroll;
- margin-bottom:0px!important;
- overflow-x:scroll;
+#navigator-toolbox::after {
+		border-bottom: 0px !important;
+		
 }
 
-:root[uidensity=compact] #navigator-toolbox {
-  --nav-bar-height: 30px;
-  --tab-min-height: 17px;
+/* don't show the blue border around the url bar when focused */
+#urlbar, .searchbar-textbox {
+	  font-size: 12pt !important;
+	    border: none !important;
+	      box-shadow: none !important;
+		 
 }
 
-:root[uidensity=compact][extradragspace]:not([sizemode="normal"]) #navigator-toolbox {
-  --nav-bar-height: 33px;
-  --tab-min-height: 17px;
+/* hide the one pixel top border for tabs */
+.tab-background {
+	       border-top: none !important;
+		  
 }
 
-:root:not([uidensity]) #navigator-toolbox {
-  --nav-bar-height: 39px;
-  --tab-min-height: 17px;
+/* no blue line on top of the focused tab */
+#tabbrowser-tabs {
+	       --tab-line-color: -moz-win-accentcolor !important;
+		         --tab-loading-fill: -moz-win-accentcolor !important;
+			    box-shadow: none !important;
+			    
 }
 
-:root:not([uidensity])[extradragspace]:not([sizemode="normal"]) #navigator-toolbox {
-  --nav-bar-height: 39px;
-  --tab-min-height: 17px;
+
+/* hide tabs entirely if there's only one */
+/*
+ * #tabbrowser-tabs, #tabbrowser-tabs arrowscrollbox { min-height: 0 !important;  }
+ * #tabbrowser-tabs tab { height: var(--tab-min-height);  }
+ * #tabbrowser-tabs tab:first-child:last-child { display: none !important;  }
+ * */
+
+/* hide tab bar if only one tab */
+tab:only-of-type { 
+	    display:none; 
+	    
 }
 
-:root[uidensity=touch] #navigator-toolbox {
-  --nav-bar-height: 41px;
-  --tab-min-height: 41px;
+/* unset the tab bar min-height */ 
+#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox, #tabbrowser-tabs[positionpinnedtabs] > .tabbrowser-tab[pinned] {
+	    min-height: initial !important;
+	    
 }
 
-:root[uidensity=touch][extradragspace]:not([sizemode="normal"]) #navigator-toolbox {
-  --nav-bar-height: 41px;
-  --tab-min-height: 33px;
+/* set the height on the tabs instead */
+tab { 
+	    line-height: 32px; height: 32px; 
+	    
 }
 
-#navigator-toolbox {
-  --tabbar-height: calc(var(--tab-min-height) + var(--space-above-tabbar));
-  --trigger-area-height: 5px;
+/* hide new tab button so tab-bar can collapse */
+.tabs-newtab-button { 
+	    display: none; 
+	    
 }
 
-:root[chromehidden~="toolbar"] #navigator-toolbox {
-  --tabbar-height: 0.1px;
-}
-
-#toolbar-menubar {
-  margin-top: 0px !important; /* This is usually 0, but under Win7 can be given an extra 1px when not maximized */
-}
-
-/* Undo add of 4px extra margin on top of the tabs toolbar on Windows 7. */
-/* Note: @media -moz-os-version does not work in userChrome.css (https://bugzilla.mozilla.org/show_bug.cgi?id=1418963) */
-:root[sizemode="normal"][chromehidden~="menubar"] #TabsToolbar,
-:root[sizemode="normal"] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar {
-  padding-top: var(--space-above-tabbar) !important;
-}
-
-#nav-bar, #PersonalToolbar {
-	/* Otherwise spacers will not count as hover-able areas */
-    -moz-window-dragging: default;
-}
-
-:root:not([customizing]) #nav-bar
-{
-  overflow-y: hidden;
-  max-height:0;
-  min-height:0 !important;
-  padding-top:0 !important;
-  padding-bottom:0 !important;
-  opacity: 0;
-}
-
-:root:not([customizing]) :hover > #nav-bar,
-:root:not([customizing]) #nav-bar:focus-within {
-  max-height: var(--nav-bar-height);
-  opacity: 1;
-}
-
-:root:not([customizing]) #navigator-toolbox {
-  max-height: calc(var(--tabbar-height) + var(--trigger-area-height));
-  min-height: var(--tabbar-height);
-  margin-bottom: calc(-1 * var(--trigger-area-height));
-  /*transition-delay: 2s;*/
-  transition: opacity 0.15s ease-in, max-height 0.15s linear;
-}
-
-:root:not([customizing]) #navigator-toolbox:hover,
-:root:not([customizing]) #navigator-toolbox:focus-within {
-  max-height: calc(var(--tabbar-height) + var(--nav-bar-height));
-  margin-bottom: calc(0px - var(--nav-bar-height));
-}
-
-/* If the bookmarks bar is turned on, auto-hide that too */
-:root:not([customizing]) #PersonalToolbar {
-  max-height: 0 !important;
-  min-height: 0.1px !important;
-  opacity: 0;
-}
-
-:root:not([customizing]) :hover > #PersonalToolbar,
-:root:not([customizing]) #navigator-toolbox:focus-within #PersonalToolbar {
-  max-height: 4em !important;
-  opacity: 1;
-  /*transition-delay: 2s;*/
-  transition: opacity 0.15s ease-in !important;
+/* ...but show it on tab-bar hover */
+#tabbrowser-tabs:hover .tabs-newtab-button { 
+	    display: block; 
+	    
 }

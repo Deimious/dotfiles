@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/auctex/tests/latex/preview-latex-test.el

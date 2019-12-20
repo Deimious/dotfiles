@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/irony-mode/server/build-aux/run-clang-tidy/LICENSE.TXT

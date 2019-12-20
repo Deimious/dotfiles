@@ -1,0 +1,19 @@
+
+;; ----- amx-history -----
+(
+ doom/reload
+ package-install-from-buffer
+ doom/restart
+ counsel-fzf
+ cd
+ 5x5
+ amx
+)
+
+;; ----- amx-data -----
+(
+ (doom/restart . 7)
+ (counsel-fzf . 2)
+ (doom/reload . 2)
+ (package-install-from-buffer . 1)
+)

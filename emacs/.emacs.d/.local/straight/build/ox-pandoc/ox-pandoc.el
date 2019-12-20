@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/ox-pandoc/ox-pandoc.el

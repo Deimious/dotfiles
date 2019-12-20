@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/mu4e-maildirs-extension/mu4e-maildirs-extension.el

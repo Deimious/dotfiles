@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/csv-mode/csv-mode.el

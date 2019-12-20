@@ -1,0 +1,1 @@
+/home/baal/.emacs.d/.local/straight/repos/protobuf-mode/proto.vim
