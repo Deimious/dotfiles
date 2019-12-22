@@ -8,3 +8,14 @@ clear
 ls
 exit
 exit
+mkdir emacs
+clear
+exit
+git status
+cd ../.dotfiles
+ls
+git status
+git ad .
+git add .
+git status
+git commit -m "added doom emacs configurations"

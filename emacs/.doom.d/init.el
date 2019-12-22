@@ -7,6 +7,7 @@
 ;;
 ;; More information about these modules (and what flags they support) can be
 ;; found in modules/README.org.
+(after! solaire-mode (solaire-global-mode -1))
 
 (doom! :input
        ;;chinese
@@ -67,7 +68,7 @@
        :term
        ;;eshell            ; a consistent, cross-platform shell (WIP)
        ;;shell             ; a terminal REPL for Emacs
-       ;;term              ; terminals in Emacs
+       term              ; terminals in Emacs
        ;;vterm             ; another terminals in Emacs
 
        :tools
@@ -170,3 +171,19 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(diredfl-date-time ((t (:foreground "#6c6c6c" :weight light))))
+ '(diredfl-dir-name ((t (:foreground "#554477"))))
+ '(diredfl-dir-priv ((t (:foreground "#554477"))))
+ '(diredfl-no-priv ((t (:foreground "#111111"))))
+ '(diredfl-number ((t (:foreground "#554477")))))

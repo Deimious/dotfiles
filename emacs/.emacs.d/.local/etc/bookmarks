@@ -2,9 +2,14 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("ranger-m"
- (filename . "~/")
- (front-context-string . ".doom.d/\n  drwxr")
- (rear-context-string . " 4k 12-20 16:21 ")
- (position . 494))
+(("ranger-e"
+ (filename . "~/.emacs.d/.local/straight/")
+ (front-context-string . "s/\n  -rw-r--r-- ")
+ (rear-context-string . "12-20 19:55 repo")
+ (position . 126))
+("ranger-m"
+ (filename . "~/.doom.d/")
+ (front-context-string)
+ (rear-context-string . ".9k 12-20 16:09 ")
+ (position . 164))
 )

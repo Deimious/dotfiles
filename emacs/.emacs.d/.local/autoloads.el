@@ -3327,6 +3327,22 @@ Meant for `comment-line-break-function' in `css-mode' and `scss-mode'.
 
 ;;;***
 
+;;;### (autoloads nil "/home/baal/.emacs.d/modules/term/term/autoload"
+;;;;;;  "modules/term/term/autoload.el" (0 0 0 0))
+;;; Generated autoloads from modules/term/term/autoload.el
+
+(autoload '+term/toggle "~/.emacs.d/modules/term/term/autoload" "\
+Toggle a persistent terminal popup window.
+
+If popup is visible but unselected, select it.
+If prefix ARG, recreate the term buffer.
+
+\(fn ARG)" t nil)
+
+(defalias '+term/here #'multi-term)
+
+;;;***
+
 ;;;### (autoloads nil "/home/baal/.emacs.d/modules/tools/eval/autoload/settings"
 ;;;;;;  "modules/tools/eval/autoload/settings.el" (0 0 0 0))
 ;;; Generated autoloads from modules/tools/eval/autoload/settings.el
