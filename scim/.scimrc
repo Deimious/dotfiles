@@ -1,0 +1,7 @@
+set autocalc
+set overlap
+color "type=HEADINGS bold=0 fg=BLACK bg=BLUE"
+color "type=CELL_SELECTION fg=WHITE bg=BLACK"
+color "type=CELL_SELECTION_SC fg=WHITE bg=BLACK"
+color "type=STRG fg=WHITE bg=DEFAULT_COLOR"
+color "type=NUMB fg=BLUE bg=DEFAULT_COLOR"
