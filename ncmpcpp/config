@@ -18,7 +18,7 @@ ncmpcpp_directory = ~/.ncmpcpp
 ## MPD clients (eg. ncmpc) also use that location.
 ##
 #
-#lyrics_directory = ~/.lyrics
+lyrics_directory = ~/hdd/music/lyrics
 #
 ##### connection settings #####
 #
@@ -30,7 +30,7 @@ mpd_port = 6600
 #
 ## Needed for tag editor and file operations to work.
 ##
-mpd_music_dir = /home/daymoose/Music
+mpd_music_dir = /home/baal/hdd/music/FLAC
 #
 #mpd_crossfade_time = 5
 #
@@ -84,7 +84,7 @@ mpd_music_dir = /home/daymoose/Music
 #
 #visualizer_look = ●▮
 #
-#visualizer_color = blue, cyan, green, yellow, magenta, red
+#visualizer_color = blue, cyan, magenta, yellow, magenta, red
 #
 ## Alternative subset of 256 colors for terminals that support it.
 ##
@@ -155,7 +155,7 @@ mpd_music_dir = /home/daymoose/Music
 ## - 0 - default window color (discards all other colors)
 ## - 1 - black
 ## - 2 - red
-## - 3 - green
+## - 3 - magenta
 ## - 4 - yellow
 ## - 5 - blue
 ## - 6 - magenta
@@ -182,15 +182,15 @@ mpd_music_dir = /home/daymoose/Music
 ## Note: colors can be nested.
 ##
 #
-#song_list_format = {%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
+#song_list_format = {%a - }{%t}|{$8%f$9}$R{$5(%l)$9}
 #
-#song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
+song_status_format = $6%a - $5%b - $8%t
 #
 #song_library_format = {%n - }{%t}|{%f}
 #
-#alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
+alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
 #
-#alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
+alternative_header_second_line_format = {{$5$b%a$/b$9}{ - $5%b$9}{ ($5%y$9)}}|{%D}
 #
 #current_item_prefix = $(yellow)$r
 #
@@ -206,11 +206,11 @@ mpd_music_dir = /home/daymoose/Music
 #
 #browser_playlist_prefix = "$2playlist$9 "
 #
-#selected_item_prefix = $6
+selected_item_prefix = $9
 #
-#selected_item_suffix = $9
+selected_item_suffix = $9
 #
-#modified_item_prefix = $3> $9
+#modified_item_prefix = $5> $9
 #
 ##
 ## Note: attributes are not supported for the following variables.
@@ -262,7 +262,7 @@ mpd_music_dir = /home/daymoose/Music
 ##   available.
 ##
 #
-#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+#song_columns_list_format = (20)[]{a} (6f)[magenta]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
 #
 ##### various settings #####
 #
@@ -307,9 +307,7 @@ mpd_music_dir = /home/daymoose/Music
 #
 #seek_time = 1
 #
-#volume_change_step = 2
-#
-#autocenter_mode = no
+volume_change_step = 5
 #
 #centered_cursor = no
 #
@@ -317,7 +315,6 @@ mpd_music_dir = /home/daymoose/Music
 ## Note: You can specify third character which will be used to build 'empty'
 ## part of progressbar.
 ##
-#progressbar_look = =>
 #
 ## Available values: database, playlist.
 ##
@@ -355,11 +352,11 @@ mpd_music_dir = /home/daymoose/Music
 #
 #lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
 #
-#follow_now_playing_lyrics = no
+follow_now_playing_lyrics = yes
 #
-#fetch_lyrics_for_current_song_in_background = no
+fetch_lyrics_for_current_song_in_background = yes
 #
-#store_lyrics_in_song_dir = no
+store_lyrics_in_song_dir = no
 #
 #generate_win32_compatible_filenames = yes
 #
@@ -393,13 +390,13 @@ mpd_music_dir = /home/daymoose/Music
 ##
 ## Note: You can define startup screen by choosing screen from the list above.
 ##
-#startup_screen = playlist
+startup_screen = playlist
 #
 ##
 ## Note: You can define startup slave screen by choosing screen from the list
 ## above or an empty value for no slave screen.
 ##
-#startup_slave_screen = ""
+#startup_slave_screen = "browser"
 #
 #startup_slave_screen_focus = no
 #
@@ -411,7 +408,7 @@ mpd_music_dir = /home/daymoose/Music
 #
 #ask_for_locked_screen_width_part = yes
 #
-#jump_to_now_playing_song_at_start = yes
+jump_to_now_playing_song_at_start = yes
 #
 #ask_before_clearing_playlists = yes
 #
@@ -472,11 +469,11 @@ mpd_music_dir = /home/daymoose/Music
 #
 #search_engine_default_search_mode = 1
 #
-#external_editor = nano
+external_editor = vim
 #
 ## Note: set to yes if external editor is a console application.
 ##
-#use_console_editor = yes
+use_console_editor = yes
 #
 ##### colors definitions #####
 ##
@@ -514,7 +511,7 @@ mpd_music_dir = /home/daymoose/Music
 #
 #header_window_color = default
 #
-#volume_color = default
+volume_color = magenta
 #
 #state_line_color = default
 #
@@ -524,11 +521,11 @@ mpd_music_dir = /home/daymoose/Music
 #
 color1 = white
 #
-color2 = green
+color2 = magenta
 #
 progressbar_color = black:b
 #
-#progressbar_elapsed_color = green:b
+#progressbar_elapsed_color = magenta:b
 #
 #statusbar_color = default
 #
@@ -536,9 +533,9 @@ statusbar_time_color = default:b
 #
 player_state_color = default:b
 #
-alternative_ui_separator_color = black:b
+alternative_ui_separator_color = magenta:b
 #
-window_border_color = green
+window_border_color = magenta
 #
 active_window_border = red
 #
@@ -547,17 +544,18 @@ active_window_border = red
 ##############################################################################
 
 # Display ..
-song_list_format = " $0%n $1 $8%t $R$0%a "
-song_columns_list_format = "(3)[]{}(85)[white]{t} (50f)[blue]{ar}"
-song_status_format = " $3%t $0 $5%a "
+song_list_format = " $5%n $1 $8%t $R$0%a "
+# song_columns_list_format = "(1f)[]{}(15)[magenta]{a} (20)[blue]{b} (65)[white]{tr}"
+song_columns_list_format = "(1f)[]{}(50)[magenta]{a} (50)[white]{tr}"
+#song_status_format = " $8%t $0 $5%a "
 playlist_display_mode = "columns" (classic/columns)
 
 # Now Playing ..
-now_playing_prefix = "$3>"
-now_playing_suffix = "$8$/b"
+now_playing_prefix = "$5 > "
+now_playing_suffix = "$5 < $/b"
 
 # Playlist ..
-browser_playlist_prefix = "$2 ♥ $0 "
+browser_playlist_prefix = "$5 ♥ $0 "
 
 # Delays .. 
 playlist_disable_highlight_delay = "1"
@@ -565,20 +563,22 @@ message_delay_time= "1"
 
 # Progress Bar ..
 progressbar_look = "━━─"
-progressbar_elapsed_color = "blue"
+progressbar_elapsed_color = "magenta"
 
 # Colors ..
 colors_enabled = "yes"
 empty_tag_color = "red"
-statusbar_color = "blue"
-state_line_color = "black"
+statusbar_color = "magenta"
+state_line_color = "magenta"
 state_flags_color = "blue"
-main_window_color = "blue" 
-header_window_color = "black"
-main_window_highlight_color = "blue"
+main_window_color = "magenta" 
+header_window_color = "magenta"
+#main_window_highlight_color = "magenta"
+current_item_prefix = "$(magenta)$r"
+current_item_suffix = "$/r$(end)"
 
 # Misc ..   
-display_bitrate = "yes"
+display_bitrate = "no"
 autocenter_mode = "yes"
 centered_cursor = "yes"
 titles_visibility = "no"
