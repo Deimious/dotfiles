@@ -1,0 +1,7 @@
+id=$(xinput list | grep 'AT Translated Set' | cut -f2 | cut -d'=' -f2)
+if [ $1 == "off" ]; then
+	xinput float $id
+elif [ $1 == "on" ]; then
+	xinput reattach $id 3
+fi
+

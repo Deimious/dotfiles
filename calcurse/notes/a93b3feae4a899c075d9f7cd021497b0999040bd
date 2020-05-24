@@ -1,0 +1,5 @@
+Started, finished part A.
+Got the right-click to close to work in part B.
+Can't recolor the square, the documentation doesn't give information how.
+Need  to know why glGetUniformLocation returns -1 (a failure to find the shader)
+Waiting for Tuesday for Q&A session

@@ -1,1 +1,0 @@
-/home/baal/.emacs.d/.local/straight/repos/emacs-git-gutter-fringe/git-gutter-fringe.el

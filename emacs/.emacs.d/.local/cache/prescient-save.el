@@ -1,2 +1,0 @@
-
-(funcall prescient-cache-callback :version (quote 5) :history (quote #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("bg" 3 "def-package-hook!" 2 "solaire-mode" 1 "ranger-setup" 0))) :frequency (quote #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("bg" 1.9731436224857566 "def-package-hook!" 0.991026973 "solaire-mode" 0.994009 "ranger-setup" 0.997))) :serial-number (quote 5))

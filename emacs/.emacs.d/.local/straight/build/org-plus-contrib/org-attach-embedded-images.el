@@ -1,1 +1,0 @@
-/home/baal/.emacs.d/.local/straight/repos/org/contrib/lisp/org-attach-embedded-images.el

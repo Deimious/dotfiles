@@ -62,17 +62,20 @@ getDate() {
 getBattery() {
     STATUS=$(acpi -b | sed 's/.*: \([a-zA-Z]*\),.*/\1/gi')
     BATT=$(acpi -b | sed 's/.*[charging|unknown], \([0-9]*%\).*/\1/gi')
+    CHARGING=$(acpi -b | awk '{print $3}' | sed 's/,//')
     if [ "$STATUS" == "Full" ]; then
 	   BATT=$(acpi -b | sed 's/.*: .*, //gi')
     fi
 
-    echo "Battery: $BATT"
+    echo "Battery: $BATT $CHARGING"
 }
 getNet(){
-     SSID=$(iw wlp2s0 info | grep ssid | sed 's/.*ssid //g')
+     #SSID=$(iw wlp2s0 info | grep ssid | sed 's/.*ssid //g')
+	SSID=$(connmanctl services | grep \*AO | awk '{printf $2}')
 
-     echo "$SSID"
+     echo "WiFi: $SSID"
 }
 while true; do
-     xsetroot -name "[ $(getMpd) ]--[ $(getUpdates) ]--[ $(getCpuload) ]--[ $(getMem) ]--[ $(getVolume) ]--[ $(getDate)]"
+	sleep 3
+     xsetroot -name "[ $(getBattery) ]--[ $(getNet) ]--[ $(getCpuload) ]--[ $(getMem) ]--[ $(getVolume) ]--[ $(getDate)]"
 done

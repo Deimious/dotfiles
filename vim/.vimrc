@@ -45,7 +45,6 @@ Plug 'bling/vim-bufferline'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'morhetz/gruvbox'
 Plug 'yggdroot/indentline'
 call plug#end()
 
@@ -98,7 +97,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 " -----------------------------------------------------------------------------------------------------------
 syntax enable
 let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+colorscheme cottonmouse
 "
 "                                           
 "                         @@@@@@  @@@@@@@ @@@@@@@ @@@  @@@@@@  @@@  @@@  @@@@@@ 
@@ -169,6 +168,7 @@ nnoremap <leader>w+		<C-w>+
 nnoremap <leader>w-		<C-w>-
 nnoremap <leader>w<		<C-w><
 nnoremap <leader>w>		<C-w>>
+nnoremap <leader>w=		<C-w>=
 " Toggle things
 nnoremap <leader>tz		:Goyo<CR>
 " Open terminal things

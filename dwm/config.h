@@ -20,6 +20,7 @@
 //
 
 #include "movestack.c"
+#include "fibonacci.c"
 static const unsigned int borderpx		= 3;		/* border pixel of windows	*/
 static const unsigned int gappx		= 10;	/* gaps between windows		*/
 static const unsigned int snap		= 32;	/* snap pixel				*/
@@ -42,19 +43,32 @@ static const char dmenufont[]			= "xos4 Terminus:size=8";
 //      :: :: :  : :. :  : ::.: :  : :. :   :   : : ::.: :  
 //
 // Gruvbox
-static const char bg[]				= "#121212";
-static const char fg[]				= "#ebdbb2";
-static const char black[]			= "#131313";
-static const char red[]				= "#cc241d";
-static const char green[]			= "#98971a";
-static const char yellow[]			= "#d79921";
-static const char blue[]				= "#458588";
-static const char magenta[]			= "#b16286";
-static const char cyan[]				= "#689d6a";
-static const char gray[]				= "#a89984";
-static const char white[]			= "#fbf1c7";
-static const char orange[]			= "#d65d0e";
+static const char bg[]				= "#111111";
+static const char fg[]				= "#dedede";
+static const char black[]			= "#222222";
+static const char red[]				= "#e5a1d7";
+static const char green[]			= "#acdea8";
+static const char yellow[]			= "#ede6a7";
+static const char blue[]				= "#a9b6f8";
+static const char magenta[]			= "#d0a0ee";
+static const char cyan[]				= "#bbdcd8";
+static const char gray[]				= "#6c6c6c";
+static const char white[]			= "#dedede";
 static const char border[]			= "#b16286";
+// Gruvbox
+//static const char bg[]				= "#121212";
+//static const char fg[]				= "#ebdbb2";
+//static const char black[]			= "#131313";
+//static const char red[]			= "#cc241d";
+//static const char green[]			= "#98971a";
+//static const char yellow[]			= "#d79921";
+//static const char blue[]			= "#458588";
+//static const char magenta[]			= "#b16286";
+//static const char cyan[]			= "#689d6a";
+//static const char gray[]			= "#a89984";
+//static const char white[]			= "#fbf1c7";
+//static const char orange[]			= "#d65d0e";
+//static const char border[]			= "#b16286";
 // Moonlight
 //static const char bg[]				= "#121212";
 //static const char fg[]				= "#6c6c6c";
@@ -71,10 +85,10 @@ static const char border[]			= "#b16286";
 //colorschemes
 static const char *colors[][3]		= {
      //					    fg		bg	       border 
-     [SchemeNorm]			= { fg,		bg,	       bg	 },
-     [SchemeSel]			= { bg,		orange,	       orange	 },
-     [SchemeWarn]			= { green,	bg,	       white	 },
-     [SchemeUrgent]			= { white,	red,	       red	 },
+     [SchemeNorm]			= { fg,		bg,	       bg		},
+     [SchemeSel]			= { bg,		magenta,	  magenta	},
+     [SchemeWarn]			= { green,	bg,	       white	},
+     [SchemeUrgent]			= { white,	red,	       red	},
 };
 //
 //     @@@@@@@  @@@@@@   @@@@@@@   @@@@@@ 
@@ -106,6 +120,7 @@ static const float mfact				= 0.50; // factor of master area size [0.05..0.95]
 static const int nmaster				= 1;    // number of clients in master area
 static const int resizehints			= 1;    // 1 means respect size hints in tiled resizals
 static const Bool viewontag			= True;     /* Switch view on tag switch */
+int ctag = 0;
 //tiling layouts
 static const Layout layouts[]			= {
      // symbol	    arrange function 
@@ -114,6 +129,7 @@ static const Layout layouts[]			= {
      { "[極度]",    monocle },   //Fullscreen layout
      { "[ 盤 ]",    magicgrid }, //Great auto-balancing grid
 	{ "[甲板]",	deck },	   //Stack becomes monocle while master remains normal
+	{ "[減少]",	dwindle },   //Stack becomes monocle while master remains normal
 };
 // 
 //      @@@@@@@  @@@@@@  @@@@@@@@@@  @@@@@@@@@@   @@@@@@  @@@  @@@ @@@@@@@   @@@@@@ 
@@ -128,6 +144,7 @@ static const Layout layouts[]			= {
 static char dmenumon[2] 				= "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] 		= { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-p", ">", "-c", "-l", "15", "-nb", bg, "-nf", fg, "-sb", magenta, "-sf", bg, NULL };
 static const char *termcmd[]  		= { "st", NULL };
+static const char *browsercmd[]		= { "qutebrowser", NULL };
 static const char scratchpadname[] 	= "scratch";
 static const char *scratchpadcmd[] 	= { "st", "-t", scratchpadname, "-g", "120x34", NULL  };
 
@@ -148,52 +165,54 @@ static const char *scratchpadcmd[] 	= { "st", "-t", scratchpadname, "-g", "120x3
 // keybinds
 static Key keys[] = {
 	/*modifier					key			function		   	argument */
-	{ MODKEY,						XK_d,	  	spawn,	      	{.v = dmenucmd} },
-	{ MODKEY,						XK_Return,	spawn,	      	{.v = termcmd } },
-	{ MODKEY,                     	XK_m,	  	togglebar,	     { 0 } },
-	{ MODKEY,                     	XK_j,	  	focusstack,	     {.i = +1 } },
-	{ MODKEY,                     	XK_k,	  	focusstack,	     {.i = -1 } },
-	{ MODKEY|ControlMask,         	XK_k,	  	incnmaster,	     {.i = +1 } },
-	{ MODKEY|ControlMask,         	XK_j,	  	incnmaster,	     {.i = -1 } },
-	{ MODKEY,                     	XK_h,	  	setmfact,	      	{.f = -0.05} },
-	{ MODKEY,                     	XK_l,	  	setmfact,	      	{.f = +0.05} },
-	{ MODKEY|ShiftMask,           	XK_j,	  	movestack,	     {.i = +1 } },
-	{ MODKEY|ShiftMask,           	XK_k,	  	movestack,	     {.i = -1 } },
-	{ MODKEY,                     	XK_Tab,	  	zoom,		     { 0 } },
+	{ MODKEY,                                XK_d,            spawn,          {.v = dmenucmd} },
+	{ MODKEY,                                XK_Return,       spawn,          {.v = termcmd } },
+	{ MODKEY,                                XK_w,		   spawn,          {.v = browsercmd } },
+	{ MODKEY,                                XK_m,            togglebar,      { 0 } },
+	{ MODKEY,                                XK_j,            focusstack,     {.i = +1 } },
+	{ MODKEY,                                XK_k,            focusstack,     {.i = -1 } },
+	{ MODKEY|ControlMask,                    XK_k,            incnmaster,     {.i = +1 } },
+	{ MODKEY|ControlMask,                    XK_j,            incnmaster,     {.i = -1 } },
+	{ MODKEY,                                XK_h,            setmfact,       {.f = -0.05} },
+	{ MODKEY,                                XK_l,            setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,                      XK_j,            movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,                      XK_k,            movestack,      {.i = -1 } },
+	{ MODKEY,                                XK_Tab,          zoom,           { 0 } },
 	/* { MODKEY,                     	XK_Tab,	  	view,		     { 0 } }, */
-	{ MODKEY,						XK_q,	  	killclient,	     { 0 } },
-	{ MODKEY,                     	XK_t,	  	setlayout,	     {.v = &layouts[0]} },
-	{ MODKEY|ShiftMask,                XK_f,	  	setlayout,	     {.v = &layouts[1]} },
-	{ MODKEY,                     	XK_f,	  	setlayout,	     {.v = &layouts[2]} },
-	{ MODKEY,                     	XK_g,	  	setlayout,	     {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,           	XK_t,	  	setlayout,	     {.v = &layouts[4]} },
-	{ MODKEY,                     	XK_space,		setlayout,	     { 0 } },
-	{ MODKEY|ShiftMask,           	XK_space,		togglefloating,     { 0 } },
-	{ MODKEY,                     	XK_0,	  	view,		     {.ui = ~0 } },
-	{ MODKEY|ShiftMask,           	XK_0,	  	tag,		      	{.ui = ~0 } },
-	{ MODKEY,                     	XK_comma,		focusmon,	      	{.i = -1 } },
-	{ MODKEY,                     	XK_period,	focusmon,	      	{.i = +1 } },
-	{ MODKEY|ShiftMask,           	XK_comma,		tagmon,	      	{.i = -1 } },
-	{ MODKEY|ShiftMask,           	XK_period,	tagmon,	      	{.i = +1 } },
-	{ MODKEY,                     	XK_semicolon,  togglescratch,      {.v = scratchpadcmd } },
-	{ MODKEY,						XK_Left,		viewtoleft,		{0} },
-	{ MODKEY,						XK_Right,		viewtoright,		{0} },
-	{ MODKEY|ShiftMask,				XK_Left,		tagtoleft,		{0} },
-	{ MODKEY|ShiftMask,				XK_Right,		tagtoright,		{0} },
-	{ MODKEY|ShiftMask,           	XK_q,	  	quit,		     { 0 }},
-	{ MODKEY|ShiftMask,           	XK_h,	  	setcfact,	      	{.f = +0.25} },
-	{ MODKEY|ShiftMask,           	XK_l,	  	setcfact,	      	{.f = -0.25} },
-	{ MODKEY|ShiftMask,           	XK_o,	  	setcfact,	      	{.f =  0.00} },
+	{ MODKEY,                                XK_q,            killclient,     { 0 } },
+	{ MODKEY,                                XK_t,            setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,                      XK_f,            setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                                XK_f,            setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                                XK_g,            setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,                      XK_t,            setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                                XK_s,            setlayout,      {.v = &layouts[5]} },
+	{ MODKEY,                                XK_space,        setlayout,      { 0 } },
+	{ MODKEY|ShiftMask,                      XK_space,        togglefloating, { 0 } },
+	{ MODKEY,                                XK_0,            view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,                      XK_0,            tag,            {.ui = ~0 } },
+	{ MODKEY,                                XK_comma,        focusmon,       {.i = -1 } },
+	{ MODKEY,                                XK_period,       focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,                      XK_comma,        tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,                      XK_period,       tagmon,         {.i = +1 } },
+	{ MODKEY,                                XK_semicolon,    togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                                XK_bracketleft,  viewtoleft,     {0} },
+	{ MODKEY,                                XK_bracketright, viewtoright,    {0} },
+	{ MODKEY|ShiftMask,                      XK_Left,         tagtoleft,      {0} },
+	{ MODKEY|ShiftMask,                      XK_Right,        tagtoright,     {0} },
+	{ MODKEY|ShiftMask,                      XK_q,            quit,           { 0 }},
+	{ MODKEY|ShiftMask,                      XK_h,            setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,                      XK_l,            setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,                      XK_o,            setcfact,       {.f =  0.00} },
 	//TAGS
-	TAGKEYS(                      	XK_1,		0)
-	TAGKEYS(                      	XK_2,	     1)
-	TAGKEYS(                      	XK_3,	     2)
-     TAGKEYS(                      	XK_4,		3)
-     TAGKEYS(                      	XK_5,	     4)
-     TAGKEYS(                      	XK_6,	     5)
-     TAGKEYS(                      	XK_7,	     6)
-     TAGKEYS(                      	XK_8,	     7)
-     TAGKEYS(                      	XK_9,	     8)
+	TAGKEYS( XK_1, 0 )
+	TAGKEYS( XK_2, 1 )
+	TAGKEYS( XK_3, 2 )
+     TAGKEYS( XK_4, 3 )
+     TAGKEYS( XK_5, 4 )
+     TAGKEYS( XK_6, 5 )
+     TAGKEYS( XK_7, 6 )
+     TAGKEYS( XK_8, 7 )
+     TAGKEYS( XK_9, 8 )
 };
 
 /* button definitions */

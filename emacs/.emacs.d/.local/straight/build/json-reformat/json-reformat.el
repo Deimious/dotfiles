@@ -1,1 +1,0 @@
-/home/baal/.emacs.d/.local/straight/repos/json-reformat/json-reformat.el
