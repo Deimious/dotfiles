@@ -31,7 +31,7 @@ class Default(ColorScheme):
 				fg = 4
 			if context.directory:
 				attr |= normal
-				fg = 5
+				fg = 9
 			elif context.executable and not \
 					any((context.media, context.container,
 						context.fifo, context.socket)):
@@ -59,7 +59,7 @@ class Default(ColorScheme):
 					attr |= normal
 				if context.marked:
 					attr |= bold
-					fg = yellow
+					fg = 2
 			if context.badinfo:
 				if attr & reverse:
 					bg = 1
@@ -72,7 +72,7 @@ class Default(ColorScheme):
 				#attr |= bold
 				fg = context.bad and 1 or 2
 			elif context.directory:
-				fg = 5
+				fg = 9
 			elif context.tab:
 				if context.good:
 				        bg = 5

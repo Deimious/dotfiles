@@ -15,6 +15,10 @@
 case $- in *i*) ;; *)	# Check for an interactive session. If not running interactively, don't do anything
      return;;
 esac
+VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
+export CALCURSE_EDITOR=nvim	# Calcurse's Editor
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export ANDROID_SDK_ROOT=/home/baal/Android/Sdk
 
 #
 #     @@@  @@@ @@@  @@@@@@ @@@@@@@  @@@@@@  @@@@@@@  @@@ @@@
@@ -58,8 +62,24 @@ fi
 #     !!:      !!: :!!  !!:  !!! !!:     !!: !!:        !!:   
 #      :        :   : :  : :. :   :      :    :          :    
 #
+PROMPT(){
+	EXIT_STATUS=$?
+	[ $EXIT_STATUS != 0 ] && EXIT_STATUS_STR=" \[\033[38;5;7m\][\[$(tput sgr0)\]\[\033[38;5;9m\]$EXIT_STATUS\[$(tput sgr0)\]\[\033[38;5;7m\]]\[$(tput sgr0)\]"
+		BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+		if [ ! $BRANCH == "" ]; then
+			BRANCH_STR="[\[$(tput setaf 2)\] $BRANCH \[$(tput setaf 15)\]]"
+		else
+			BRANCH_STR=""
+		fi
+		PS1="\[$(tput setaf 4)\]┌─╼ \[$(tput setaf 15)\][ $(tput setaf 9)\w$(tput setaf 15) ]$BRANCH_STR\n\[$(tput setaf 4)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 4)\]└────╼\"; else echo \"\[$(tput setaf 4)\]└╼\"; fi) \[$(tput setaf 15)\]"
+
+		unset EXIT_STATUS_STR
+			unset EXIT_STATUS
+			unset BRANCH_STR
+			unset BRANCH
+}
+PROMPT_COMMAND=PROMPT
 force_color_prompt=yes
-export PS1="\[\033[0;35m\]┌─╼ \[$(tput setaf 242)\][\[$(tput setaf 140)\w\]\[$(tput setaf 242)\]]\n\[\033[0;35m\]\$(echo \"\[\033[0;35m\]└────╼ λ\") \[$(tput setaf 242)\]"
 trap 'echo -ne "\e[0m"' DEBUG
 
 #
@@ -107,12 +127,9 @@ man() {
      LESS_TERMCAP_us=$(printf "\e[1;32m") \
      man "$@"
 }
-# ls after a cd
-cd() {
-     builtin cd "$*" && ls
-}
+
 # easy archive extraction
-extract () {
+extract() {
      if [ -f $1  ] ; then
 		case $1 in
 			*.tar.bz2)   tar xjf $1     ;;
@@ -132,3 +149,24 @@ extract () {
 		echo "'$1' is not a valid file"
      fi
 }
+
+
+
+
+
+
+
+# SCHOOL STUFF
+# set PATH so it includes geni software if it exists
+if [ -d "/usr/local/bin/gcf/src" ] ; then
+    PATH="/usr/local/bin/gcf/src:/usr/local/bin/gcf/examples:$PATH"
+    export PYTHONPATH="/usr/local/bin/gcf/src:$PYTHONPATH" 
+fi
+
+alias omni='omni.py'
+alias omni-configure='omni-configure.py'
+alias readyToLogin='readyToLogin.py'
+alias clear-passphrases='clear-passphrases.py'
+alias stitcher='stitcher.py'
+alias remote-execute='remote-execute.py'
+alias addMemberToSliceAndSlivers='addMemberToSliceAndSlivers.py'

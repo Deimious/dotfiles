@@ -2,37 +2,355 @@ html {
      background-color: #121212 !important;
 }
 
-body {
+body, .inner, .s-sidebarwidget {
      background-color: #121212 !important;
-     color: #6c6c6c !important;
+     color: #ebdbb2 !important;
 }
 
-a {
-     color: #6c6c6c !important;
+a, .text-title, .fc-dark, .s-table th, .s-table td {
+     color: #ebdbb2 !important;
 }
-h2.result__title a.result__a {
-     color: #486348 !important;
+h2.result__title a.result__a, .module__link--blue {
+     color: #98971a !important;
+}
+.result__snippet, .fc-medium {
+	color: #bdae93 !important;
 }
 
 h1, h2, h3, span {
-     color: #6c6c6c !important;
+     color: #ebdbb2 !important;
 }
 
 #header_wrapper, #search_form, #search_form_input, .acp, .search__autocomplete, .acp-wrap, .js-acp-wrap, .footer, .footer__card, .result--more__btn, .btn, .btn--full, .js-tileview, .tileview--grid, .tile {
      background-color: #121212 !important;
-     color: #6c6c6c !important;
+     color: #ebdbb2 !important;
      border-color: #121212 !important;
 }
 
-.zci__main,  .zci__main--tiles,  .js-tiles,   .has-nav, .tileview__images, .has-tiles--grid, .metabar,  .metabar--fixed,  .js-zcm-sticky, .has-dropdowns, .metabar__grid-btn, #search_form_input_homepage, #search_form_homepage {
+.zci__main,  .zci__main--tiles,  .js-tiles,   .has-nav, .tileview__images, .has-tiles--grid, .metabar,  .metabar--fixed,  .js-zcm-sticky, .has-dropdowns, .metabar__grid-btn, #search_form_input_homepage, #search_form_homepage, .zci.is-active {
      background-color: #121212 !important;
-     color: #6c6c6c !important;
+     color: #ebdbb2 !important;
      border-color: #121212 !important;
 }
 
 
 .search-filters-wrap::before, .search-filters-wrap::after, .metabar__dropdowns-wrap::before, .metabar__dropdowns-wrap::after {
-
      border-color: #121212 !important;
      background-image: none !important;
+}
+
+/* Canvas */
+.Button, .btn, .btn-secureauth, .btn-large, .btn-secureauth:hover, .btn-inverse, #apply_select_menus {
+	background: #fe8019 !important;
+	border-color: #fe8019 !important;
+	background-color: #fe8019 !important;
+	color: #121212 !important;
+	box-shadow: none !important;
+}
+
+#breadcrumbs, .module-sequence-footer-content, .ic-Dashboard-header__layout, .ic-DashboardCard, .ic-DashboardCard__header_content, .main-container, .container, .main-header, .main-footer, #content, #context_modules_sortable_container, .item-group-container, #course_select_menu, #assignment_sort_order_select_menu {
+	background-color: #121212 !important;
+	color: #ebdbb2 !important;
+}
+.tray-with-space-for-global-nav, .fLzZc_caGd, .form-control, .ng-pristine, .ng-valid, .ng-empty, .ng-touched, .course_home_content, div.ig-row.ig-published.student-view, .context-module-item, .question .header, .question {
+	background-color: #222222 !important;
+	color: #ebdbb2 !important;
+	border: none !important;
+}
+#breadcrumbs a, .login__username, .login__pasword, div.header-bar, .item-group-condensed, #questions.assessing {
+	background-color: #121212;
+	color: #fe8019;
+}
+.main-header, .main-footer, .img-responsive, .footer-image-container, .copywrite, #dashboard_header_container, #footer, #right-side-wrapper, img.banner-logo {
+	display: none !important;
+}
+.form-control:focus, #context_modules_sortable_container, div.header-bar {
+	border: none !important;
+	box-shadow: none !important;
+}
+.main-container {
+	text-align: center;
+	top: 200px !important;
+}
+.ic-DashboardCard__box {
+	padding: 10% !important;
+	flex-direction: row !important;
+	flex-wrap: wrap !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+/* GitHub */
+.Box-body, .Box-header, .js-navigation-item, .files, .js-navigation-container, .js-active-navigation-container, .commit-tease {
+	background-color: #222222 !important;
+	background: #222222 !important;
+	background-image: none !important;
+	color: #ebdbb2 !important
+	border: none !important;
+	border-color: #222 !important;
+}
+.js-navigation-item, .navigation-focus, pre {
+	background-color: #121212 !important;
+	color: #ebdbb2 !important;
+	border: none !important;
+	border-color: #222 !important;
+}
+.pagehead, .repohead {
+	background-color: #121212 !important;
+	background: #121212 !important;
+	color: #ebdbb2 !important;
+}
+.selected {
+	background-color: #fe8019 !important;
+	color: #121212 !important;
+}
+.text-gray-dark {
+	color: #fe8019 !important;
+}
+.signup-prompt-bg, .js-signup-prompt {
+	display: none !important;
+}
+.hx_reponav, .reponav, .js-repo-nav, .file-wrap {
+	border: none !important;
+	border-color: #121212 !important;
+}
+.reponav-item.selected {
+	color: #121212 !important;
+	background-color: #fe8019;
+	border-color: #fe8019;
+}
+.repohead {
+	border-color: #fe8019;
+}
+table.files tr.navigation-focus td, table.files tr[aria-selected="true"] td {
+	background: #222222;
+}
+table.files td {
+	border-top: none;
+}
+.Box-body, .overall-summary, .repository-lang-stats-graph {
+	border: none !important;
+}
+.social-count, .js-social-count {
+	background-color: #222222;
+	color: #ebdbb2;
+}
+.Header-old, .header-logged-out {
+	background-color: #222222;
+	color: #ebdbb2;
+}
+a.border {
+	border: none !important;
+}
+.markdown-body blockquote {
+	border-left: .25em solid #fe8019;
+}
+.markdown-body h2, .markdown-body h1 {
+	border-bottom: 1px solid #fe8019;
+	color: #8a8a8a !important;
+}
+.Box {
+	border: 1px solid #222 !important;
+}
+.SelectMenu-modal {
+	border-color: #fe8019;
+	background-color: #222;
+	color: #ebdbb2;
+}
+.SelectMenu-header {
+	background-color: #fe8019;
+	color: #121212 !important;
+}
+.SelectMenu-filter {
+	border-top: none;
+}
+.SelectMenu-tab[aria-selected="true"], .SelectMenu-item {
+	background-color: #121212;
+	color: #ebdbb2;
+	border: none;
+}
+.SelectMenu-list {
+	border: none;
+}
+.SelectMenu-item:hover {
+	background-color: #222;
+}
+.SelectMenu-tab:hover {
+	background-color: #121212 !important;
+	color: #ebdbb2 !important;
+}
+.Label--gray {
+	background-color: #fe8019;
+	color: #121212 !important;
+}
+
+
+
+
+/* 4chan.org */
+.board_g, .board_wg, .boardBanner {
+	background: #121212 !important;
+}
+.adt-800, div.middlead.center img, .aboveMidAd, #blotter, hr.abovePostForm, #ctrl-top input, #ctrl-top hr, body.board_g hr, body.board_wg hr, .sideArrows, .bottomCtrl, #absbot, #toggleMsgBtn {
+	display: none !important;
+}
+#ctrl-top, #togglePostFormLink {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.post, .reply {
+	background-color: #1a1a1a !important;
+	color: #ebdbb2 !important;
+	border: none !important;
+	width: 99%;
+}
+.thread {
+	background: #181818 !important;
+	background-color: #151515 !important;
+	padding: 20px;
+	width: 80% !important;
+	margin: auto !important;
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+.board {
+	justify-content: center;
+}
+.replyContainer {
+	clear: both;
+}
+.boardTitle, a:hover {
+	color: #fe8019 !important;
+}
+.quotelink, .quoteLink {
+	color: #458588 !important;
+}
+.boardList {
+	text-align: center !important;
+}
+#boardNavDesktop, #boardNavDesktopFoot {
+	margin: 20px !important;
+}
+div.pagelist {
+	margin: auto !important;
+	background: #121212 !important;
+	border: none !important;
+}
+#navtopright {
+	clear: both;
+}
+.postInfo input, .extButton, .expbtn {
+	display: none !important;
+}
+.backlink {
+	clear: both !important;
+}
+.reply.highlight {
+	background: #fe8019 !important;
+	color: #121212 !important;
+	border: none !important;
+}
+.reply.highlight .quotelink, .reply.highlight .postInfo .dateTime, .reply.highlight .postInfo .postNum a, .reply.highlight .postInfo .nameBlock .name{
+	color: #121212 !important;
+}
+.postNum a {
+	color: #b16286 !important;
+}
+div.post div.postInfo span.postNum a:hover, .posteruid .hand:hover {
+	color: #689d6a !important;
+}
+.summary {
+	margin-top: auto !important;
+}
+.pageSwitcherForm input, .deleteform input, .deleteform .stylechanger #styleSelector {
+	font-size: 14pt;
+	background: #1a1a1a !important;
+	color: #ebdbb2 !important;
+	border: none !important;
+}
+div.pagelist {
+	float: none !important;
+	align-content: center;
+}
+body.is_index {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+#content #threads {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+#content #threads .thread {
+	width: 20% !important;
+}
+.teaser {
+	padding: 20px !important;
+}
+
+/* markdown */
+#readme .markdown-body {
+	background-color: #222 !important;
+	color: #ebdbb2 !important;
+	border: none !important;
+}
+
+/* askubuntu/stackexchange */
+code, .question-page #answers .answer {
+	background-color: #121212;
+	color: #ebdbb2;
+	border: none !important;
+}
+.nav-links .youarehere .nav-links--link, .post-tag, #tabs a.youarehere, #tabs a, .s-sidebarwidget__yellow, .user-info, .show-votes .sidebar-linked .spacer > a:first-child .answer-votes, .show-votes .sidebar-related .spacer > a:first-child .answer-votes, .top-bar, .top-bar .searchbar .s-input, .s-input, .s-textarea, .s-btn__filled, .s-btn__primary, .bb, .subheader {
+	background: #222;
+	background-color: #222;
+	color: #ebdbb2;
+	box-shadow: none;
+	border: none !important;
+}
+.post-tag:hover, #tabs a.youarehere:hover, .s-btn__filled:hover, .s-btn__primary {
+	background: #333;
+}
+#content {
+	border-left-width: 0px;
+}
+.module__toggle--more::after {
+	background: none !important;
+}
+
+/* markdown preview */
+.markdown-body {
+	background-color: #121212;
+	color: #ebdbb2;
+	border: none;
+}
+
+/* ayumilove */
+#page.hfeed, .site, .entry-content table, p, strong {
+	background-color: #121212;
+	box-shadow: none;
+	color: #ebdbb2;
+	border: none;
+}
+#comment, #author, #email, input#s, input[type="submit"] {
+	background-color: #222;
+	color: #8a8a8a;
+	border-color: #333;
+}
+.menu-toggle, input[type="submit"], input[type="button"], input[type="reset"], article.post-password-required input[type="submit"], li.bypostauthor cite span {
+	background-color: #222 !important;
+	background-repeat: none;
+	background-image: none !important;
+	color: #ebdbb2;
+	border: none;
+}
+h3.widget-title {
+	background-color: #222;
+	color: #a8a8a8;
+	border: none;
 }

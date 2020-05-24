@@ -83,74 +83,42 @@ char *termname = "st-256color";
 unsigned int tabspaces = 5;
 
 /* Terminal colors (16 first used in escape sequence) */
-
-// Gruvbox
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#282828",  //black
-	"#cc241d",  //red
-	"#98971a",  //green
-	"#d79921",  //yellow
-	"#458588",  //blue
-	"#b16286",  //magenta
-	"#689d6a",  //cyan
-	"#a89984",  //gray
+	"#222",  //black
+	"#733",  //red
+	"#474",  //green
+	"#993",  //yellow
+	"#77b",  //blue
+	"#547",  //magenta
+	"#488",  //cyan
+	"#555",  //gray
 
 	/* 8 bright colors */
-	"#928374",  //gray
-	"#fb4934",  //red
-	"#b8bb26",  //green
-	"#fabd2f",  //yellow
-	"#83a598",  //blue
-	"#d3869b",  //magenta
-	"#8ec07c",  //cyan
-	"#ebdbb2",  //white
+	"#777",  //gray
+	"#a77",  //red
+	"#8a8",  //green
+	"#ee8",  //yellow
+	"#88a",  //blue
+	"#98a",  //magenta
+	"#8bb",  //cyan
+	"#aaa",  //white
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#ccc",  //foreground ?
 	"#111",  //background ?
-	"#d65d0e", //orange
 };
-
-// Moonlight
-//static const char *colorname[] = {
-//	/* 8 normal colors */
-//	"#222",  //black
-//	"#733",  //red
-//	"#474",  //green
-//	"#993",  //yellow
-//	"#77b",  //blue
-//	"#547",  //magenta
-//	"#488",  //cyan
-//	"#555",  //gray
-//
-//	/* 8 bright colors */
-//	"#777",  //gray
-//	"#a77",  //red
-//	"#8a8",  //green
-//	"#ee8",  //yellow
-//	"#88a",  //blue
-//	"#98a",  //magenta
-//	"#8bb",  //cyan
-//	"#aaa",  //white
-
-//	[255] = 0,
-
-//	/* more colors can be added after 255 to use with DefaultXX */
-//	"#ccc",  //foreground ?
-//	"#111",  //background ?
-//};
 
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 15;
+unsigned int defaultfg = 7;
 unsigned int defaultbg = 257;
-static unsigned int defaultcs = 15;
+static unsigned int defaultcs = 7;
 static unsigned int defaultrcs = 257;
 
 /*

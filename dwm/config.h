@@ -18,8 +18,9 @@
 //     !!:  !!! !!:        !!:   !!: !!:  !!! !!:  !!!     !:! 
 //       : :. :   :          :    :    : :. :  ::    :  ::.: :  
 //
+
 #include "movestack.c"
-static const unsigned int borderpx		= 5;		/* border pixel of windows	*/
+static const unsigned int borderpx		= 3;		/* border pixel of windows	*/
 static const unsigned int gappx		= 10;	/* gaps between windows		*/
 static const unsigned int snap		= 32;	/* snap pixel				*/
 static const int showbar				= 1;		/* 0 means no bar			*/
@@ -40,24 +41,39 @@ static const char dmenufont[]			= "xos4 Terminus:size=8";
 //     :!!      !!:  !!! !!:      !!:  !!! !!: :!!      !:! 
 //      :: :: :  : :. :  : ::.: :  : :. :   :   : : ::.: :  
 //
+// Gruvbox
 static const char bg[]				= "#121212";
-static const char fg[]				= "#6c6c6c";
-static const char black[]			= "#222";
-static const char red[]				= "#733";
-static const char green[]			= "#474";
-static const char yellow[]			= "#993";
-static const char blue[]				= "#447";
-static const char magenta[]			= "#547";
-static const char cyan[]				= "#488";
-static const char gray[]				= "#555";
-static const char white[]			= "#aaa";
-static const char border[]			= "#547";
+static const char fg[]				= "#ebdbb2";
+static const char black[]			= "#131313";
+static const char red[]				= "#cc241d";
+static const char green[]			= "#98971a";
+static const char yellow[]			= "#d79921";
+static const char blue[]				= "#458588";
+static const char magenta[]			= "#b16286";
+static const char cyan[]				= "#689d6a";
+static const char gray[]				= "#a89984";
+static const char white[]			= "#fbf1c7";
+static const char orange[]			= "#d65d0e";
+static const char border[]			= "#b16286";
+// Moonlight
+//static const char bg[]				= "#121212";
+//static const char fg[]				= "#6c6c6c";
+//static const char black[]			= "#222";
+//static const char red[]			= "#733";
+//static const char green[]			= "#474";
+//static const char yellow[]			= "#993";
+//static const char blue[]			= "#447";
+//static const char magenta[]			= "#547";
+//static const char cyan[]			= "#488";
+//static const char gray[]			= "#555";
+//static const char white[]			= "#aaa";
+//static const char border[]			= "#547";
 //colorschemes
 static const char *colors[][3]		= {
      //					    fg		bg	       border 
      [SchemeNorm]			= { fg,		bg,	       bg	 },
-     [SchemeSel]			= { bg,		magenta,	       magenta	 },
-     [SchemeWarn]			= { magenta,	bg,	       white	 },
+     [SchemeSel]			= { bg,		orange,	       orange	 },
+     [SchemeWarn]			= { green,	bg,	       white	 },
      [SchemeUrgent]			= { white,	red,	       red	 },
 };
 //
@@ -78,11 +94,12 @@ static const char *tags[] 			= {
 //       ::.:  :::   :   ::    :  :: :  :   : :. :    ::.:  :::   ::.: :  
 //
 static const Rule rules[]			= {
-     // class	    instance	title	     tags mask	    isfloating     isterminal	    noswallow	   monitor
-     { "Gimp",	    NULL,		NULL,	     0,		    1,		   0,		    0,		   -1 },
-     { "Firefox",  NULL,		NULL,	     1 << 8,	    0,		   0,		    0,		   -1 },
-     { "st",	    NULL,		NULL,	     0,		    0,		   1,		    1,		   -1 },
-     { "mpv",	    NULL,		NULL,	     0,		    1,		   0,		    0,		   -1 },
+     // class				instance	title	     tags mask	    isfloating     isterminal	    noswallow	   monitor
+     { "Gimp",				NULL,		NULL,	     0,		    1,		   0,		    0,		   -1 },
+     { "Firefox",			NULL,		NULL,	     1 << 8,	    0,		   0,		    0,		   -1 },
+     { "st",				NULL,		NULL,	     0,		    0,		   1,		    1,		   -1 },
+     { "mpv",				NULL,		NULL,	     0,		    0,		   0,		    0,		   -1 },
+     { "android-studio",		NULL,		NULL,	     0,		    1,		   0,		    1,		   -1 },
 };
 //window settings
 static const float mfact				= 0.50; // factor of master area size [0.05..0.95]
@@ -109,7 +126,7 @@ static const Layout layouts[]			= {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 /* commands */
 static char dmenumon[2] 				= "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] 		= { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-n", "-p", ">", "-c", "-l", "15", "-nb", bg, "-nf", fg, "-sb", magenta, "-sf", bg, NULL };
+static const char *dmenucmd[] 		= { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-p", ">", "-c", "-l", "15", "-nb", bg, "-nf", fg, "-sb", magenta, "-sf", bg, NULL };
 static const char *termcmd[]  		= { "st", NULL };
 static const char scratchpadname[] 	= "scratch";
 static const char *scratchpadcmd[] 	= { "st", "-t", scratchpadname, "-g", "120x34", NULL  };
@@ -146,7 +163,7 @@ static Key keys[] = {
 	/* { MODKEY,                     	XK_Tab,	  	view,		     { 0 } }, */
 	{ MODKEY,						XK_q,	  	killclient,	     { 0 } },
 	{ MODKEY,                     	XK_t,	  	setlayout,	     {.v = &layouts[0]} },
-	/* { MODKEY,                     	XK_f,	  	setlayout,	     {.v = &layouts[1]} }, */
+	{ MODKEY|ShiftMask,                XK_f,	  	setlayout,	     {.v = &layouts[1]} },
 	{ MODKEY,                     	XK_f,	  	setlayout,	     {.v = &layouts[2]} },
 	{ MODKEY,                     	XK_g,	  	setlayout,	     {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,           	XK_t,	  	setlayout,	     {.v = &layouts[4]} },

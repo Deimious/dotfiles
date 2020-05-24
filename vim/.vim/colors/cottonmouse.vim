@@ -31,7 +31,7 @@ if ( &t_Co >= 255 || $TERM =~? "256color" )
   hi FoldColumn     term=none		cterm=none	ctermfg=5		ctermbg=235
   hi Folded         term=none		cterm=none	ctermfg=5		ctermbg=233
   hi Function       term=none		cterm=none	ctermfg=12		ctermbg=none
-  hi Identifier     term=none		cterm=none	ctermfg=4		ctermbg=none
+  hi Identifier     term=none		cterm=none	ctermfg=15	ctermbg=none
   hi IncSearch      term=none		cterm=none	ctermfg=0		ctermbg=78
   hi Keyword        term=none		cterm=none	ctermfg=4		ctermbg=none
   hi Label          term=none		cterm=none	ctermfg=4		ctermbg=none
@@ -43,22 +43,27 @@ if ( &t_Co >= 255 || $TERM =~? "256color" )
   hi NonText        term=none		cterm=none	ctermfg=0		ctermbg=233
   hi Number         term=none		cterm=none	ctermfg=4		ctermbg=none
   hi Operator       term=none		cterm=none	ctermfg=4		ctermbg=none
+  hi Pmenu		term=none		cterm=none	ctermfg=5		ctermbg=0
   hi PreCondit      term=none		cterm=none	ctermfg=3		ctermbg=none
   "     v   is the none   ^ there
   hi PreProc        term=none		cterm=none	ctermfg=15	ctermbg=none	
   hi Question       term=none		cterm=none	ctermfg=15	ctermbg=none
   hi Repeat         term=none		cterm=none	ctermfg=5		ctermbg=none
   hi Search         term=none		cterm=none	ctermfg=2		ctermbg=0
+  hi SignColumn	term=none		cterm=none	ctermfg=7		ctermbg=233
   hi SpecialChar    term=none		cterm=none	ctermfg=1		ctermbg=none
   hi SpecialComment term=none		cterm=none	ctermfg=2		ctermbg=none
   hi Special        term=none		cterm=none	ctermfg=5		ctermbg=none
   hi SpecialKey     term=none		cterm=none	ctermfg=5		ctermbg=none
   hi Statement      term=none		cterm=none	ctermfg=5		ctermbg=none
-  hi StatusLine     term=none		cterm=none	ctermfg=233	ctermbg=240
+  hi StatusLine     term=none		cterm=none	ctermfg=7		ctermbg=233
   hi StatusLineNC   term=none		cterm=none	ctermfg=0		ctermbg=235
   hi StorageClass   term=none		cterm=none	ctermfg=5		ctermbg=none
   hi String         term=none		cterm=none	ctermfg=5		ctermbg=none
   hi Structure      term=none		cterm=none	ctermfg=3		ctermbg=none
+  hi SyntasticError	term=none		cterm=none	ctermfg=0		ctermbg=1
+  hi SyntasticWarning term=none	cterm=none	ctermfg=0		ctermbg=3
+  hi SyntasticWarningSign term=none	cterm=none	ctermfg=3		ctermbg=233
   hi TabLine        term=none		cterm=none	ctermfg=7		ctermbg=235
   hi TabLineFill    term=none		cterm=none	ctermfg=7		ctermbg=235
   hi TabLineSel     term=none		cterm=none	ctermfg=7		ctermbg=233

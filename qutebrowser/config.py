@@ -38,7 +38,7 @@ c.tabs.width = '20%'
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
 # Type: List of QtColor, or QtColor
-c.colors.completion.fg = '#6c6c6c'
+c.colors.completion.fg = '#ebdbb2'
 
 # Background color of the completion widget for odd rows.
 # Type: QssColor
@@ -50,7 +50,7 @@ c.colors.completion.even.bg = '#121212'
 
 # Foreground color of completion widget category headers.
 # Type: QtColor
-c.colors.completion.category.fg = '#6c6c6c'
+c.colors.completion.category.fg = '#ebdbb2'
 
 # Background color of the completion widget category headers.
 # Type: QssColor
@@ -58,35 +58,35 @@ c.colors.completion.category.bg = '#121212'
 
 # Top border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.top = '#486348'
+c.colors.completion.category.border.top = '#d65d0e'
 
 # Bottom border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.bottom = '#486348'
+c.colors.completion.category.border.bottom = '#d65d0e'
 
 # Background color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.bg = '#486348'
+c.colors.completion.item.selected.bg = '#d65d0e'
 
 # Top border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.top = '#486348'
+c.colors.completion.item.selected.border.top = '#d65d0e'
 
 # Bottom border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.bottom = '#486348'
+c.colors.completion.item.selected.border.bottom = '#d65d0e'
 
 # Foreground color of the matched text in the selected completion item.
 # Type: QtColor
-c.colors.completion.item.selected.match.fg = '#683333'
+c.colors.completion.item.selected.match.fg = '#cc241d'
 
 # Foreground color of the matched text in the completion.
 # Type: QtColor
-c.colors.completion.match.fg = '#683333'
+c.colors.completion.match.fg = '#cc241d'
 
 # Color of the scrollbar handle in the completion view.
 # Type: QssColor
-c.colors.completion.scrollbar.fg = '#486348'
+c.colors.completion.scrollbar.fg = '#d65d0e'
 
 # Color of the scrollbar in the completion view.
 # Type: QssColor
@@ -98,7 +98,7 @@ c.colors.statusbar.normal.bg = '#121212'
 
 # Foreground color of the statusbar in command mode.
 # Type: QssColor
-c.colors.statusbar.command.fg = '#6c6c6c'
+c.colors.statusbar.command.fg = '#ebdbb2'
 
 # Background color of the statusbar in command mode.
 # Type: QssColor
@@ -110,29 +110,29 @@ c.colors.statusbar.command.private.bg = '#483368'
 
 # Foreground color of the statusbar in caret mode.
 # Type: QssColor
-c.colors.statusbar.caret.fg = '#6c6c6c'
+c.colors.statusbar.caret.fg = '#ebdbb2'
 
 # Default foreground color of the URL in the statusbar.
 # Type: QssColor
-c.colors.statusbar.url.fg = '#6c6c6c'
+c.colors.statusbar.url.fg = '#ebdbb2'
 
 # Foreground color of the URL in the statusbar on error.
 # Type: QssColor
-c.colors.statusbar.url.error.fg = '#683333'
+c.colors.statusbar.url.error.fg = '#cc241d'
 
 # Foreground color of the URL in the statusbar for hovered links.
 # Type: QssColor
-c.colors.statusbar.url.hover.fg = '#6c6c6c'
+c.colors.statusbar.url.hover.fg = '#ebdbb2'
 
 # Foreground color of the URL in the statusbar on successful load
 # (http).
 # Type: QssColor
-c.colors.statusbar.url.success.http.fg = '#486348'
+c.colors.statusbar.url.success.http.fg = '#d65d0e'
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
 # Type: QssColor
-c.colors.statusbar.url.success.https.fg = '#486348'
+c.colors.statusbar.url.success.https.fg = '#d65d0e'
 
 # Background color of the tab bar.
 # Type: QssColor
@@ -140,11 +140,11 @@ c.colors.tabs.bar.bg = '#121212'
 
 # Color gradient end for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.stop = '#486348'
+c.colors.tabs.indicator.stop = '#d65d0e'
 
 # Foreground color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.fg = '#6c6c6c'
+c.colors.tabs.odd.fg = '#ebdbb2'
 
 # Background color of unselected odd tabs.
 # Type: QtColor
@@ -152,7 +152,7 @@ c.colors.tabs.odd.bg = '#121212'
 
 # Foreground color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.fg = '#6c6c6c'
+c.colors.tabs.even.fg = '#ebdbb2'
 
 # Background color of unselected even tabs.
 # Type: QtColor
@@ -164,7 +164,7 @@ c.colors.tabs.selected.odd.fg = '#121212'
 
 # Background color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.bg = '#486348'
+c.colors.tabs.selected.odd.bg = '#d65d0e'
 
 # Foreground color of selected even tabs.
 # Type: QtColor
@@ -172,7 +172,7 @@ c.colors.tabs.selected.even.fg = '#121212'
 
 # Background color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.bg = '#486348'
+c.colors.tabs.selected.even.bg = '#d65d0e'
 
 # Background color of pinned unselected odd tabs.
 # Type: QtColor
@@ -184,7 +184,7 @@ c.colors.tabs.pinned.even.bg = '#121212'
 
 # Foreground color of pinned selected odd tabs.
 # Type: QtColor
-c.colors.tabs.pinned.selected.odd.fg = '#486348'
+c.colors.tabs.pinned.selected.odd.fg = '#d65d0e'
 
 # Background color of pinned selected odd tabs.
 # Type: QtColor

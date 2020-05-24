@@ -655,7 +655,8 @@ deck(Monitor *m) {
 	if(n > m->nmaster) {
 		mw = m->nmaster ? m->ww * m->mfact : 0;
 		ns = m->nmaster > 0 ? 2 : 1;
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n - m->nmaster);
+		static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[ %s ]", tags[n - m->nmaster]);
 	} else {
 		mw = m->ww;
 		ns = 1;
@@ -1324,8 +1325,10 @@ monocle(Monitor *m)
 	for (c = m->clients; c; c = c->next)
 		if (ISVISIBLE(c))
 			n++;
-	if (n > 0) /* override layout symbol */
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+	if (n > 0){ /* override layout symbol */
+		static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[ %s ]", tags[n]);
+	}
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 }
@@ -1495,13 +1498,6 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
 	wc.border_width = c->bw;
-	if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
-	    || &monocle == c->mon->lt[c->mon->sellt]->arrange)
-	    && !c->isfullscreen && !c->isfloating) {
-		c->w = wc.width += c->bw * 2;
-		c->h = wc.height += c->bw * 2;
-		wc.border_width = 0;
-	}
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
