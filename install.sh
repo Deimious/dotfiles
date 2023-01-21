@@ -10,4 +10,9 @@
 # ln -s ./nvim/nvim ~/.config/nvim
 
 # link ~ (bash) folder(s)
+# ln -s ./bash/.bash_aliases ~/.bash_aliases
+# ln -s ./bash/.bash_profile ~/.bash_profile
+# ln -s ./bash/.bash_logout ~/.bash_logout
+# ln -s ./bash/.bashrc ~/.bashrc
+
 # link ~ (X) folder(s)

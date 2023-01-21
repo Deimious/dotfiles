@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# ~/.xprofile
+
+# sourced at boot by ~/.xinitrc and display managers like lightdm
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR=nvim
+
+[ -d /sbin ] && PATH="$PATH:/sbin"
+[ -d /usr/sbin ] && PATH="$PATH:/usr/sbin"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+# restore the background
+# nitrogen --restore &
+#hsetroot -solid "#121212" &
+feh --bg-scale ~/pictures/dark_souls.jpg &
+#pulseaudio --start &
+compton &``
+
+# super alone simulates Alt-F1
+#ksuperkey -e 'Super_L=Alt_L|F1' &
+#ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# dpms: timeout sleep off
+xset dpms 600 900 1200
+
+# keyboard repeat rate
+xset r rate 350 60
+
+xautolock -time 60 -locker slock &
+
+solaar --window=hide &
+
+mpd &
+
+# MOUSEID=$(xinput list --short | grep 'Logitech MX Master 3' | grep 'pointer' | awk '{print}' | sed 's/id=//g')
+# xinput set-prop $MOUSEID 'libinput Accel Speed' 1.0 &
+
+$HOME/.scripts/dwmstatus &
+#slstatus &

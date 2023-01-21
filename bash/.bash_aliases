@@ -19,8 +19,8 @@
 alias r='ranger'
 # shortcut for ranger, allows staying in current dir when exiting with 'q'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias mounthdd='sudo mount -t ntfs /dev/sda1 ~/hdd'
-alias dwmstatus='~/.scripts/dwmstatus &'
+# alias mounthdd='sudo mount -t ntfs /dev/sda1 ~/hdd'
+# alias dwmstatus='~/.scripts/dwmstatus &'
 alias ls='exa -l --color=always --group-directories-first'
 alias vim='nvim'
 
