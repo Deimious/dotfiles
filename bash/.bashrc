@@ -83,7 +83,7 @@ bottom_left_angle="${purple}\342\224\224"
 open_brace="${purple}["
 close_brace="${purple}]"
 
-PS1="\n${top_left_angle}${open_brace}${dir}${close_brace}${green}\$(__git_ps1)\n${bottom_left_angle}${dash}λ${gray} "
+PS1="${top_left_angle}${open_brace}${dir}${close_brace}${green}\$(__git_ps1)\n${bottom_left_angle}${dash}λ${gray} "
 
 
 #

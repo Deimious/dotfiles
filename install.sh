@@ -16,3 +16,11 @@
 # ln -s ./bash/.bashrc ~/.bashrc
 
 # link ~ (X) folder(s)
+
+# link .config/dwm folder(s)
+
+# link .config/st folder(s)
+
+# link .config/slock folder(s)
+
+# link .config/dmenu folder(s)
