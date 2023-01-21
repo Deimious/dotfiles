@@ -15,6 +15,7 @@
 case $- in *i*) ;; *)	# Check for an interactive session. If not running interactively, don't do anything
      return;;
 esac
+source ~/.bash_git
 
 #
 #     @@@  @@@ @@@  @@@@@@ @@@@@@@  @@@@@@  @@@@@@@  @@@ @@@
@@ -59,8 +60,31 @@ fi
 #      :        :   : :  : :. :   :      :    :          :    
 #
 force_color_prompt=yes
-export PS1="\[\033[0;35m\]┌─╼ \[$(tput setaf 242)\][\[$(tput setaf 140)\w\]\[$(tput setaf 242)\]]\n\[\033[0;35m\]\$(echo \"\[\033[0;35m\]└────╼ λ\") \[$(tput setaf 242)\]"
+# export PS1="\[\033[0;35m\]┌─╼ \[$(tput setaf 242)\][\[$(tput setaf 140)\w\]\[$(tput setaf 242)\]]\n\[\033[0;35m\]\$(echo \"\[\033[0;35m\]└────╼ λ\") \[$(tput setaf 242)\]"
 trap 'echo -ne "\e[0m"' DEBUG
+
+cyan='\[\e[0;36m\]'
+purple='\[\e[0;35m\]'
+indigo='\[\e[0;34m\]'
+yellow='\[\e[0;33m\]'
+green='\[\e[0;32m\]'
+red='\[\e[0;31m\]'
+white='\[\e[0m\]'
+gray='\[\e[0m\]'
+
+user="${indigo}\u"
+host="${cyan}@\h"
+time="${white}\A"
+dir="${indigo}\w"
+
+dash="${purple}\342\224\200"
+top_left_angle="${purple}\342\224\214"
+bottom_left_angle="${purple}\342\224\224"
+open_brace="${purple}["
+close_brace="${purple}]"
+
+PS1="\n${top_left_angle}${open_brace}${dir}${close_brace}${green}\$(__git_ps1)\n${bottom_left_angle}${dash}λ${gray} "
+
 
 #
 #     @@@@@@  @@@      @@@  @@@@@@   @@@@@@ 
